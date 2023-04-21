@@ -1,6 +1,7 @@
 <template>
 
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Courseworx</title>
   <link rel="stylesheet" href="style.css" />
 
@@ -17,7 +18,7 @@
          <ul>
           <li><a href="">
             <i class="fas fa-user"></i>
-            <span class="nav-item">Dashboard</span>
+            <span class="nav-item">Profile</span>
           </a>
           </li>
           <li><a href="">
@@ -161,14 +162,45 @@
           <h4>$6.8k - $12.5k/yr</h4>
           <span>1 day ago</span>
         </div>
-    </div>
-
+      </div>
     </div>
     </section>
   </div>
+
+  <!--Profile Popup-->
+  <div class="prof-container">
+    <div class="container-box">
+      <img :src="menu" class="menu-icon">
+      <img :src="settings" class="settings-icon">
+      <img :src="prof_pic" class="profile_pic">
+      <h3>Paul Here</h3>
+      <p>A Developer at University of Cebu</p>
+      <div class="social-media">
+        <img :src="insta" alt="instagram">
+        <img :src="telegram" alt="telegram">
+        <img :src="dribble" alt="dribble">
+      </div>
+      <button type="button">Profile</button>
+      <div class="profile-bottom">
+        <p>Learn more about me!</p>
+        <img :src="arrow">
+      </div>
+    </div> 
+  </div>
+
+
+
 </template> 
 
 <script setup>
+
+import prof_pic from "~/assets/images/prof_pic.jpg";
+import menu from "~/assets/images/menu.png"
+import settings from "~/assets/images/setting.png"
+import insta from "~/assets/images/instagram.png"
+import telegram from "~/assets/images/telegram.png"
+import dribble from "~/assets/images/dribble.png"
+import arrow from "~/assets/images/arrow.png"
 
 </script>
 
@@ -378,6 +410,86 @@ h4{
 .comp_card:active{
   border: 2px solid blueviolet;
   transition: 0.4s;
+}
+.prof-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-box{
+  background: #293556;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  padding: 40px 90px;
+  color: #fff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+.prof-container .menu-icon{
+  width: 25px;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+}
+
+.prof-container .settings-icon{
+  width: 25px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+.profile_pic{
+  width: 150px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 6px;
+}
+.profile-bottom{
+  background: #fff;
+  color: #999;
+  padding: 60px 0;
+  margin-right: -90px;
+  margin-left: -90px;
+  margin-bottom: -40px;
+  border-radius: 20px;
+}
+.profile-bottom img{
+  width: 15px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.prof-container button{
+  background: #fff;
+  color: #293556;
+  border: none;
+  outline: none;
+  box-shadow: 0 5px 10px rgba( 0, 41, 53, 86);
+  padding: 15px 60px;
+  border-radius: 30px;
+  margin-bottom: -50px;
+  font-weight:600;
+  font-size: 16px;
+}
+.container-box h3{
+  font-size: 22px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+.social-media{
+  display: flex;
+  flex-wrap: wrap;
+}
+.social-media img{
+  width: 20px;
+  margin: 30px 5px;
+  cursor: pointer;
+  max-width: 100%;
+  height: auto;
+  margin: 5px;
 }
 </style>
 
