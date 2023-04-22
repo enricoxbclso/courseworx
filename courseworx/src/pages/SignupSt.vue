@@ -20,23 +20,23 @@
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-user-alt"></i>
-                <input type="text" placeholder="First Name" required v-model="fname">
+                <input type="text" placeholder="First Name" required v-model="fname" id="fname">
               </div>
               <div class="input-box">
                 <i class="fas fa-user-alt"></i>
-                <input type="text" placeholder="Last Name" required v-model="lname">
+                <input type="text" placeholder="Last Name" required v-model="lname" id="lname">
               </div>
               <div class="input-box">
                 <i class="fas fa-calendar"></i>
-                <input type="text" placeholder="Birthdate(mm/yy/dd)" required v-model="bday">
+                <input type="text" placeholder="Birthdate(mm/yy/dd)" required v-model="bday" id="bday">
               </div>
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
-                <input type="text" placeholder="Email Address" required v-model="email">
+                <input type="text" placeholder="Email Address" required v-model="email" id="email">
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" required v-model="password">
+                <input type="password" placeholder="Password" required v-model="password" id="password">
               </div>
               <form action="login">
               <div class="button input-box">
@@ -49,8 +49,8 @@
     </div>
     </div>
     </div>
-
 </template>
+
 
 <script setup>
 
@@ -70,7 +70,7 @@ const router = useRouter();
 const register =() => {
 	signInWithEmailAndPassword(getAuth(),fname.value, lname.value, bday.value,email.value, password.value)
 	.then((data) =>{
-		console.log("Sucessfully registered in!");
+		console.log("Sucessfully registered!");
         router.push("/Login");
 
 		
@@ -99,16 +99,6 @@ const register =() => {
 
 	})
 };
-
-const togglePopup = () => {
-  const popup = document.getElementById("popup");
-  popup.classList.toggle("visible");
-}
-
-const cancelPopup = () => {
-  const popup = document.getElementById("popup");
-  popup.classList.remove("visible");
-}
 
 const signInWithGoogle = () => {
 	

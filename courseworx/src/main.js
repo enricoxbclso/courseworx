@@ -8,13 +8,12 @@ import router from './router'
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCV_iq8iOLCX2JPS_IjKxosbxFv3QQpQhI",
-  authDomain: "courseworx-34d2a.firebaseapp.com",
-  projectId: "courseworx-34d2a",
-  storageBucket: "courseworx-34d2a.appspot.com",
-  messagingSenderId: "912429290416",
-  appId: "1:912429290416:web:bbafdaade4afbb0d5f3c75",
-  measurementId: "G-D2F9E3E7FP"
+  apiKey: "AIzaSyBmnSxpczOL91Adj-lx5OYqubGsFP24qNo",
+  authDomain: "courseworx-6cc8c.firebaseapp.com",
+  projectId: "courseworx-6cc8c",
+  storageBucket: "courseworx-6cc8c.appspot.com",
+  messagingSenderId: "292666837402",
+  appId: "1:292666837402:web:16833a9d4d3824d7ec5223"
 };
 
 

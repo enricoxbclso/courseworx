@@ -32,14 +32,13 @@
           </a>
           </li>
           <li><a href="">
-            <i class="fas fa-user"></i>
-            <span class="nav-item">Logout</span>
+            <i class="fas fa-bell"></i>
+            <span class="nav-item">Notifications</span>
           </a>
           </li>
-          <li><a href="" class="logout">
+          <li><a href="login" class="logout">
             <i class="fas fa-sign-out-alt"></i>
-            <span class="nav-item">Logout</span>
-          </a>
+            <span class="nav-item" @click="togglePopup">Logout</span></a>
           </li>
          </ul>
       </div>
@@ -411,12 +410,17 @@ h4{
   border: 2px solid blueviolet;
   transition: 0.4s;
 }
+
+/*profile popup */
 .prof-container{
     width: 100%;
     height: 100vh;
+    opacity: 0%;
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
 }
 .container-box{
   background: #293556;
