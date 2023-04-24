@@ -27,7 +27,7 @@
                 <input type="password" placeholder="Enter your password" required>
               </div>
               <div class="text"><a href="#">Forgot password?</a></div>
-              <form action="dashboard">
+              <form action="dashstudent">
               <div class="button input-box">
                 <input type="submit" value="Submit">
               </div>
@@ -55,7 +55,7 @@
         </label>
       </div>
       <div class="form-element">
-        <button type="submit" class="submit-btn"><a href="signup">Submit</a></button>
+        <button type="submit" class="submit-btn"><a href="signupstudent">Submit</a></button>
         <button type="button" class="cancel-btn" @click="cancelPopup">Cancel</button>
       </div>
     </div>
