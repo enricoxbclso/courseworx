@@ -338,4 +338,10 @@ min-height: 100vh;
 
 }
 
+.form-content h3{
+    font-size: 1.3em;
+    
+  
+}
+
 </style>

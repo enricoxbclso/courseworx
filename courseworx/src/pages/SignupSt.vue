@@ -28,7 +28,7 @@
               </div>
               <div class="input-box">
                 <i class="fas fa-calendar"></i>
-                <input type="date" placeholder="Birthdate(mm/yy/dd)" required v-model="bday" id="bday">
+                <input type="date" placeholder="Birthdate" required v-model="bday" id="bday">
               </div>
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
@@ -43,7 +43,7 @@
                 <input type="submit" value="Submit">
               </div>
             </form>
-              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+              <div class="text sign-up-text">Already have an account? <label for="flip"><a href=login>Login now</a></label></div>
             </div>
     </div>
     </div>
