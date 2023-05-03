@@ -42,7 +42,6 @@
     </div>
   </div>
 </div>
-<form action="Signup.vue">
 <div class="popup" id="popup">
 <div class="form">
   <div class="title">Are you an?</div>
@@ -59,12 +58,11 @@
     </label>
   </div>
   <div class="form-element">
-    <button type="submit" class="submit-btn"><a href="signupstudent">Submit</a></button>
+    <button type="submit" class="submit-btn" @click="redirectPage">Submit</button>
     <button type="button" class="cancel-btn" @click="cancelPopup">Cancel</button>
   </div>
 </div>
 </div>
-</form>
 </template>
 
 <script setup>
@@ -124,6 +122,17 @@ const cancelPopup = () => {
 const signInWithGoogle = () => {
 	
 
+}
+
+function redirectPage() {
+  const employerRadio = document.getElementById("employer");
+  const studentRadio = document.getElementById("student");
+
+  if (employerRadio.checked) {
+    window.location.href = "signupcompany";
+  } else if (studentRadio.checked) {
+    window.location.href = "signupstudent";
+  }
 }
 
 

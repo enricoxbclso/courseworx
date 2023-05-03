@@ -16,7 +16,7 @@
     <div class="forms">
         <div class="form-content">
     <div class="signup-form">
-          <div class="title">Signup</div>
+          <div class="title">Company Signup</div>
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-user-alt"></i>
