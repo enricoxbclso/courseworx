@@ -2,15 +2,15 @@
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
           
             const firebaseConfig = {
-              apiKey: "AIzaSyAF6AmQwc8_xQCsN9OCi_sQdbaKLFkSv9E",
-              authDomain: "fir-prac-6263d.firebaseapp.com",
-              databaseURL: "https://fir-prac-6263d-default-rtdb.asia-southeast1.firebasedatabase.app",
-              projectId: "fir-prac-6263d",
-              storageBucket: "fir-prac-6263d.appspot.com",
-              messagingSenderId: "62625647160",
-              appId: "1:62625647160:web:eeeb21b67f0c6b2f7974cd"
-            };
-          
+                apiKey: "AIzaSyBZCgsmJ_3qrFURiWSe0o0Kq3foQBrLqmo",
+                authDomain: "courseworx-6cfc2.firebaseapp.com",
+                databaseURL: "https://courseworx-6cfc2-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "courseworx-6cfc2",
+                storageBucket: "courseworx-6cfc2.appspot.com",
+                messagingSenderId: "896910683359",
+                appId: "1:896910683359:web:c9fe6df7e560a79873cd6a"
+              };
+              //ninitializeApp(firebaseConfig);
             const app = initializeApp(firebaseConfig);
 
             import { getDatabase, ref,child ,get , update  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
