@@ -21,7 +21,7 @@
         <div class="input-boxes">
           <div class="input-box">
             <i class="fas fa-envelope"></i>
-            <input type="text" placeholder="Enter your email" v-model="email">
+            <input type="text" placeholder="Enter your email" v-model="username">
           </div>
           <div class="input-box">
             <i class="fas fa-lock"></i>
@@ -30,12 +30,11 @@
           <div class="text">Forgot password?
             <br>{{errMsg }}
           </div>
-          
+          <form action="dashstudent">
           <div class="button input-box">
-            <input type="submit" value="Submit" @click="signin">
-          
+            <input type="submit" value="Submit">
           </div>
-        
+        </form>
           <div class="text sign-up-text">Don't have an account? <label for="popup" @click="togglePopup">Signup now</label></div>
         </div>
       </div>
@@ -64,50 +63,134 @@
 </div>
 </div>
 </template>
+<script>
+// import { push } from "firebase/database";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+// import {
+// getDatabase,
+// ref,
+// child,
+// get,
+// update,
+// onValue,
+// } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+//   authDomain: "courseworx-454d2.firebaseapp.com",
+//   databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "courseworx-454d2",
+//   storageBucket: "courseworx-454d2.appspot.com",
+//   messagingSenderId: "561114332314",
+//   appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+// }
+
+// const app = initializeApp(firebaseConfig);
+
+// const db = getDatabase();
+
+// export default {
+// data() {
+//   return {
+//     errMsg: '',
+//     errMsgP: '',
+//   }
+// },
+// created (){
+
+//   let loggedas = localStorage.getItem('loggedas');
+//   let loggedin = localStorage.getItem('loggedin');
+
+//   if(loggedin == 'true'){
+//     if(loggedas=='student'){
+//     this.$router.push('/dashstudent');
+//   }
+//     if(loggedas=='company'){
+//       this.$router.push('/dashcompany');
+//     }
+//   }
+  
+
+
+
+// },
+// methods: {
+
+//   logIn(){
+//     const dbRef = ref(db);
+
+//     onValue(
+//       child(dbRef, `users/${this.username}`),
+//       (snapshot) => {
+      
+//        if(snapshot.val()==null){
+//         this.errMsg ="INVALID USERNAME";
+//        }
+//        else{
+//           onValue(
+//             child(dbRef, `users/${this.username}/password`),
+//             (snapshot) => {
+//               if(snapshot.val()==this.password){
+//                 this.errMsgP="";
+//                 console.log("LOG IN SUCCESS")
+//                 onValue(
+//                     child(dbRef, `users/${this.username}/usertype`),
+//                     (snapshot) => {
+//                       if(snapshot.val()=='student'){
+//                         localStorage.setItem('loggedin', true);
+//                         localStorage.setItem('loggedas', 'student');
+//                         this.$router.push('/dashstudent');
+
+
+//                       }
+//                       else if(snapshot.val()=='company'){
+//                         localStorage.setItem('loggedin', true);
+//                         this.$router.push('/dashcompany');
+//                         localStorage.setItem('loggedas', 'company');
+
+//                       }
+//                       },
+//                     (error) => {
+//                       console.error(error);
+//                     }
+//                   );  
+ 
+//               }
+//               else{
+//                 console.log("LOG IN FAIL")
+
+//                 this.errMsg="INVALID PASSWORD";
+
+//               }
+//             },
+//             (error) => {
+//               console.error(error);
+//             }
+//           );        
+//         this.errMsg= "";
+//        }
+
+//       },
+//       (error) => {
+//         console.error(error);
+//       }
+//     );
+
+
+//   }
+ 
+ 
+  
+// }
+// }
+
+</script>
 
 <script setup>
-import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter} from "vue-router";
 import backimg from "~/assets/images/backImg.png";
 
-const email = ref("");
-const password = ref("");
-const errMsg = ref();
-const router = useRouter();
 
-const signin =() => {
-signInWithEmailAndPassword(getAuth(),email.value, password.value)
-.then((data) =>{
-console.log("Sucessfully signed in!");
-    router.push("/dashstudent");
-
-
-})
-.catch((error)=>{
-console.log(error.code);
-switch(error.code) {
-
-case "auth/invalid-email":
-errMsg.value = "INVALID EMAIL!";
-break;
-
-case "auth/user-not-found":
-errMsg.value = "NO ACCOUNT WITH THAT EMAIL IS FOUND";
-break;
-
-case "auth/wrong-password":
-errMsg.value = "INCORRECT PASSWORD";
-break;
-
-default:
-errMsg.value = "Email or Password was incorrect";
-break;
-
-}
-
-})
-};
 
 const togglePopup = () => {
   const popup = document.getElementById("popup");
@@ -119,19 +202,16 @@ const cancelPopup = () => {
   popup.classList.remove("visible");
 }
 
-const signInWithGoogle = () => {
-	
 
-}
 
 function redirectPage() {
-  const employerRadio = document.getElementById("employer");
-  const studentRadio = document.getElementById("student");
+const employerRadio = document.getElementById("employer");
+const studentRadio = document.getElementById("student");
 
-  if (employerRadio.checked) {
-    window.location.href = "signupcompany";
-  } else if (studentRadio.checked) {
-    window.location.href = "signupstudent";
+ if (employerRadio.checked) {
+   window.location.href = "signupcompany";
+} else if (studentRadio.checked) {
+  window.location.href = "signupstudent";
   }
 }
 

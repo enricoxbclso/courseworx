@@ -1,485 +1,846 @@
-<template>
+wz<template>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="item.icon"></ion-icon>
+                        </span>
+                        <span class="title">Courseworx</span>
+                    </a>
+                </li>
 
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Courseworx</title>
-	<link rel="stylesheet" href="style.css" />
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">Company Listings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                        <span class="title">Notifications</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="help-outline"></ion-icon>
+                        </span>
+                        <span class="title">Inbox</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+
+                <div class="user">
+                    <img :src="prof_pic" alt="">
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">1,504</div>
+                        <div class="cardName">Daily Views</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">80</div>
+                        <div class="cardName">Sales</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">284</div>
+                        <div class="cardName">Comments</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">$7,842</div>
+                        <div class="cardName">Earning</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Listings</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Company</td>
+                                <td>Position</td>
+                                <td>Available Pos.</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Google</td>
+                                <td>UI/UX Designer</td>
+                                <td>2</td>
+                                <td><span class="status delivered">Open</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Stephens Place</td>
+                                <td>Backend Programmer</td>
+                                <td>1</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Stephens Place</td>
+                                <td>Frontend Programmer</td>
+                                <td>2</td>
+                                <td><span class="status return">Return</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Addidas Shoes</td>
+                                <td>$620</td>
+                                <td>Due</td>
+                                <td><span class="status inProgress">In Progress</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Star Refrigerator</td>
+                                <td>$1200</td>
+                                <td>Paid</td>
+                                <td><span class="status delivered">Delivered</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Dell Laptop</td>
+                                <td>$110</td>
+                                <td>Due</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Apple Watch</td>
+                                <td>$1200</td>
+                                <td>Paid</td>
+                                <td><span class="status return">Return</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Addidas Shoes</td>
+                                <td>$620</td>
+                                <td>Due</td>
+                                <td><span class="status inProgress">In Progress</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ================= New Customers ================ -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Recent Customers</h2>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>David <br> <span>Italy</span></h4>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>Amit <br> <span>India</span></h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		</template> 
+
+<style scoped>
+/*  import google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Poppins" , sans-serif;
+}
+
+/* =============== Globals ============== */
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2rem;
+}
+
+.user {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======================= Cards ====================== */
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+
+.cardBox .card {
+  position: relative;
+  background: var(--white);
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardBox .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: var(--blue);
+}
+
+.cardBox .card .cardName {
+  color: var(--black2);
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.cardBox .card .iconBx {
+  font-size: 3.5rem;
+  color: var(--black2);
+}
+
+.cardBox .card:hover {
+  background: var(--blue);
+}
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx {
+  color: var(--white);
+}
+
+/* ================== Order Details List ============== */
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+
+.details .recentOrders {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+}
+.cardHeader .btn {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+}
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.details table thead td {
+  font-weight: 600;
+}
+.details .recentOrders table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child {
+  border-bottom: none;
+}
+.details .recentOrders table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.details .recentOrders table tr td {
+  padding: 10px;
+}
+.details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+.status.delivered {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.pending {
+  padding: 2px 4px;
+  background: #e9b10a;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.return {
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.inProgress {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.recentCustomers {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+.recentCustomers .imgBx {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.recentCustomers .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recentCustomers table tr td {
+  padding: 12px 10px;
+}
+.recentCustomers table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+.recentCustomers table tr td h4 span {
+  font-size: 14px;
+  color: var(--black2);
+}
+.recentCustomers table tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.recentCustomers table tr:hover td h4 span {
+  color: var(--white);
+}
+
+/* ====================== Responsive Design ========================== */
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  .status.inProgress {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  .user {
+    min-width: 40px;
+  }
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}
+
+
+</style>
+
+<script>
+import { addIcons } from 'ionicons';
+import { logoApple, homeOutline, peopleOutline, chatbubbleOutline, helpOutline, settingsOutline, lockClosedOutline, logOutOutline } from 'ionicons/icons';
+
+
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+// import {
+// getDatabase,
+// ref,
+// child,
+// get,
+// update,
+// onValue,
+// } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+//   authDomain: "courseworx-454d2.firebaseapp.com",
+//   databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "courseworx-454d2",
+//   storageBucket: "courseworx-454d2.appspot.com",
+//   messagingSenderId: "561114332314",
+//   appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+// }
+
+// const app = initializeApp(firebaseConfig);
+
+// const db = getDatabase();
+
+// export default {
+// data() {
+//   return {
+   
+//   }
+// },
+// created (){
+// let loggedin = localStorage.getItem('loggedin');
+// console.log(loggedin)
+// if(loggedin == 'false'){
+// 	this.$router.push('/');
+// 	console.log("this is true")
+
+// }
+// let loggedas = localStorage.getItem('loggedas');
+//   if(loggedas !='company'){
+//     this.$router.push('/');
+//   }
+
+
+
+
+
+
+// },
+// methods: {
+//   logOut(){
+//     localStorage.setItem('loggedin', false);
+//     this.$router.push('/');
+    
+
+//   }
+
+
   
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-  
-  
-	<div class="container">
-	  <nav>
-		<div class="navbar">
-		   <div class="logo">
-			<img src="" alt="">
-			<h1>courseworx</h1>
-		   </div>
-		   <ul>
-			<li><a href="">
-			  <i class="fas fa-user"></i>
-			  <span class="nav-item">Profile</span>
-			</a>
-			</li>
-			<li><a href="">
-			  <i class="fas fa-tasks"></i>
-			  <span class="nav-item">Jobs Board</span>
-			</a>
-			</li>
-			<li><a href="">
-			  <i class="fas fa-cog"></i>
-			  <span class="nav-item">Setting</span>
-			</a>
-			</li>
-			<li><a href="">
-			  <i class="fas fa-bell"></i>
-			  <span class="nav-item">Notifications</span>
-			</a>
-			</li>
-			<li><a href="login" class="logout">
-			  <i class="fas fa-sign-out-alt"></i>
-			  <span class="nav-item" @click="togglePopup">Logout</span></a>
-			</li>
-		   </ul>
-		</div>
-	  </nav>
-	  <section class="main">
-		<div class="main-top">
-		  <p>Explore the universe!</p>
-		</div>
-		<div class="main-body">
-		  <h1>Recent Jobs</h1>
-		<div class="search_bar">
-		  <input type="search" placeholder="Search job here...">
-		  <select name="" id="">
-			<option value="">Category</option>
-			<option value="">Web Development</option>
-			<option value="">App Design</option>
-			<option value="">UI/UX Design</option>
-		  </select>
-  
-		</div>
-		
-		<div class="tags_bar">
-		  <div class="tag">
-			<div class="fas fa-times"></div>
-			  <span>Programming</span>
-		  </div>
-		  <div class="tag">
-			<div class="fas fa-times"></div>
-			  <span>Design</span>
-		  </div>
-		  <div class="tag">
-			<div class="fas fa-times"></div>
-			  <span>PHP</span>
-		  </div>
-		  <div class="tag">
-			<div class="fas fa-times"></div>
-			  <span>JavaScript</span>
-		  </div>
-		</div>
-		<div class="row">
-			<p>There are more than <span>15</span> Companies affiliated with University of Cebu</p>
-			<a href="#">See all</a>
-		</div>  
-  
-		<div class="comp_card">
-		  <div class="comp_details">
-			<div class="img">
-			  <i class="fab fa-google-drive"></i>
-			</div>
-			<div class="text">
-			  <h2>UX Designer</h2>
-			  <span>Google Drive - Junior Pos</span>
-			</div>
-		  </div>
-		  <div class="pos_req">
-			<h4>$6.8k - $12.5k/yr</h4>
-			<span>1 day ago</span>
-		  </div>
-	  </div>
-  
-	  <div class="comp_card">
-		  <div class="comp_details">
-			<div class="img">
-			  <i class="fab fa-google-drive"></i>
-			</div>
-			<div class="text">
-			  <h2>UX Designer</h2>
-			  <span>Google Drive - Junior Pos</span>
-			</div>
-		  </div>
-		  <div class="pos_req">
-			<h4>$6.8k - $12.5k/yr</h4>
-			<span>1 day ago</span>
-		  </div>
-	  </div>
-  
-	  <div class="comp_card">
-		  <div class="comp_details">
-			<div class="img">
-			  <i class="fab fa-google-drive"></i>
-			</div>
-			<div class="text">
-			  <h2>UX Designer</h2>
-			  <span>Google Drive - Junior Pos</span>
-			</div>
-		  </div>
-		  <div class="pos_req">
-			<h4>$6.8k - $12.5k/yr</h4>
-			<span>1 day ago</span>
-		  </div>
-	  </div>
-  
-	  <div class="comp_card">
-		  <div class="comp_details">
-			<div class="img">
-			  <i class="fab fa-google-drive"></i>
-			</div>
-			<div class="text">
-			  <h2>UX Designer</h2>
-			  <span>Google Drive - Junior Pos</span>
-			</div>
-		  </div>
-		  <div class="pos_req">
-			<h4>$6.8k - $12.5k/yr</h4>
-			<span>1 day ago</span>
-		  </div>
-	  </div>
-  
-	  <div class="comp_card">
-		  <div class="comp_details">
-			<div class="img">
-			  <i class="fab fa-google-drive"></i>
-			</div>
-			<div class="text">
-			  <h2>UX Designer</h2>
-			  <span>Google Drive - Junior Pos</span>
-			</div>
-		  </div>
-		  <div class="pos_req">
-			<h4>$6.8k - $12.5k/yr</h4>
-			<span>1 day ago</span>
-		  </div>
-		</div>
-	  </div>
-	  </section>
-	</div>
-  
-	<!--Profile Popup-->
-	<div class="prof-container">
-	  <div class="container-box">
-		<img :src="menu" class="menu-icon">
-		<img :src="settings" class="settings-icon">
-		<img :src="prof_pic" class="profile_pic">
-		<h3>Paul Here</h3>
-		<p>A Developer at University of Cebu</p>
-		<div class="social-media">
-		  <img :src="insta" alt="instagram">
-		  <img :src="telegram" alt="telegram">
-		  <img :src="dribble" alt="dribble">
-		</div>
-		<button type="button">Profile</button>
-		<div class="profile-bottom">
-		  <p>Learn more about me!</p>
-		  <img :src="arrow">
-		</div>
-	  </div> 
-	</div>
-  
-  
-  
-  </template> 
+// }
+// }
+
+</script>
+
   
   <script setup>
   import prof_pic from "~/assets/images/prof_pic.jpg";
-  import menu from "~/assets/images/menu.png"
-  import settings from "~/assets/images/setting.png"
-  import insta from "~/assets/images/instagram.png"
-  import telegram from "~/assets/images/telegram.png"
-  import dribble from "~/assets/images/dribble.png"
-  import arrow from "~/assets/images/arrow.png"
+  import logo from "~/assets/images/backImg.jpg";
   </script>
   
-  <style scoped>
-  /*  import google fonts */
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-  *{
-	margin: 0;
-	padding: 0;
-	border: none;
-	outline: none;
-	text-decoration: none;
-	box-sizing: border-box;
-	list-style: none;
-	font-family: "Poppins", sans-serif;
-  }
-  body{
-	background-color: #293556; 
-	background-size: cover;
-	background-position: center center;
-  }
-  .container{
-	display: flex;
-	width: 1200px;
-	margin: auto;
-  }
-  nav{
-	  position: sticky;
-	  top: 0;
-	  left: 0;
-	  bottom: 0;
-	  width: 280px;
-	  height: 100vh;
-	  background: #fff;
-  }
-  .navbar{
-	width: 80%;
-	margin: 0 auto;  
-  }
-  .logo{
-	margin: 2rem 0 1rem 0;
-	padding-bottom: 3rem;
-	display: flex;
-	align-items: center;
-  }
-  .logo img{
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-  }
-  .logo h1{
-	margin-left: 1rem;
-	text-transform: uppercase;
-  }
-  ul{
-	margin: 0 auto;
-  }
-  li{
-	padding-bottom: 2rem;
-  }
-  li a{
-	font-size: 15px;
-	color: rgb(85, 83, 83);
-  }
-  nav i{
-	width: 50px;
-	font-size: 18px;
-	text-align: center;
-  }
-  .logout{
-	position: absolute;
-	bottom: 20px;
-  }
-  /*Main Section */
-  .main{
-	width: 100%;
-  } 
-  .main-top{
-	width: 100%;
-	background: #fff;
-	padding: 10px;
-	text-align: center;
-	font-size: 18px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	color: rgb(43, 43, 43)
-  }
-  .main-body{
-	padding: 10px 10px 10px 20px;
-  }
-  h1{
-	margin: 20px 10px;
-	font-size: 1.8rem; 
-	font-weight: bold;
-  }
-  h2{
-	font-size: 1.3rem; 
-	font-weight: bold;
-  }
-  h4{
-	font-size: 1rem; 
-	font-weight: bold;
-  }
-  .search_bar{
-	display: flex;
-	padding: 10px;
-	justify-content: space-between;
-  }
-  .search_bar input{
-	width: 50%;
-	padding: 10px;
-	border: 1px solid rgb(190, 190, 190);
-  }
-  .search_bar input:focus{
-	border: 1px solid blueviolet;
-  }
-  .search_bar select{
-	border: 1px solid rgb(190, 190, 190);
-	padding: 10px;
-	margin-left: 2rem;
-  }
-  .search_bar .filter{
-	width: 300px;
-  }
-  .tags_bar{
-	width: 55%;
-	display: flex;
-	padding: 10px;
-	justify-content: space-between;
-  }
-  .tag{
-	background: #fff;
-	padding: 10px 15px;
-	border-radius: 20px;
-	display: flex;
-	align-items: center;
-	font-size: 13px;
-	cursor: pointer;
-  }
-  .tag i{
-	margin-right: 0.7rem;
-  }
-  .row{
-	display: flex;
-	padding: 10px;
-	margin: 1.3rem;
-	justify-content: space-between;
-  }
-  .row p{
-	color: rgb(54, 54, 54);
-	font-size: 15px;
-  }
-  .row p span{
-	color: blueviolet;
-  }
-  .row a{
-	color: blueviolet;
-  }
-  .comp_card{
-	width: 100%;
-	padding: 15px;
-	cursor: pointer;
-	display: flex;
-	border-radius: 10px;
-	background: #fff;
-	margin-bottom: 15px;
-	justify-content: space-between;
-	border: 1px solid rgb(190, 190, 190);
-	box-shadow: 0 20px 30px rgba( 0, 0, 0, 0.1);
-  }
-  .comp_details{
-	display: flex;
-  }
-  .comp_details .img{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  }
-  .comp_details .img i{
-	width: 70px;
-	font-size: 3rem;
-	margin-left: 1rem;
-	padding: 10px;
-	color: rgb(82, 22, 138);
-	background: rgb(216, 205, 226);
-  }
-  .comp_details .text{
-	margin-left: 2.3rem;
-  }
-  .comp_details .text span{
-	color: rgb(116, 112, 112)
-  }
-  .pos_req{
-	text-align: right;
-	color: rgb(54, 54, 54);
-  }
-  .comp_card:active{
-	border: 2px solid blueviolet;
-	transition: 0.4s;
-  }
-  /*profile popup */
-  .prof-container{
-	  width: 100%;
-	  height: 100vh;
-	  opacity: 0%;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  pointer-events: none;
-	  transition: opacity 0.3s ease-in-out;
-  }
-  .container-box{
-	background: #293556;
-	top: 50%;
-	left: 50%;
-	text-align: center;
-	padding: 40px 90px;
-	color: #fff;
-	position: absolute;
-	transform: translate(-50%, -50%);
-	border-radius: 20px;
-  }
-  .prof-container .menu-icon{
-	width: 25px;
-	position: absolute;
-	left: 40px;
-	top: 40px;
-  }
-  .prof-container .settings-icon{
-	width: 25px;
-	position: absolute;
-	right: 40px;
-	top: 40px;
-  }
-  .profile_pic{
-	width: 150px;
-	border-radius: 50%;
-	background: #fff;
-	padding: 6px;
-  }
-  .profile-bottom{
-	background: #fff;
-	color: #999;
-	padding: 60px 0;
-	margin-right: -90px;
-	margin-left: -90px;
-	margin-bottom: -40px;
-	border-radius: 20px;
-  }
-  .profile-bottom img{
-	width: 15px;
-	margin-top: 15px;
-	cursor: pointer;
-  }
-  .prof-container button{
-	background: #fff;
-	color: #293556;
-	border: none;
-	outline: none;
-	box-shadow: 0 5px 10px rgba( 0, 41, 53, 86);
-	padding: 15px 60px;
-	border-radius: 30px;
-	margin-bottom: -50px;
-	font-weight:600;
-	font-size: 16px;
-  }
-  .container-box h3{
-	font-size: 22px;
-	margin-top: 20px;
-	font-weight: 500;
-  }
-  .social-media{
-	display: flex;
-	flex-wrap: wrap;
-  }
-  .social-media img{
-	width: 20px;
-	margin: 30px 5px;
-	cursor: pointer;
-	max-width: 100%;
-	height: auto;
-	margin: 5px;
-  }
-  </style>
+
   

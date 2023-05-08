@@ -36,9 +36,9 @@
             <span class="nav-item">Notifications</span>
           </a>
           </li>
-          <li><a href="login" class="logout">
+          <li><a  class="logout" @click="logOut">
             <i class="fas fa-sign-out-alt"></i>
-            <span class="nav-item" @click="togglePopup">Logout</span></a>
+            <span class="nav-item" >Logout</span></a>
           </li>
          </ul>
       </div>
@@ -190,6 +190,65 @@
 
 
 </template> 
+<script>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import {
+getDatabase,
+ref,
+child,
+get,
+update,
+onValue,
+} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+  authDomain: "courseworx-454d2.firebaseapp.com",
+  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "courseworx-454d2",
+  storageBucket: "courseworx-454d2.appspot.com",
+  messagingSenderId: "561114332314",
+  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+}
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase();
+
+export default {
+data() {
+  return {
+   
+  }
+},
+created (){
+  
+  let loggedas = localStorage.getItem('loggedas');
+  if(loggedas !='company'){
+    this.$router.push('/');
+  }
+
+
+
+
+
+},
+methods: {
+  logOut(){
+    localStorage.setItem('loggedin', false);
+    this.$router.push('/');
+    
+
+  }
+
+
+  
+}
+}
+
+</script>
+
 
 <script setup>
 

@@ -32,18 +32,16 @@
               </div>
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
-                <input type="text" placeholder="Email Address" required v-model="email" id="email">
+                <input type="text" placeholder="Username" required v-model="username" id="username">
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
                 <input type="password" placeholder="Password" required v-model="password" id="password">
               </div>
-              <form action="login">
               <div class="button input-box">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" @click="savaStudentData">
               </div>
-            </form>
-              <div class="text sign-up-text">Already have an account? <label for="flip"><a href=login>Login now</a></label></div>
+              <div class="text sign-up-text">Already have an account? <label for="flip"><a href="/">Login now</a></label></div>
             </div>
     </div>
     </div>
@@ -51,71 +49,74 @@
     </div>
 </template>
 
+<script>
+import { push } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import {
+getDatabase,
+ref,
+child,
+get,
+update,
+onValue,
+} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
-<script setup>
 
-// import { ref } from "vue";
-import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import backimg from "~/assets/images/backImg.png";
-import { useRouter} from "vue-router";
-const fname = ref("");
-const lname = ref("");
-const bday = ref("");
-const email= ref("");
-const password = ref("");  
-const errMsg = ref();
-const router = useRouter();
-
-const register =() => {
-	signInWithEmailAndPassword(getAuth(),fname.value, lname.value, bday.value,email.value, password.value)
-	.then((data) =>{
-		console.log("Sucessfully registered!");
-        router.push("/Login");
-
-		
-	})
-	.catch((error)=>{
-		console.log(error.code);
-		switch(error.code) {
-		
-		case "auth/invalid-email":
-		errMsg.value = "INVALID EMAIL!";
-		break;
-		
-		case "auth/user-not-found":
-		errMsg.value = "NO ACCOUNT WITH THAT EMAIL IS FOUND";
-		break;
-		
-		case "auth/wrong-password":
-		errMsg.value = "INCORRECT PASSWORD";
-		break;
-		
-		default:
-		errMsg.value = "Email or Password was incorrect";
-		break;
-
-		}
-
-	})
-};
-
-const signInWithGoogle = () => {
-	
-
+const firebaseConfig = {
+  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+  authDomain: "courseworx-454d2.firebaseapp.com",
+  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "courseworx-454d2",
+  storageBucket: "courseworx-454d2.appspot.com",
+  messagingSenderId: "561114332314",
+  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
 }
 
-// import axios from "axios";
+const app = initializeApp(firebaseConfig);
 
-// const name = ref("");
-// const pass = ref("");
+const db = getDatabase();
 
-// async function onLogin() {
-//     // const response = await axios.post("http://127.0.0.1:3000/login", {
-//     //     user: "asdc",
-//     //     pass: "asdcasdcasdcs"
-//     // });
-// }
+export default {
+data() {
+  return {
+  }
+},
+created (){
+ 
+
+},
+methods: {
+
+  savaStudentData(){
+
+    const userIdB = `users/${this.username}`;
+    const dbRefcustomersB = ref(db, userIdB);
+    
+      this.usertype = 'student'
+    //Que Information B
+                update(dbRefcustomersB, { fname: this.fname });
+                update(dbRefcustomersB, { lname: this.lname });
+                update(dbRefcustomersB, { password: this.password });
+                update(dbRefcustomersB, { bday: this.bday });
+                update(dbRefcustomersB, { usertype: this.usertype });
+
+
+                console.log("this is working")
+           
+
+    
+
+  }
+ 
+ 
+  
+}
+}
+
+</script>
+
+<script setup>
+import backimg from "~/assets/images/backImg.png";
 </script>
 
 <style scoped>

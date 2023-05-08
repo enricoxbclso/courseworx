@@ -20,102 +20,197 @@
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-user-alt"></i>
-                <input type="text" placeholder="Company Name" required v-model="fname" id="comp_name">
+                <input type="text" placeholder="Company Name" required v-model="comp_name" id="comp_name">
               </div>
               <div class="input-box">
                 <i class="fas fa-user-alt"></i>
-                <input type="text" placeholder="Company Address" required v-model="lname" id="comp_add">
+                <input type="text" placeholder="Company Address" required v-model="comp_add" id="comp_add">
               </div>
               <div class="input-box">
-                <i class="fas fa-calendar"></i>
-                <input type="text" placeholder="Email" required v-model="bday" id="email">
+                <i class="fas fa-user-alt"></i>
+                <input type="text" placeholder="Company Type" required v-model="comp_type" id="comp_type">
               </div>
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
-                <input type="text" placeholder="Password" required v-model="email" id="password">
+                <input type="text" placeholder="Username" required v-model="username" id="username">
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Company Type" required v-model="password" id="password">
+                <input type="password" placeholder="Password" required v-model="password" id="password">
               </div>
-              <form action="login">
               <div class="button input-box">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" @click="togglePopup">
               </div>
-            </form>
-              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+              <div class="text sign-up-text">Already have an account? <label for="flip"><a href="/">Login now</a></label></div> 
             </div>
     </div>
     </div>
     </div>
     </div>
+
+<div class="popup" id="popup">
+  <div class="conte">
+    <div class="close-btn" @click="cancelPopup">X</div>
+    <form action="">
+
+      <div class="row">
+
+        <div class="col">
+
+            <h3 class="title">billing address</h3>
+
+            <div class="inputBox">
+                <span>Full name :</span>
+                <input type="text" placeholder="john deo">
+            </div>
+            <div class="inputBox">
+                <span>Email :</span>
+                <input type="email" placeholder="example@example.com">
+            </div>
+            <div class="inputBox">
+                <span>Address :</span>
+                <input type="text" placeholder="room - street - locality">
+            </div>
+            <div class="inputBox">
+                <span>City :</span>
+                <input type="text" placeholder="Cebu City">
+            </div>
+
+                <div class="inputBox">
+                    <span>Province :</span>
+                    <input type="text" placeholder="Cebu">
+                </div>
+                <div class="inputBox">
+                    <span>Zip Code :</span>
+                    <input type="text" placeholder="123 456">
+                </div>
+
+        </div>
+
+        <div class="col">
+
+            <h3 class="title">payment</h3>
+
+            <div class="inputBox">
+                <span>Cards Accepted :</span>
+                <img :src="cards" alt="">
+            </div>
+            <div class="inputBox">
+                <span>Name On Card :</span>
+                <input type="text" placeholder="mr. john deo">
+            </div>
+            <div class="inputBox">
+                <span>Credit Card Number :</span>
+                <input type="number" placeholder="1111-2222-3333-4444">
+            </div>
+            <div class="inputBox">
+                <span>Exp Month :</span>
+                <input type="text" placeholder="january">
+            </div>
+
+            <div class="flex">
+                <div class="inputBox">
+                    <span>Exp Year :</span>
+                    <input type="number" placeholder="2022">
+                </div>
+                <div class="inputBox">
+                    <span>CVV :</span>
+                    <input type="text" placeholder="1234">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <input type="submit" value="Proceed to Checkout" class="submit-btn">
+
+</form>
+
+</div>    
+</div>
+
+   
 </template>
+<script>
+import { push } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import {
+getDatabase,
+ref,
+child,
+get,
+update,
+onValue,
+} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+  authDomain: "courseworx-454d2.firebaseapp.com",
+  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "courseworx-454d2",
+  storageBucket: "courseworx-454d2.appspot.com",
+  messagingSenderId: "561114332314",
+  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+}
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase();
+
+export default {
+data() {
+  return {
+  }
+},
+created (){
+ 
+
+},
+methods: {
+
+  saveCompanyData(){
+
+    const userIdB = `users/${this.username}`;
+    const dbRefcustomersB = ref(db, userIdB);
+    
+      this.usertype = 'company'
+    //Que Information B
+                update(dbRefcustomersB, { comp_name: this.comp_name });
+                update(dbRefcustomersB, { comp_add: this.comp_add });
+                update(dbRefcustomersB, { comp_type: this.comp_type });
+                update(dbRefcustomersB, { password: this.password });
+                update(dbRefcustomersB, { usertype: this.usertype });
+
+
+
+                console.log("this is working")
+           
+      }
+    
+  }
+}
+
+
+const togglePopup = () => {
+  const popup = document.getElementById("popup");
+  popup.classList.toggle("visible");
+}
+
+const cancelPopup = () => {
+  const popup = document.getElementById("popup");
+  popup.classList.remove("visible");
+}
+
+</script>
 
 
 <script setup>
 
-// import { ref } from "vue";
-import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import backimg from "~/assets/images/backImg.png";
-import { useRouter} from "vue-router";
-const fname = ref("");
-const lname = ref("");
-const bday = ref("");
-const email= ref("");
-const password = ref("");  
-const errMsg = ref();
-const router = useRouter();
+import cards from "~/assets/images/card_img.png"
 
-const register =() => {
-	signInWithEmailAndPassword(getAuth(),fname.value, lname.value, bday.value,email.value, password.value)
-	.then((data) =>{
-		console.log("Sucessfully registered!");
-        router.push("/Login");
-
-		
-	})
-	.catch((error)=>{
-		console.log(error.code);
-		switch(error.code) {
-		
-		case "auth/invalid-email":
-		errMsg.value = "INVALID EMAIL!";
-		break;
-		
-		case "auth/user-not-found":
-		errMsg.value = "NO ACCOUNT WITH THAT EMAIL IS FOUND";
-		break;
-		
-		case "auth/wrong-password":
-		errMsg.value = "INCORRECT PASSWORD";
-		break;
-		
-		default:
-		errMsg.value = "Email or Password was incorrect";
-		break;
-
-		}
-
-	})
-};
-
-const signInWithGoogle = () => {
-	
-
-}
-
-// import axios from "axios";
-
-// const name = ref("");
-// const pass = ref("");
-
-// async function onLogin() {
-//     // const response = await axios.post("http://127.0.0.1:3000/login", {
-//     //     user: "asdc",
-//     //     pass: "asdcasdcasdcs"
-//     // });
-// }
 </script>
 
 <style scoped>
@@ -308,7 +403,7 @@ min-height: 100vh;
 .forms .form-content .button input{
   color: #fff;
   background: #293556;
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 0;
   cursor: pointer;
   transition: all 0.4s ease;
@@ -340,8 +435,237 @@ min-height: 100vh;
 
 .form-content h3{
     font-size: 1.3em;
-    
+}
+
+
+.popup {
+position: absolute;
+top: 50%;
+left: 50%;
+opacity: 0%;
+transform: translate(-50%, -50%);
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+outline: none;
+border-radius: 10px;
+pointer-events: none;
+transition: opacity 0.3s ease-in-out;
+height: 60vh;
+}
+
+.popup.visible {
+opacity: 1;
+pointer-events: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.close-btn:hover {
+  color: red;
+}
+.conte{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:25px;
+  background: #293556;
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  min-height: 100%;
+  min-width:900px;
+}
+
+.popup .conte h3{
+    font-weight: bold;
+}
+
+.popup .conte {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+padding: 25px;
+min-width:900px;
+}
+
+.conte form{
+  padding:20px;
+  min-width:900px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+}
+
+.conte form .row{
+  display: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+.popup .col {
+  flex: 0 0 calc(50% - 15px)
+}
+
+.conte form .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.conte form .row .col .title{
+  font-size: 20px;
+  color:#333;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.conte form .row .col .inputBox{
+  margin:15px 0;
+  width: 100%;
+}
+
+.conte form .row .col .inputBox span{
+  margin-bottom: 10px;
+  display: block;
+}
+
+.conte form .row .col .inputBox input{
+  width: 100%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  font-size: 15px;
+  text-transform: none;
+  border-radius: 5px;
+}
+
+.conte form .row .col .inputBox input:focus{
+  border:1px solid #000;
+}
+
+.conte form .row .col .flex{
+  display: flex;
+  gap:15px;
+}
+
+.conte form .row .col .flex .inputBox{
+  margin-top: 5px;
+}
+
+.conte form .row .col .inputBox img{
+  height: 34px;
+  margin-top: 5px;
+  filter: drop-shadow(0 0 1px #000);
+}
+
+.conte form .submit-btn{
+  width: 100%;
+  padding:12px;
+  font-size: 17px;
+  background: #293556;
+  color:#fff;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 5px;
   
 }
 
+.conte form .submit-btn:hover{
+  background: #ccc;
+  color: #293556;
+}
+
 </style>
+
+<!-- 
+.popup .conte form {
+width: 100%; /* Adjusted width to fill the container */
+}
+
+  .conte form .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-end;
+}
+.popup .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.popup .col {
+  flex: 1 1 150px;
+}
+
+.popup .col.payment {
+  justify-content: flex-end;
+}
+
+.popup .title {
+  font-size: 20px;
+  color: #333;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.popup .inputBox {
+  margin: 15px 0;
+}
+
+.popup .inputBox span {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.popup input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.popup input:focus {
+  border: 1px solid #000;
+}
+
+.popup .flex {
+  display: flex;
+  gap: 15px;
+}
+
+.popup .flex .inputBox {
+  margin-top: 5px;
+}
+
+.popup .inputBox img {
+  height: 34px;
+  margin-top: 5px;
+  filter: drop-shadow(0 0 1px #000);
+}
+
+.popup .checkout-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.popup .submit-btn {
+  padding: 12px;
+  font-size: 17px;
+  background: #27ae60;
+  color: #fff;
+  cursor: pointer;
+}
+
+.popup .submit-btn:hover {
+  background: #2ecc71;
+} -->
