@@ -1,5 +1,7 @@
-wz<template>
+<template>
+<title>Welcome to Courseworx</title>
     <!-- =============== Navigation ================ -->
+
     <div class="container">
         <div class="navigation">
             <ul>
@@ -8,50 +10,59 @@ wz<template>
                         <span class="icon">
                             <ion-icon name="item.icon"></ion-icon>
                         </span>
-                        <span class="title">Courseworx</span>
+                        <h1 class="maintitle">COURSEWORX</h1>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
+                            <ion-icon :icon="homeOutline"></ion-icon>
                         </span>
-                        <span class="title">Dashboard</span>
+                        <span class="title">Home</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
+                            <ion-icon :icon="peopleOutline"></ion-icon>
                         </span>
-                        <span class="title">Company Listings</span>
+                        <span class="title">Your Application</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon :icon="chatbubbleOutline"></ion-icon>
                         </span>
-                        <span class="title">Notifications</span>
+                        <span class="title">Messages</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
+                            <ion-icon :icon="helpOutline"></ion-icon>
                         </span>
-                        <span class="title">Inbox</span>
+                        <span class="title">Help</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
+                            <ion-icon :icon="settingsOutline"></ion-icon>
+                        </span>
+                        <span class="title">Questions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon :icon="logOutOutline"></ion-icon>
                         </span>
                         <span class="title">Sign Out</span>
                     </a>
@@ -63,14 +74,12 @@ wz<template>
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+                    <ion-icon :icon="menuOutline"></ion-icon>
                 </div>
 
                 <div class="search">
-                    <label>
                         <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
+                        <button class='btn-search'><ion-icon :icon="searchOutline"></ion-icon></button>
                 </div>
 
                 <div class="user">
@@ -79,244 +88,168 @@ wz<template>
             </div>
 
             <!-- ======================= Cards ================== -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earning</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ion-icon>
-                    </div>
+            <div class="filter-wrapper">
+                <p>Recommendations</p>
+                <div class="filter">
+                    <button class="btn-filter">Front End</button>
+                    <button class="btn-filter">Full Stack</button>
+                    <button class="btn-filter">Back End</button>
+                    <button class="btn-filter">UI/UX Design</button>
+                    <button class="btn-filter">Database</button>
                 </div>
             </div>
-
-            <!-- ================ Order Details List ================= -->
-            <div class="details">
-                <div class="recentOrders">
-                    <div class="cardHeader">
-                        <h2>Recent Listings</h2>
-                        <a href="#" class="btn">View All</a>
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Company</td>
-                                <td>Position</td>
-                                <td>Available Pos.</td>
-                                <td>Status</td>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Google</td>
-                                <td>UI/UX Designer</td>
-                                <td>2</td>
-                                <td><span class="status delivered">Open</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Stephens Place</td>
-                                <td>Backend Programmer</td>
-                                <td>1</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Stephens Place</td>
-                                <td>Frontend Programmer</td>
-                                <td>2</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- ================= New Customers ================ -->
-                <div class="recentCustomers">
-                    <div class="cardHeader">
-                        <h2>Recent Customers</h2>
-                    </div>
-
-                    <table>
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="sort">
+              <p>Sort</p>
+              <div class="sort-list">
+                <select>
+                    <option value="0">All</option>
+                    <option value="0">Newest Post</option>
+                    <option value="0">Oldest Post</option>
+                    <option value="0">Most Relevant</option>
+                </select>
+              </div>
             </div>
-        </div>
+            <!-- ================ JOB RECOMMENDATIONS ================= -->
+            <div class="wrapper">
+                <div class="card">
+                    <div class="card-left blue-bg">
+                        <img :src="google">
+                    </div>
+                    <div class="card-center">
+                      <h3>Google</h3>
+                        <p class="card-detail">Software Development Intern</p>
+                        <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                          <div class="card-sub">
+                            <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
+                            <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                            <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                          </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="card-tag">
+                          <h5>Job Description</h5>
+                          <a href="#"><u>UI/UX Designer</u></a>
+                        </div>
+                        <div class="card-salary">
+                            <p><b>$350k</b><span>/ year</span></p>
+                        </div>
+                    </div><!--card-right-->
+                </div><!--card-->
+                </div><!--wrapper-->
+
+                <div class="wrapper">
+                <div class="card">
+                    <div class="card-left blue-bg">
+                        <img :src="tiktok">
+                    </div>
+                    <div class="card-center">
+                      <h3>Tiktok</h3>
+                        <p class="card-detail">UI/UX Designer</p>
+                        <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                          <div class="card-sub">
+                            <p><ion-icon :icon="todayOutline"></ion-icon>4 hours ago</p>
+                            <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                            <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                          </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="card-tag">
+                          <h5>Job Description</h5>
+                          <a href="#"><u>UI/UX Designer</u></a>
+                        </div>
+                        <div class="card-salary">
+                            <p><b>$350k</b><span>/ year</span></p>
+                        </div>
+                    </div><!--card-right-->
+                </div><!--card-->
+                </div><!--wrapper-->
+
+                <div class="wrapper">
+                <div class="card">
+                    <div class="card-left blue-bg">
+                        <img :src="twitter">
+                    </div>
+                    <div class="card-center">
+                      <h3>Twitter</h3>
+                        <p class="card-detail">UI/UX Designer</p>
+                        <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                          <div class="card-sub">
+                            <p><ion-icon :icon="todayOutline"></ion-icon>1 day ago</p>
+                            <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                            <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                          </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="card-tag">
+                          <h5>Job Description</h5>
+                          <a href="#"><u>UI/UX Designer</u></a>
+                        </div>
+                        <div class="card-salary">
+                            <p><b>$350k</b><span>/ year</span></p>
+                        </div>
+                    </div><!--card-right-->
+                </div><!--card-->
+                </div><!--wrapper-->
+
+                <div class="wrapper">
+                <div class="card">
+                    <div class="card-left blue-bg">
+                        <img :src="discord">
+                    </div>
+                    <div class="card-center">
+                      <h3>Discord</h3>
+                        <p class="card-detail">UI/UX Designer</p>
+                        <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                          <div class="card-sub">
+                            <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
+                            <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                            <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                          </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="card-tag">
+                          <h5>Job Description</h5>
+                          <a href="#"><u>UI/UX Designer</u></a>
+                        </div>
+                        <div class="card-salary">
+                            <p><b>$350k</b><span>/ year</span></p>
+                        </div>
+                    </div><!--card-right-->
+                </div><!--card-->
+                </div><!--wrapper-->
+            <!-----------------------------------JOB DETAILS---------------------------------->
+              </div>
     </div>
-
 		</template> 
 
-<style scoped>
-/*  import google fonts */
+<style>
+/* =========== Google Fonts ============ */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
-*{
+/* =============== Globals ============== */
+* {
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  font-family: "Poppins" , sans-serif;
 }
 
-/* =============== Globals ============== */
-
 :root {
-  --blue: #2a2185;
+  --blue: #293556;
   --white: #fff;
   --gray: #f5f5f5;
   --black1: #222;
   --black2: #999;
 }
-
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
+.maintitle{
+  font-size: rem;
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
 }
-
 .container {
   position: relative;
   width: 100%;
@@ -353,7 +286,7 @@ body {
 
 .navigation ul li:hover,
 .navigation ul li.hovered {
-  background-color: var(--white);
+  background-color: #D8D0D0;
 }
 
 .navigation ul li:nth-child(1) {
@@ -367,7 +300,7 @@ body {
   width: 100%;
   display: flex;
   text-decoration: none;
-  color: var(--white);
+  color: #D8D0D0;
 }
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
@@ -407,7 +340,7 @@ body {
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px 35px 0 10px var(--white);
+  box-shadow: 35px 35px 0 10px #D8D0D0;
   pointer-events: none;
 }
 .navigation ul li:hover a::after,
@@ -420,7 +353,7 @@ body {
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px -35px 0 10px var(--white);
+  box-shadow: 35px -35px 0 10px #D8D0D0;
   pointer-events: none;
 }
 
@@ -430,7 +363,7 @@ body {
   width: calc(100% - 300px);
   left: 300px;
   min-height: 100vh;
-  background: var(--white);
+  background: #D8D0D0;
   transition: 0.5s;
 }
 .main.active {
@@ -459,11 +392,40 @@ body {
 }
 
 .search {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  background-color: none;
+  border-radius: 20px; 
+  padding: 0.5rem 1rem;
   position: relative;
-  width: 400px;
-  margin: 0 10px;
+  background: #fff;
 }
 
+.search input{
+  width: 90%;
+  border: none;
+}
+.search .btn-search{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  padding: 0 5%;
+  border: none;
+  background-color: #293556;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  cursor: pointer;
+}
+
+.btn-search:hover{
+  background-color: white;
+  color: #293556;
+}
 .search label {
   position: relative;
   width: 100%;
@@ -506,123 +468,156 @@ body {
 }
 
 /* ======================= Cards ====================== */
-.cardBox {
+.filter-wrapper{
   position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
+  padding-left: 50px;
+  margin: 1rem 0;
+  font-size: 14px;
+}
+.filter{
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin: 0.5rem 0;
 }
 
-.cardBox .card {
-  position: relative;
-  background: var(--white);
-  padding: 30px;
+.btn-filter{
+  min-width: 110px;
+  padding: 0.5rem;
   border-radius: 20px;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
+  border: none;
+  background-color: white;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
 
-.cardBox .card .numbers {
-  position: relative;
-  font-weight: 500;
-  font-size: 2.5rem;
-  color: var(--blue);
+.btn-filter:hover{
+  background-color: #293556;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
-.cardBox .card .cardName {
-  color: var(--black2);
-  font-size: 1.1rem;
-  margin-top: 5px;
-}
-
-.cardBox .card .iconBx {
-  font-size: 3.5rem;
-  color: var(--black2);
-}
-
-.cardBox .card:hover {
-  background: var(--blue);
-}
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBx {
-  color: var(--white);
-}
-
-/* ================== Order Details List ============== */
-.details {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
-  /* margin-top: 10px; */
-}
-
-.details .recentOrders {
-  position: relative;
-  display: grid;
-  min-height: 500px;
-  background: var(--white);
-  padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-}
-
-.details .cardHeader {
+.sort{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  padding-right: 20px;
+}
+.sort p{  
+  font-size: 15px;
+}
+.sort-list select{
+  height: 1.5rem;
+  border-radius: 20px;
+  border: none;
+  margin-top: 0 0.5rem;
+}
+
+/* ================== JOB RECO ============== */
+.wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.card{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   align-items: flex-start;
-}
-.cardHeader h2 {
-  font-weight: 600;
-  color: var(--blue);
-}
-.cardHeader .btn {
-  position: relative;
-  padding: 5px 10px;
-  background: var(--blue);
-  text-decoration: none;
-  color: var(--white);
-  border-radius: 6px;
+  padding: 3%;
+  margin: 0 1%;
+  background-color: white;
+  line-height: 1.5;
+  gap: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 10px;
+  cursor: pointer;
+  border-radius: 20px;
 }
 
-.details table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+.card-left{
+  width: 10%;
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  border: 20%;
 }
-.details table thead td {
+
+.card-left img{
+  width: 100%;
+  height: auto;
+  min-height: 60px;
+  padding: 1rem;
+}
+
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.wrapper .card .card-center h3{
+  font-size: larger;
   font-weight: 600;
 }
-.details .recentOrders table tr {
-  color: var(--black1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+.card-center{
+  width: 50%;
 }
-.details .recentOrders table tr:last-child {
-  border-bottom: none;
+.wrapper .card .card-center h3{
+  font-size: larger;
+  font-weight: 600;
 }
-.details .recentOrders table tbody tr:hover {
-  background: var(--blue);
-  color: var(--white);
+.card-detail{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-.details .recentOrders table tr td {
-  padding: 10px;
+.card-loc{
+  font-size: 13px;
+  color: darkgrey;
+  margin-bottom: 5px;
 }
-.details .recentOrders table tr td:last-child {
-  text-align: end;
+
+.card-sub{
+  display: flex;
+  flex-wrap: wrap;
+  color: #222;
 }
-.details .recentOrders table tr td:nth-child(2) {
-  text-align: end;
+
+.card-sub p{
+  display: flex;
+  padding: 0 0.5rem 0 0; 
+  align-items: center;
 }
-.details .recentOrders table tr td:nth-child(3) {
-  text-align: center;
+
+.card-salary{
+  padding: 0.5rem 0;
+  color: #293556;
 }
+.card-salary span{
+  color: #222;
+  font-size: 15px
+}
+
+.card-right{
+  width: 15%;
+}
+.card-tag a{
+  color: darkgrey;
+  font-size: 18px;
+}
+
+h5{
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+.blue-bg{
+  background: #93CAED;
+  border-radius: 10px;
+}
+/*<--------------------STATUSES------------------------> */
 .status.delivered {
   padding: 2px 4px;
   background: #8de02c;
@@ -700,6 +695,12 @@ body {
   color: var(--white);
 }
 
+/*========================== Job Details================================= */
+
+</style>
+
+<style scoped>
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
@@ -731,7 +732,7 @@ body {
   .status.inProgress {
     white-space: nowrap;
   }
-}
+} 
 
 @media (max-width: 480px) {
   .cardBox {
@@ -763,14 +764,32 @@ body {
   }
 }
 
-
 </style>
-
 <script>
-import { addIcons } from 'ionicons';
-import { logoApple, homeOutline, peopleOutline, chatbubbleOutline, helpOutline, settingsOutline, lockClosedOutline, logOutOutline } from 'ionicons/icons';
-
-
+import { IonIcon } from '@ionic/vue';
+import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline,locationOutline,todayOutline, hourglassOutline } from 'ionicons/icons';
+export default {
+  components: { IonIcon },
+  setup() {
+    return {
+      add,
+      cartOutline,
+      chatbubbleOutline,
+      eyeOutline,
+      helpOutline,
+      homeOutline,
+      lockClosedOutline,
+      logOutOutline,
+      peopleOutline,
+      searchOutline,
+      settingsOutline,
+      cashOutline,
+      menuOutline,
+      locationOutline,
+      todayOutline
+    }
+  }
+}
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 // import {
 // getDatabase,
@@ -835,10 +854,12 @@ import { logoApple, homeOutline, peopleOutline, chatbubbleOutline, helpOutline, 
 // }
 
 </script>
-
-  
-  <script setup>
+<script setup>
   import prof_pic from "~/assets/images/prof_pic.jpg";
+  import google from "~/assets/images/google.png";
+  import tiktok from "~/assets/images/tiktok.svg"
+  import twitter from "~/assets/images/twitter.png"
+  import discord from "~/assets/images/discord.svg"
   import logo from "~/assets/images/backImg.jpg";
   </script>
   

@@ -63,6 +63,10 @@
 </div>
 </div>
 </template>
+
+
+
+
 <script>
 // import { push } from "firebase/database";
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
@@ -545,5 +549,6 @@ font-weight: 500;
 color: #333;
 
 }
+
 
 </style>

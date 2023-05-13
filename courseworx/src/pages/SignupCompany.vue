@@ -439,8 +439,8 @@ min-height: 100vh;
 
 
 .popup {
-position: absolute;
-top: 50%;
+position: fixed;
+top: 40%;
 left: 50%;
 opacity: 0%;
 transform: translate(-50%, -50%);
@@ -448,7 +448,7 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 outline: none;
-border-radius: 10px;
+border-radius: 20px;
 pointer-events: none;
 transition: opacity 0.3s ease-in-out;
 height: 60vh;
@@ -461,11 +461,11 @@ pointer-events: auto;
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 30px;
+  right: 40px;
   cursor: pointer;
   font-size: 20px;
-  color: #fff;
+  color: black;
   font-weight: bold;
 }
 
@@ -479,7 +479,7 @@ pointer-events: auto;
   padding:25px;
   background: #293556;
   box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
+  border-radius: 10px;
   min-height: 100%;
   min-width:900px;
 }
