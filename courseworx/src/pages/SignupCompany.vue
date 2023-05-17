@@ -439,7 +439,7 @@ min-height: 100vh;
 
 
 .popup {
-position: fixed;
+position: absolute;
 top: 40%;
 left: 50%;
 opacity: 0%;
@@ -584,88 +584,4 @@ min-width:900px;
 
 </style>
 
-<!-- 
-.popup .conte form {
-width: 100%; /* Adjusted width to fill the container */
-}
 
-  .conte form .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: flex-end;
-}
-.popup .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.popup .col {
-  flex: 1 1 150px;
-}
-
-.popup .col.payment {
-  justify-content: flex-end;
-}
-
-.popup .title {
-  font-size: 20px;
-  color: #333;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-}
-
-.popup .inputBox {
-  margin: 15px 0;
-}
-
-.popup .inputBox span {
-  margin-bottom: 10px;
-  display: block;
-}
-
-.popup input {
-  width: 100%;
-  border: 1px solid #ccc;
-  padding: 10px 15px;
-  font-size: 15px;
-  text-transform: none;
-}
-
-.popup input:focus {
-  border: 1px solid #000;
-}
-
-.popup .flex {
-  display: flex;
-  gap: 15px;
-}
-
-.popup .flex .inputBox {
-  margin-top: 5px;
-}
-
-.popup .inputBox img {
-  height: 34px;
-  margin-top: 5px;
-  filter: drop-shadow(0 0 1px #000);
-}
-
-.popup .checkout-btn {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-
-.popup .submit-btn {
-  padding: 12px;
-  font-size: 17px;
-  background: #27ae60;
-  color: #fff;
-  cursor: pointer;
-}
-
-.popup .submit-btn:hover {
-  background: #2ecc71;
-} -->
