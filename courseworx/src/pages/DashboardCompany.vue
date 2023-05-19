@@ -46,7 +46,7 @@
                 <span class="icon">
                   <ion-icon :icon="helpOutline"></ion-icon>
                 </span>
-                <span class="title">OJTs</span>
+                <span class="title">Track OJTs</span>
               </a>
             </li>
 
@@ -264,7 +264,7 @@
                             <select name="" id="">
                                 <option value="">ID</option>
                             </select>
-                            <button>Add record</button>
+                            <button @click="togglePopup">Add a listing</button>
                         </div>
 
                         <div class="browse">
@@ -302,38 +302,58 @@
                       </div><!--card-right-->
                   </div><!--card-->
                   </div><!--wrapper-->
-  
-                  <div class="wrapper">
-                  <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="tiktok">
-                      </div>
-                      <div class="card-center">
-                        <h3>Tiktok</h3>
-                          <p class="card-detail">UI/UX Designer</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                            <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline" ></ion-icon>4 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                            </div>
-                      </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
-                          </div>
-                      </div><!--card-right-->
-                  </div><!--card-->
-                  </div><!--wrapper-->
+
                       
             </div>
           </div>
           </div>
       </div>
+
+      <div class="popup" id="popup">
+      <div class="contpop">
+        <header>Add an new listing</header>
+        <form class="popform">
+          <div class="intbox">
+            <label>OJT Position Title</label>
+            <input v-model="ojtPos" type="text" placeholder="Enter Position Title" required />
+          </div>
+    
+          <div class="intbox">
+            <label>Company Name</label>
+            <input v-model="ojtcomp" type="text" placeholder="Enter Company Name" required />
+          </div>
+          <div class="columnpop">
+            <div class="intbox">
+              <label>OJT Description</label>
+              <textarea name="jobdescript" rows="4" cols="" v-model="phoneNumber" placeholder="Enter Job Description" required />
+            </div>
+            <div class="intbox">
+              <label>OJT Duration</label>
+              <input type="number" placeholder="Enter OJT Duration" required />
+            </div>
+          </div>
+          <div class="columnpop">
+              <div class="intbox">
+                  <label>OJT Position Requirements</label>
+                  <textarea name="jobreq" rows="4" v-model="jobreq" placeholder="Enter Position Requirements" required></textarea>
+              </div>
+              </div>
+
+              <div class="reqlist">
+              <ul>
+                  <li v-for="requirement in parsedRequirements">{{ requirement }}</li>
+              </ul>
+              </div>
+              <div class="intbox address">
+            <label>Job Location</label>
+            <input v-model="streetAddress1" type="text" placeholder="Enter street address" required />
+          </div>
+          <button @click="cancelPopup">Submit</button>
+        </form>
+      </div>
+    </div>
+
+
   
       </template> 
   
@@ -402,7 +422,7 @@
 
 .navigation ul li:hover,
 .navigation ul li.hovered {
-  background-color: #D8D0D0;
+  background-color: #E9edf2;
 }
 
 .navigation ul li:nth-child(1) {
@@ -456,7 +476,7 @@
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px 35px 0 10px #D8D0D0;
+  box-shadow: 35px 35px 0 10px #E9edf2;
   pointer-events: none;
 }
 .navigation ul li:hover a::after,
@@ -469,7 +489,7 @@
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px -35px 0 10px #D8D0D0;
+  box-shadow: 35px -35px 0 10px #E9edf2;
   pointer-events: none;
 }
 
@@ -687,6 +707,7 @@
     line-height: 1.5;
     gap: 1.5rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 20px;
     border: 10px;
     cursor: pointer;
   }
@@ -903,6 +924,159 @@ input, button, select {
     width: 200px;
 }
 
+/*-----------------POPUP APPLICATION FORM-----------------*/
+.popup {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0%;
+  transform: translate(-50%, -50%);
+  padding: 20px 30px;
+  background-color: #293556;
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.popup.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contpop {
+    max-width: 800px;
+    width: 100%;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  .contpop header {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+  }
+  .contpop .popform {
+    margin-top: 30px;
+  }
+  .popform .intbox {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .intbox label {
+    color: #333;
+  }
+  .popform :where(.intbox input, .select-box) {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+  }
+  .intbox input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+  .popform .columnpop {
+    display: flex;
+    column-gap: 15px;
+  }
+  .popform .gender-box {
+    margin-top: 20px;
+  }
+  .gender-box h3 {
+    color: #333;
+    font-size: 1rem;  
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .popform :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+  }
+  .popform :where(.intbox input[type="text"], .intbox textarea) {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+  }
+
+  .intbox textarea {
+    height: auto;
+    padding: 10px 15px;
+    resize: vertical;
+  }
+
+  .intbox input:focus,
+  .intbox textarea:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .popform .gender {
+    column-gap: 5px;
+  }
+  .gender input {
+    accent-color: rgb(130, 106, 251);
+  }
+  .popform :where(.gender input, .gender label) {
+    cursor: pointer;
+  }
+  .gender label {
+    color: #707070;
+  }
+  .address :where(input, .select-box) {
+    margin-top: 15px;
+  }
+  .select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #707070;
+    font-size: 1rem;
+  }
+  .popform button {
+    height: 55px;
+    width: 100%;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #293556;
+  }
+  .popform button:hover {
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    color: #293556;
+  }
+  /*Responsive*/
+  @media screen and (max-width: 500px) {
+    .popform .columnpop {
+      flex-wrap: wrap;
+    }
+    .popform :where(.gender-option, .gender) {
+      row-gap: 15px;
+  }
+  }
   </style>
   
 
@@ -978,7 +1152,17 @@ export default {
 
       navigation.classList.toggle('active');
       main.classList.toggle('active');
+    },
+
+    togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.toggle("visible");
+    },
+    cancelPopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("visible");
     }
+
   },
   data() {
     return {

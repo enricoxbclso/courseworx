@@ -93,8 +93,8 @@
           <div class="cardBox">
                 <div class="card1">
                     <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
+                        <div class="numbers">Google</div>
+                        <div class="cardName">50 hires</div>
                     </div>
 
                     <div class="iconBx">
@@ -104,8 +104,8 @@
 
                 <div class="card1">
                     <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
+                        <div class="numbers">CodeChamp</div>
+                        <div class="cardName">40 hires</div>
                     </div>
 
                     <div class="iconBx">
@@ -115,8 +115,8 @@
 
                 <div class="card1">
                     <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
+                        <div class="numbers">Twitter</div>
+                        <div class="cardName">Co</div>
                     </div>
 
                     <div class="iconBx">
@@ -255,7 +255,6 @@
                         </div>
 
                         <div class="browse">
-                          <button>Edit</button>
                            <input type="search" placeholder="Search" class="record-search">
                             <select name="" id="">
                                 <option value="">Applied Date</option>
@@ -271,53 +270,28 @@
                       </div>
                       <div class="card-center">
                         <h3>Google</h3>
-                          <p class="card-detail">Software Development Intern</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                          <p class="card-detail"><b>Position:</b> IT/CS OJT Intern</p>
+                          <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
                             <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
+                              <p>Date Applied: 2 hours ago</p>
                               <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                              <p><ion-icon :icon="hourglassOutline"></ion-icon>:100 hours</p>
                             </div>
+                            <div class="card-salary">
+                              <p><b>Contact Info:</b><span>/ year</span></p>
+                          </div>
                       </div>
                       <div class="card-right">
                           <div class="card-tag">
                             <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
+                            <p>We are seeking IT/CS OJT Interns to join our team at XYZ Tech Solutions. As an OJT Intern, you will have the opportunity to gain practical experience and apply your knowledge in a professional IT environment. You will work closely with our experienced IT professionals on various projects, contributing to the development, implementation, and maintenance of IT systems and solutions. 
+                              This is an excellent opportunity to enhance your skills, expand your knowledge, and kick-start your career in the IT industry.</p>
                           </div>
                       </div><!--card-right-->
                   </div><!--card-->
                   </div><!--wrapper-->
   
-                  <div class="wrapper">
-                  <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="tiktok">
-                      </div>
-                      <div class="card-center">
-                        <h3>Tiktok</h3>
-                          <p class="card-detail">UI/UX Designer</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                            <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline" ></ion-icon>4 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                            </div>
-                      </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
-                          </div>
-                      </div><!--card-right-->
-                  </div><!--card-->
-                  </div><!--wrapper-->
-                      
+              
             </div>
           </div>
           </div>
@@ -390,7 +364,7 @@
 
 .navigation ul li:hover,
 .navigation ul li.hovered {
-  background-color: #D8D0D0;
+  background-color: #E9edf2;
 }
 
 .navigation ul li:nth-child(1) {
@@ -444,7 +418,7 @@
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px 35px 0 10px #D8D0D0;
+  box-shadow: 35px 35px 0 10px #E9edf2;
   pointer-events: none;
 }
 .navigation ul li:hover a::after,
@@ -457,7 +431,7 @@
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px -35px 0 10px #D8D0D0;
+  box-shadow: 35px -35px 0 10px #E9edf2;
   pointer-events: none;
 }
 
@@ -544,7 +518,7 @@
   }
   
   .btn-search:hover{
-    background-color: white;
+    background-color: #E9edf2;
     color: #293556;
   }
   .search label {
@@ -770,6 +744,108 @@
     background: #93CAED;
     border-radius: 20px;
   }
+
+
+
+   /* ================== MANAGE APPLICATION============== */
+  .card{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 3%;
+    margin: 0 1%;
+    background-color: white;
+    line-height: 1.5;
+    gap: 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .card-left{
+    width: 10%;
+    min-width: 50px;
+    display: flex;
+    justify-content: center;
+    border: 20%;
+  }
+  
+  .card-left img{
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    padding: 1rem;
+  }
+  
+  .card:hover{
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .wrapper .card .card-center h3{
+    font-size: larger;
+    font-weight: 600;
+  }
+  .card-center{
+    width: 50%;
+  }
+  .wrapper .card .card-center h3{
+    font-size: larger;
+    font-weight: 600  ;
+  }
+  .card-detail{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .card-loc-app{
+    color: darkgrey;
+    margin-bottom: 5px;
+  }
+  
+  .card-sub p{
+    display: flex;
+    padding: 0 0.5rem 0 0;
+    padding-left: 0.25rem;
+    align-items: center;
+
+  }
+  
+  .card-salary{
+    padding: 0.5rem 0;
+    color: #293556;
+  }
+  .card-salary span{
+    color: #222;
+    font-size: 15px
+  }
+  
+  .card-right{
+    width: 35%;
+  }
+
+  .card-sub{
+    display: flex;
+    flex-wrap: wrap;
+    color: #222;
+  }
+
+  .card-tag p{
+    font-size: 18px;
+    text-align: justify;
+  }
+  
+  h5{
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+  }
+  
+  .blue-bg{
+    background: #93CAED;
+    border-radius: 20px;
+  }
+
   /*<--------------------STATUSES------------------------> */
   .status.delivered {
     padding: 2px 4px;

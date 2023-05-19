@@ -14,7 +14,8 @@ const router = createRouter({
     { path: "/forgotpass", component: () => import("~/pages/ForgotPassword.vue") },
     { path: "/test", component: () => import("~/pages/SkillsTest.vue") },
     { path: "/joblist", component: () => import("~/pages/JobListing.vue") },
-    ],
+    { path: "/profile", component: () => import("~/pages/Profile.vue") },        
+],
     
  
 });

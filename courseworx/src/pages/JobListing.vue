@@ -1,212 +1,212 @@
 <template>
-    <div class="container">
-      <header>Add an OJT Listing</header>
-      <form @submit.prevent="submitForm" class="form">
-        <div class="input-box">
-          <label>OJT Position Title</label>
-          <input v-model="ojtPos" type="text" placeholder="Enter Position Title" required />
-        </div>
-  
-        <div class="input-box">
-          <label>Company Name</label>
-          <input v-model="ojtcomp" type="text" placeholder="Enter Company Name" required />
-        </div>
-        <div class="column">
-          <div class="input-box">
-            <label>OJT Description</label>
-            <textarea name="jobdescript" rows="4" cols="" v-model="phoneNumber" placeholder="Enter Job Description" required />
-          </div>
-          <div class="input-box">
-            <label>OJT Duration</label>
-            <input type="number" placeholder="Enter OJT Duration" required />
-          </div>
-        </div>
-        <div class="column">
-            <div class="input-box">
-                <label>OJT Position Requirements</label>
-                <textarea name="jobreq" rows="4" v-model="jobreq" placeholder="Enter Position Requirements" required></textarea>
-            </div>
-            </div>
+  <div class="container">
+    <header>Add an OJT Listing</header>
+    <form class="form">
+      <div class="input-box">
+        <label>OJT Position Title</label>
+        <input v-model="ojtPos" type="text" placeholder="Enter Position Title" required />
+      </div>
 
-            <div class="requirements-list">
-            <ul>
-                <li v-for="requirement in parsedRequirements">{{ requirement }}</li>
-            </ul>
-            </div>
-        <div class="input-box address">
-          <label>Job Location</label>
-          <input v-model="streetAddress1" type="text" placeholder="Enter street address" required />
+      <div class="input-box">
+        <label>Company Name</label>
+        <input v-model="ojtcomp" type="text" placeholder="Enter Company Name" required />
+      </div>
+      <div class="column">
+        <div class="input-box">
+          <label>OJT Description</label>
+          <textarea name="jobdescript" rows="4" cols="" v-model="phoneNumber" placeholder="Enter Job Description" required />
         </div>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        jobreq: '' // Your initial value for jobreq
-      };
-    },
-    computed: {
-      parsedRequirements() {
-        if (!this.jobreq) {
-          return [];
-        }
-        return this.jobreq.split('\n').filter(requirement => requirement.trim() !== '');
+        <div class="input-box">
+          <label>OJT Duration</label>
+          <input type="number" placeholder="Enter OJT Duration" required />
+        </div>
+      </div>
+      <div class="column">
+          <div class="input-box">
+              <label>OJT Position Requirements</label>
+              <textarea name="jobreq" rows="4" v-model="jobreq" placeholder="Enter Position Requirements" required></textarea>
+          </div>
+          </div>
+
+          <div class="requirements-list">
+          <ul>
+              <li v-for="requirement in parsedRequirements">{{ requirement }}</li>
+          </ul>
+          </div>
+      <div class="input-box address">
+        <label>Job Location</label>
+        <input v-model="streetAddress1" type="text" placeholder="Enter street address" required />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      jobreq: '' // Your initial value for jobreq
+    };
+  },
+  computed: {
+    parsedRequirements() {
+      if (!this.jobreq) {
+        return [];
       }
+      return this.jobreq.split('\n').filter(requirement => requirement.trim() !== '');
     }
-  };
-  </script>
-  
+  }
+};
+</script>
+
 
 <style>
 /* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Poppins", sans-serif;
 }
 body {
-  min-height: 50vh;
-  min-width: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgb(130, 106, 251);
+min-height: 50vh;
+min-width: none;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+background: rgb(130, 106, 251);
 }
 .container {
-  position: relative;
-  max-width: 700px;
-  width: 100%;
-  background: #fff;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+position: relative;
+max-width: 700px;
+width: 100%;
+background: #fff;
+padding: 25px;
+border-radius: 8px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 .container header {
-  font-size: 1.5rem;
-  color: #333;
-  font-weight: 500;
-  text-align: center;
+font-size: 1.5rem;
+color: #333;
+font-weight: 500;
+text-align: center;
 }
 .container .form {
-  margin-top: 30px;
+margin-top: 30px;
 }
 .form .input-box {
-  width: 100%;
-  margin-top: 20px;
+width: 100%;
+margin-top: 20px;
 }
 .input-box label {
-  color: #333;
+color: #333;
 }
 .form :where(.input-box input, .select-box) {
-  position: relative;
-  height: 50px;
-  width: 100%;
-  outline: none;
-  font-size: 1rem;
-  color: #707070;
-  margin-top: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0 15px;
+position: relative;
+height: 50px;
+width: 100%;
+outline: none;
+font-size: 1rem;
+color: #707070;
+margin-top: 8px;
+border: 1px solid #ddd;
+border-radius: 6px;
+padding: 0 15px;
 }
 .input-box input:focus {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 .form .column {
-  display: flex;
-  column-gap: 15px;
+display: flex;
+column-gap: 15px;
 }
 .form .gender-box {
-  margin-top: 20px;
+margin-top: 20px;
 }
 .gender-box h3 {
-  color: #333;
-  font-size: 1rem;
-  font-weight: 400;
-  margin-bottom: 8px;
+color: #333;
+font-size: 1rem;
+font-weight: 400;
+margin-bottom: 8px;
 }
 .form :where(.gender-option, .gender) {
-  display: flex;
-  align-items: center;
-  column-gap: 50px;
-  flex-wrap: wrap;
+display: flex;
+align-items: center;
+column-gap: 50px;
+flex-wrap: wrap;
 }
 .form :where(.input-box input[type="text"], .input-box textarea) {
-  position: relative;
-  height: 50px;
-  width: 100%;
-  outline: none;
-  font-size: 1rem;
-  color: #707070;
-  margin-top: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0 15px;
+position: relative;
+height: 50px;
+width: 100%;
+outline: none;
+font-size: 1rem;
+color: #707070;
+margin-top: 8px;
+border: 1px solid #ddd;
+border-radius: 6px;
+padding: 0 15px;
 }
 
 .input-box textarea {
-  height: auto;
-  padding: 10px 15px;
-  resize: vertical;
+height: auto;
+padding: 10px 15px;
+resize: vertical;
 }
 
 .input-box input:focus,
 .input-box textarea:focus {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .form .gender {
-  column-gap: 5px;
+column-gap: 5px;
 }
 .gender input {
-  accent-color: rgb(130, 106, 251);
+accent-color: rgb(130, 106, 251);
 }
 .form :where(.gender input, .gender label) {
-  cursor: pointer;
+cursor: pointer;
 }
 .gender label {
-  color: #707070;
+color: #707070;
 }
 .address :where(input, .select-box) {
-  margin-top: 15px;
+margin-top: 15px;
 }
 .select-box select {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-  color: #707070;
-  font-size: 1rem;
+height: 100%;
+width: 100%;
+outline: none;
+border: none;
+color: #707070;
+font-size: 1rem;
 }
 .form button {
-  height: 55px;
-  width: 100%;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 400;
-  margin-top: 30px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: rgb(130, 106, 251);
+height: 55px;
+width: 100%;
+color: #fff;
+font-size: 1rem;
+font-weight: 400;
+margin-top: 30px;
+border: none;
+cursor: pointer;
+transition: all 0.2s ease;
+background: rgb(130, 106, 251);
 }
 .form button:hover {
-  background: rgb(88, 56, 250);
+background: rgb(88, 56, 250);
 }
 /*Responsive*/
 @media screen and (max-width: 500px) {
-  .form .column {
-    flex-wrap: wrap;
-  }
-  .form :where(.gender-option, .gender) {
-    row-gap: 15px;
+.form .column {
+  flex-wrap: wrap;
+}
+.form :where(.gender-option, .gender) {
+  row-gap: 15px;
 }
 }
 </style>
