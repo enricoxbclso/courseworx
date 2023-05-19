@@ -60,7 +60,7 @@
             </li>
 
             <li>
-              <a href="#">
+              <a @click="signout">
                 <span class="icon">
                   <ion-icon :icon="logOutOutline"></ion-icon>
                 </span>
@@ -93,7 +93,7 @@
         <div v-if="activeTab === 'home'">
 
           <div class="welcome-text">
-           Hello,<span>Enrico!</span>
+           Hello,<span>{{ curCompName}}!</span>
         </div>
 
         <div class="recommendation-text">
@@ -102,8 +102,8 @@
           <div class="cardBox">
                 <div class="card1">
                     <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Daily Views</div>
+                        <div class="numbers">{{ curCompViews }}</div>
+                        <div class="cardName">Views</div>
                     </div>
 
                     <div class="iconBx">
@@ -148,7 +148,7 @@
               <div class="wrapper">
                   <div class="card">
                       <div class="card-left blue-bg">
-                          <img :src="google">
+                          <img :src="Google">
                       </div>
                       <div class="card-center">
                         <h3>Google</h3>
@@ -175,7 +175,7 @@
                   <div class="wrapper">
                   <div class="card">
                       <div class="card-left blue-bg">
-                          <img :src="tiktok">
+                          <img :src="Tiktok">
                       </div>
                       <div class="card-center">
                         <h3>Tiktok</h3>
@@ -202,7 +202,7 @@
                   <div class="wrapper">
                   <div class="card">
                       <div class="card-left blue-bg">
-                          <img :src="twitter">
+                          <img :src="Twitter">
                       </div>
                       <div class="card-center">
                         <h3>Twitter</h3>
@@ -229,7 +229,7 @@
                   <div class="wrapper">
                   <div class="card">
                       <div class="card-left blue-bg">
-                          <img :src="discord">
+                          <img :src="Discord">
                       </div>
                       <div class="card-center">
                         <h3>Discord</h3>
@@ -277,31 +277,34 @@
                         </div>
                     </div>
 
-                  <div class="card">
+                    <div class="card">
                       <div class="card-left blue-bg">
-                          <img :src="google">
+                          <img :src="Google">
                       </div>
                       <div class="card-center">
                         <h3>Google</h3>
-                          <p class="card-detail">Software Development Intern</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                          <p class="card-detail"><b>Position:</b> IT/CS OJT Intern</p>
+                          <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
                             <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
+                              <p>Date Applied: 2 hours ago</p>
                               <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                              <p><ion-icon :icon="hourglassOutline"></ion-icon>:100 hours</p>
                             </div>
+                            <div class="card-salary">
+                              <p><b>OJT Position Requirements:</b><span>School ID</span></p>
+                          </div>
                       </div>
                       <div class="card-right">
                           <div class="card-tag">
                             <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
+                            <p>We are seeking IT/CS OJT Interns to join our team at XYZ Tech Solutions. As an OJT Intern, you will have the opportunity to gain practical experience and apply your knowledge in a professional IT environment. You will work closely with our experienced IT professionals on various projects, contributing to the development, implementation, and maintenance of IT systems and solutions. 
+                              This is an excellent opportunity to enhance your skills, expand your knowledge, and kick-start your career in the IT industry.</p>
                           </div>
                       </div><!--card-right-->
-                  </div><!--card-->
+                  </div><!--card-->         
                   </div><!--wrapper-->
+                  
+                  
 
                       
             </div>
@@ -311,8 +314,9 @@
 
       <div class="popup" id="popup">
       <div class="contpop">
-        <header>Add an new listing</header>
-        <form class="popform">
+        <header>Add a new listing</header>
+        <div class="close-btn" @click="cancelPopup">X</div>
+          <div class = "popform">
           <div class="intbox">
             <label>OJT Position Title</label>
             <input v-model="ojtPos" type="text" placeholder="Enter Position Title" required />
@@ -320,22 +324,22 @@
     
           <div class="intbox">
             <label>Company Name</label>
-            <input v-model="ojtcomp" type="text" placeholder="Enter Company Name" required />
+            <input v-model="ojtComp" type="text" placeholder="Enter Company Name" required />
           </div>
           <div class="columnpop">
             <div class="intbox">
               <label>OJT Description</label>
-              <textarea name="jobdescript" rows="4" cols="" v-model="phoneNumber" placeholder="Enter Job Description" required />
+              <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description" required />
             </div>
             <div class="intbox">
               <label>OJT Duration</label>
-              <input type="number" placeholder="Enter OJT Duration" required />
+              <input type="number" placeholder="Enter OJT Duration" required v-model="ojtDur" />
             </div>
           </div>
           <div class="columnpop">
               <div class="intbox">
                   <label>OJT Position Requirements</label>
-                  <textarea name="jobreq" rows="4" v-model="jobreq" placeholder="Enter Position Requirements" required></textarea>
+                  <textarea name="jobreq" rows="4" v-model="ojtPosReq" placeholder="Enter Position Requirements" required></textarea>
               </div>
               </div>
 
@@ -346,10 +350,10 @@
               </div>
               <div class="intbox address">
             <label>Job Location</label>
-            <input v-model="streetAddress1" type="text" placeholder="Enter street address" required />
+            <input v-model="ojtJobLoc" type="text" placeholder="Enter address" required />
           </div>
-          <button @click="cancelPopup">Submit</button>
-        </form>
+          <button @click="addNewListing">Submit</button>
+      </div>
       </div>
     </div>
 
@@ -776,11 +780,16 @@
   }
   
   .card-right{
-    width: 15%;
+    width: 35%;
   }
   .card-tag a{
     color: darkgrey;
     font-size: 18px;
+  }
+
+  .card-tag p{
+    font-size: 18px;
+    text-align: justify;
   }
   
   h5{
@@ -945,6 +954,19 @@ input, button, select {
   pointer-events: auto;
 }
 
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  cursor: pointer;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+}
+
+.close-btn:hover {
+  color: red;
+}
 .contpop {
     max-width: 800px;
     width: 100%;
@@ -1136,13 +1158,123 @@ input, button, select {
 
   
   </style>
-  <script>
-  import { IonIcon } from '@ionic/vue';
-  import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
+  
+<script>
+import { IonIcon } from '@ionic/vue';
+import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
+          lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
+          menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
+import { push } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import {
+getDatabase,
+ref,
+child,
+get,
+update,
+onValue,
+} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBVZupyBJSi6Xd9UZvK7zG504sL_xx6XNg",
+  authDomain: "course-92e33.firebaseapp.com",
+  databaseURL: "https://course-92e33-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "course-92e33",
+  storageBucket: "course-92e33.appspot.com",
+  messagingSenderId: "154795203166",
+  appId: "1:154795203166:web:1654edf48106594db932cf"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase();
 
 export default {
-  components: { IonIcon },
-  methods: {
+components: { IonIcon },
+
+data() {
+  return {
+      add,
+      cartOutline,
+      chatbubbleOutline,
+      eyeOutline,
+      helpOutline,
+      homeOutline,
+      lockClosedOutline,
+      logOutOutline,
+      peopleOutline,
+      searchOutline,
+      settingsOutline,
+      cashOutline,
+      menuOutline,
+      locationOutline,
+      todayOutline,
+      hourglassOutline,
+      activeTab: 'home',
+      curCompName: '',
+      curCompUsername:'',
+      curCompViews:null,
+    
+
+  }
+},
+created (){
+      const dbRef = ref(db);
+
+      this.curCompName = localStorage.getItem('curComp');
+      this.curCompUsername = localStorage.getItem('curCompUsername');
+
+        onValue(child(dbRef, `users/${this.curCompUsername}/views`),(snapshot) => {
+          this.curCompViews = Number(snapshot.val());  
+          console.log(this.curCompViews+"username");
+        });
+
+},
+methods: {
+    addNewListing(){
+      const dbRef = ref(db);
+      const dbRefAdd = ref(db, `joblisting/${this.curCompName}/ctr`);
+
+      get(dbRefAdd).then((snapshot) => { 
+        const dbListingMother = ref(db,`joblisting/${this.curCompName}`);
+
+        if(snapshot.val()==null){
+          const dbListing = ref(db,`joblisting/${this.curCompName}/1`);
+          update(dbListingMother, { ctr:      2      });
+          update(dbListing,       { ojtPos :  this.ojtPos   });
+          update(dbListing,       { ojtComp:  this.ojtComp  });
+          update(dbListing,       { ojtDesc:  this.ojtDesc  });
+          update(dbListing,       { ojtDur:   this.ojtDur   });
+          update(dbListing,       { ojtPosReq:this.ojtPosReq});
+          update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
+        }
+        else{
+          const dbListing = ref(db,`joblisting/${this.curCompName}/${snapshot.val()}`);
+          update(dbListingMother, { ctr:      snapshot.val()+1      });
+          update(dbListing,       { ojtPos :  this.ojtPos   });
+          update(dbListing,       { ojtComp:  this.ojtComp  });
+          update(dbListing,       { ojtDesc:  this.ojtDesc  });
+          update(dbListing,       { ojtDur:   this.ojtDur   });
+          update(dbListing,       { ojtPosReq:this.ojtPosReq});
+          update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
+
+        }
+        
+      });
+
+
+      onValue(child(dbRef, `joblisting/${this.curCompName}/ctr`),(snapshot) => {
+
+      });
+
+
+      const popup = document.getElementById("popup");
+      popup.classList.remove("visible");
+    },
+    signout(){
+      this.$router.push('/');
+    },
     changeTab(tab) {
       this.activeTab = tab;
     },
@@ -1163,81 +1295,16 @@ export default {
       popup.classList.remove("visible");
     }
 
-  },
-  data() {
-    return {
-      add,
-      cartOutline,
-      chatbubbleOutline,
-      eyeOutline,
-      helpOutline,
-      homeOutline,
-      lockClosedOutline,
-      logOutOutline,
-      peopleOutline,
-      searchOutline,
-      settingsOutline,
-      cashOutline,
-      menuOutline,
-      locationOutline,
-      todayOutline,
-      hourglassOutline,
-      activeTab: 'home'
-    };
-  }
-};
+  
+}
+}
 
-
-  
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-// import {
-// getDatabase,
-// ref,
-// child,
-// get,
-// update,
-// onValue,
-// } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
-//   authDomain: "courseworx-454d2.firebaseapp.com",
-//   databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
-//   projectId: "courseworx-454d2",
-//   storageBucket: "courseworx-454d2.appspot.com",
-//   messagingSenderId: "561114332314",
-//   appId: "1:561114332314:web:0b4cabbaffea89b0113323"
-// }
-// const app = initializeApp(firebaseConfig);
-// const db = getDatabase();
-// export default {
-// data() {
-//   return {
-   
-//   }
-// },
-// created (){
-  
-//   let loggedas = localStorage.getItem('loggedas');
-//   if(loggedas !='company'){
-//     this.$router.push('/');
-//   }
-// },
-// methods: {
-//   logOut(){
-//     localStorage.setItem('loggedin', false);
-//     this.$router.push('/');
-    
-//   }
-  
-// }
-// }
-  
-  </script>
+</script>
 <script setup>
   import prof_pic from "~/assets/images/prof_pic.jpg";
-  import google from "~/assets/images/google.png";
-  import tiktok from "~/assets/images/tiktok.svg"
-  import twitter from "~/assets/images/twitter.png"
-  import discord from "~/assets/images/discord.svg"
+  import Google from "~/assets/images/google.png";
+  import Tiktok from "~/assets/images/tiktok.svg"
+  import Twitter from "~/assets/images/twitter.png"
+  import Discord from "~/assets/images/discord.svg"
   import logo from "~/assets/images/backImg.jpg";
-  </script>
+  </script> 

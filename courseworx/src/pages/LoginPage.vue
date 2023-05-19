@@ -21,20 +21,18 @@
         <div class="input-boxes">
           <div class="input-box">
             <i class="fas fa-envelope"></i>
-            <input type="text" placeholder="Enter your email" v-model="username">
+            <input type="text" placeholder="Enter Username" v-model="username">
           </div>
           <div class="input-box">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Enter your password" v-model ="password">
+            <input type="password" placeholder="Enter Password" v-model ="password">
           </div>
           <div class="text">Forgot password?
             <br>{{errMsg }}
           </div>
-          <form action="dashstudent">
           <div class="button input-box">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" @click="logIn">
           </div>
-        </form>
           <div class="text sign-up-text">Don't have an account? <label for="popup" @click="togglePopup">Signup now</label></div>
         </div>
       </div>
@@ -68,126 +66,133 @@
 
 
 <script>
-// import { push } from "firebase/database";
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-// import {
-// getDatabase,
-// ref,
-// child,
-// get,
-// update,
-// onValue,
-// } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { push } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import {
+getDatabase,
+ref,
+child,
+get,
+update,
+onValue,
+} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
-//   authDomain: "courseworx-454d2.firebaseapp.com",
-//   databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
-//   projectId: "courseworx-454d2",
-//   storageBucket: "courseworx-454d2.appspot.com",
-//   messagingSenderId: "561114332314",
-//   appId: "1:561114332314:web:0b4cabbaffea89b0113323"
-// }
+const firebaseConfig = {
+  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+  authDomain: "courseworx-454d2.firebaseapp.com",
+  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "courseworx-454d2",
+  storageBucket: "courseworx-454d2.appspot.com",
+  messagingSenderId: "561114332314",
+  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+}
 
-// const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-// const db = getDatabase();
+const db = getDatabase();
 
-// export default {
-// data() {
-//   return {
-//     errMsg: '',
-//     errMsgP: '',
-//   }
-// },
-// created (){
+export default {
+data() {
+  return {
+    errMsg: '',
+    errMsgP: '',
+  }
+},
+created (){
 
-//   let loggedas = localStorage.getItem('loggedas');
-//   let loggedin = localStorage.getItem('loggedin');
+  let loggedas = localStorage.getItem('loggedas');
+  let loggedin = localStorage.getItem('loggedin');
 
-//   if(loggedin == 'true'){
-//     if(loggedas=='student'){
-//     this.$router.push('/dashstudent');
-//   }
-//     if(loggedas=='company'){
-//       this.$router.push('/dashcompany');
-//     }
-//   }
+  // if(loggedin == 'true'){
+  //   if(loggedas=='student'){
+  //   this.$router.push('/dashstudent');
+  // }
+  //   if(loggedas=='company'){
+  //     this.$router.push('/dashcompany');
+  //   }
+  // }
   
 
 
+},
+methods: {
 
-// },
-// methods: {
+  logIn(){
+    const dbRef = ref(db);
+    const dbRefCompNameSetter= ref(db, `users/${this.username}/comp_name` );
 
-//   logIn(){
-//     const dbRef = ref(db);
 
-//     onValue(
-//       child(dbRef, `users/${this.username}`),
-//       (snapshot) => {
+
+    
+    
+    onValue(
+      child(dbRef, `users/${this.username}`),
+      (snapshot) => {
       
-//        if(snapshot.val()==null){
-//         this.errMsg ="INVALID USERNAME";
-//        }
-//        else{
-//           onValue(
-//             child(dbRef, `users/${this.username}/password`),
-//             (snapshot) => {
-//               if(snapshot.val()==this.password){
-//                 this.errMsgP="";
-//                 console.log("LOG IN SUCCESS")
-//                 onValue(
-//                     child(dbRef, `users/${this.username}/usertype`),
-//                     (snapshot) => {
-//                       if(snapshot.val()=='student'){
-//                         localStorage.setItem('loggedin', true);
-//                         localStorage.setItem('loggedas', 'student');
-//                         this.$router.push('/dashstudent');
+       if(snapshot.val()==null){
+        this.errMsg ="INVALID USERNAME";
+       }
+       else{
+          onValue(
+            child(dbRef, `users/${this.username}/password`),
+            (snapshot) => {
+              if(snapshot.val()==this.password){
+                this.errMsgP="";    
+                onValue(
+                    child(dbRef, `users/${this.username}/usertype`),
+                    (snapshot) => {
+                      if(snapshot.val()=='student'){
+                        localStorage.setItem('loggedin', true);
+                        localStorage.setItem('loggedas', 'student');
+                        this.$router.push('/dashstudent');
 
 
-//                       }
-//                       else if(snapshot.val()=='company'){
-//                         localStorage.setItem('loggedin', true);
-//                         this.$router.push('/dashcompany');
-//                         localStorage.setItem('loggedas', 'company');
+                      }
+                      else if(snapshot.val()=='company'){
+                        localStorage.setItem('loggedin', true);
+                        this.$router.push('/dashcompany');
+                        localStorage.setItem('loggedas', 'company');
+                        localStorage.setItem('curCompUsername', this.username);
+                        get(dbRefCompNameSetter).then((snapshot) => { 
+                          localStorage.setItem('curComp',snapshot.val());
+                        });
 
-//                       }
-//                       },
-//                     (error) => {
-//                       console.error(error);
-//                     }
-//                   );  
+                      }
+                      },
+                    (error) => {
+                      console.error(error);
+                    }
+                  );  
  
-//               }
-//               else{
-//                 console.log("LOG IN FAIL")
+              }
+              else{
+                console.log("LOG IN FAIL")
 
-//                 this.errMsg="INVALID PASSWORD";
+                this.errMsg="INVALID PASSWORD";
 
-//               }
-//             },
-//             (error) => {
-//               console.error(error);
-//             }
-//           );        
-//         this.errMsg= "";
-//        }
+              }
+            },
+            (error) => {
+              console.error(error);
+            }
+          );        
+        this.errMsg= "";
+       }
 
-//       },
-//       (error) => {
-//         console.error(error);
-//       }
-//     );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
 
 
-//   }
+  }
  
  
   
-// }
-// }
+}
+}
 
 </script>
 

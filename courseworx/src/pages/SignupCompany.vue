@@ -38,6 +38,7 @@
                 <i class="fas fa-lock"></i>
                 <input type="password" placeholder="Password" required v-model="password" id="password">
               </div>
+              <div> {{ this.errMsg }}</div>
               <div class="button input-box">
                 <input type="submit" value="Submit" @click="togglePopup">
               </div>
@@ -51,7 +52,7 @@
 <div class="popup" id="popup">
   <div class="conte">
     <div class="close-btn" @click="cancelPopup">X</div>
-    <form action="">
+    <div class="form">
 
       <div class="row">
 
@@ -61,28 +62,28 @@
 
             <div class="inputBox">
                 <span>Full name :</span>
-                <input type="text" placeholder="john deo">
+                <input type="text" placeholder="john deo" v-model ="fullname">
             </div>
             <div class="inputBox">
                 <span>Email :</span>
-                <input type="email" placeholder="example@example.com">
+                <input type="email" placeholder="example@example.com" v-model ="email">
             </div>
             <div class="inputBox">
                 <span>Address :</span>
-                <input type="text" placeholder="room - street - locality">
+                <input type="text" placeholder="room - street - locality" v-model ="address">
             </div>
             <div class="inputBox">
                 <span>City :</span>
-                <input type="text" placeholder="Cebu City">
+                <input type="text" placeholder="Cebu City" v-model ="city">
             </div>
 
                 <div class="inputBox">
                     <span>Province :</span>
-                    <input type="text" placeholder="Cebu">
+                    <input type="text" placeholder="Cebu" v-model ="province">
                 </div>
                 <div class="inputBox">
                     <span>Zip Code :</span>
-                    <input type="text" placeholder="123 456">
+                    <input type="text" placeholder="123 456" v-model ="zipcode">
                 </div>
 
         </div>
@@ -97,25 +98,25 @@
             </div>
             <div class="inputBox">
                 <span>Name On Card :</span>
-                <input type="text" placeholder="mr. john deo">
+                <input type="text" placeholder="Brian Fabular" v-model ="nameOnCard">
             </div>
             <div class="inputBox">
                 <span>Credit Card Number :</span>
-                <input type="number" placeholder="1111-2222-3333-4444">
+                <input type="number" placeholder="1111-2222-3333-4444" v-model ="creditNum">
             </div>
             <div class="inputBox">
                 <span>Exp Month :</span>
-                <input type="text" placeholder="january">
+                <input type="text" placeholder="january" v-model ="expMonth">
             </div>
 
             <div class="flex">
                 <div class="inputBox">
                     <span>Exp Year :</span>
-                    <input type="number" placeholder="2022">
+                    <input type="number" placeholder="2022" v-model ="expYear">
                 </div>
                 <div class="inputBox">
                     <span>CVV :</span>
-                    <input type="text" placeholder="1234">
+                    <input type="text" placeholder="1234" v-model ="CVV">
                 </div>
             </div>
 
@@ -123,9 +124,9 @@
 
     </div>
 
-    <input type="submit" value="Proceed to Checkout" class="submit-btn">
+    <input type="submit" value="Proceed to Checkout" class="submit-btn" @click="saveCompanyData">
 
-</form>
+  </div>
 
 </div>    
 </div>
@@ -146,14 +147,14 @@ onValue,
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
-  authDomain: "courseworx-454d2.firebaseapp.com",
-  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "courseworx-454d2",
-  storageBucket: "courseworx-454d2.appspot.com",
-  messagingSenderId: "561114332314",
-  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
-}
+  apiKey: "AIzaSyBVZupyBJSi6Xd9UZvK7zG504sL_xx6XNg",
+  authDomain: "course-92e33.firebaseapp.com",
+  databaseURL: "https://course-92e33-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "course-92e33",
+  storageBucket: "course-92e33.appspot.com",
+  messagingSenderId: "154795203166",
+  appId: "1:154795203166:web:1654edf48106594db932cf"
+};
 
 const app = initializeApp(firebaseConfig);
 
@@ -162,6 +163,9 @@ const db = getDatabase();
 export default {
 data() {
   return {
+    errMsg:'',
+    errMsgTP:'',
+
   }
 },
 created (){
@@ -171,36 +175,68 @@ created (){
 methods: {
 
   saveCompanyData(){
+        //save company username and pass
+          const dbRefCompanyData = ref(db, `users/${this.username}`);
+                      update(dbRefCompanyData, { comp_name: this.comp_name });
+                      update(dbRefCompanyData, { comp_add: this.comp_add });
+                      update(dbRefCompanyData, { comp_type: this.comp_type });
+                      update(dbRefCompanyData, { password: this.password });
+                      update(dbRefCompanyData, { usertype: 'company' });
+                      update(dbRefCompanyData, { views: 0 });
 
-    const userIdB = `users/${this.username}`;
-    const dbRefcustomersB = ref(db, userIdB);
+
+        // save company payment details
+          const dbRefCompPayDetails = ref(db, `compPD/${this.comp_name}`);
+                      update(dbRefCompPayDetails, { fullname: this.fullname});
+                      update(dbRefCompPayDetails, { email:this.email});
+                      update(dbRefCompPayDetails, { address:this.address});
+                      update(dbRefCompPayDetails, { city:this.city});
+                      update(dbRefCompPayDetails, { province:this.province});
+                      update(dbRefCompPayDetails, { zipcode:this.zipcode});
+                      update(dbRefCompPayDetails, { nameOnCard:this.nameOnCard});
+                      update(dbRefCompPayDetails, { creditNum:this.creditNum});
+                      update(dbRefCompPayDetails, { expMonth:this.expMonth});
+                      update(dbRefCompPayDetails, { expYear:this.expYear});
+
+
+
     
-      this.usertype = 'company'
-    //Que Information B
-                update(dbRefcustomersB, { comp_name: this.comp_name });
-                update(dbRefcustomersB, { comp_add: this.comp_add });
-                update(dbRefcustomersB, { comp_type: this.comp_type });
-                update(dbRefcustomersB, { password: this.password });
-                update(dbRefcustomersB, { usertype: this.usertype });
+      },
+    togglePopup() {
+      const userChecker = ref(db, `users/${this.username}`);    
+      const compChecker = ref(db, `compPD/${this.comp_name}`);  
+      
+      get(compChecker).then((snapshot) => { 
+        if(snapshot.val()!=null){
+          this.errMsg = "Company Already Exist";
+        }
+        else{
+          this.errMsg = '';
+        get(userChecker).then((snapshot) => { 
+          if(snapshot.val() != null){
+            this.errMsg = 'This username is already taken';
+          }
+          else{
+            this.errMsg = '';
+
+              const popup = document.getElementById("popup");
+              popup.classList.toggle("visible");       
+          }
+        });  
+
+        }
+      });
 
 
-
-                console.log("this is working")
-           
-      }
-    
+    },
+    cancelPopup () {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("visible");
+    },
+ 
+ 
+  
   }
-}
-
-
-const togglePopup = () => {
-  const popup = document.getElementById("popup");
-  popup.classList.toggle("visible");
-}
-
-const cancelPopup = () => {
-  const popup = document.getElementById("popup");
-  popup.classList.remove("visible");
 }
 
 </script>
@@ -496,14 +532,14 @@ padding: 25px;
 min-width:900px;
 }
 
-.conte form{
+.conte .form{
   padding:20px;
   min-width:900px;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
 }
 
-.conte form .row{
+.conte .form .row{
   display: row;
   flex-wrap: wrap;
   gap: 15px;
@@ -514,30 +550,30 @@ min-width:900px;
   flex: 0 0 calc(50% - 15px)
 }
 
-.conte form .row {
+.conte .form .row {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
 
-.conte form .row .col .title{
+.conte .form .row .col .title{
   font-size: 20px;
   color:#333;
   padding-bottom: 5px;
   text-transform: uppercase;
 }
 
-.conte form .row .col .inputBox{
+.conte .form .row .col .inputBox{
   margin:15px 0;
   width: 100%;
 }
 
-.conte form .row .col .inputBox span{
+.conte .form .row .col .inputBox span{
   margin-bottom: 10px;
   display: block;
 }
 
-.conte form .row .col .inputBox input{
+.conte .form .row .col .inputBox input{
   width: 100%;
   border:1px solid #ccc;
   padding:10px 15px;
@@ -546,26 +582,26 @@ min-width:900px;
   border-radius: 5px;
 }
 
-.conte form .row .col .inputBox input:focus{
+.conte .form .row .col .inputBox input:focus{
   border:1px solid #000;
 }
 
-.conte form .row .col .flex{
+.conte .form .row .col .flex{
   display: flex;
   gap:15px;
 }
 
-.conte form .row .col .flex .inputBox{
+.conte .form .row .col .flex .inputBox{
   margin-top: 5px;
 }
 
-.conte form .row .col .inputBox img{
+.conte .form .row .col .inputBox img{
   height: 34px;
   margin-top: 5px;
   filter: drop-shadow(0 0 1px #000);
 }
 
-.conte form .submit-btn{
+.conte .form .submit-btn{
   width: 100%;
   padding:12px;
   font-size: 17px;
@@ -577,7 +613,7 @@ min-width:900px;
   
 }
 
-.conte form .submit-btn:hover{
+.conte .form .submit-btn:hover{
   background: #ccc;
   color: #293556;
 }
