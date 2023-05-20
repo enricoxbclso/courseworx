@@ -360,6 +360,147 @@
 
   
       </template> 
+  <script>
+  import { IonIcon } from '@ionic/vue';
+  import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
+            lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
+            menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
+  import { push } from "firebase/database";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+  import {
+  getDatabase,
+  ref,
+  child,
+  get,
+  update,
+  onValue,
+  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+  
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyBVZupyBJSi6Xd9UZvK7zG504sL_xx6XNg",
+    authDomain: "course-92e33.firebaseapp.com",
+    databaseURL: "https://course-92e33-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "course-92e33",
+    storageBucket: "course-92e33.appspot.com",
+    messagingSenderId: "154795203166",
+    appId: "1:154795203166:web:1654edf48106594db932cf"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  
+  const db = getDatabase();
+  
+  export default {
+  components: { IonIcon },
+  
+  data() {
+    return {
+        add,
+        cartOutline,
+        chatbubbleOutline,
+        eyeOutline,
+        helpOutline,
+        homeOutline,
+        lockClosedOutline,
+        logOutOutline,
+        peopleOutline,
+        searchOutline,
+        settingsOutline,
+        cashOutline,
+        menuOutline,
+        locationOutline,
+        todayOutline,
+        hourglassOutline,
+        activeTab: 'home',
+        curCompName: '',
+        curCompUsername:'',
+        curCompViews:null,
+      
+  
+    }
+  },
+  created (){
+        const dbRef = ref(db);
+  
+        this.curCompName = localStorage.getItem('curComp');
+        this.curCompUsername = localStorage.getItem('curCompUsername');
+  
+          onValue(child(dbRef, `users/${this.curCompUsername}/views`),(snapshot) => {
+            this.curCompViews = Number(snapshot.val());  
+            console.log(this.curCompViews+"username");
+          });
+  
+  },
+  methods: {
+      addNewListing(){
+        const dbRef = ref(db);
+        const dbRefAdd = ref(db, `joblisting/${this.curCompName}/ctr`);
+  
+        get(dbRefAdd).then((snapshot) => { 
+          const dbListingMother = ref(db,`joblisting/${this.curCompName}`);
+  
+          if(snapshot.val()==null){
+            const dbListing = ref(db,`joblisting/${this.curCompName}/1`);
+            update(dbListingMother, { ctr:      2      });
+            update(dbListing,       { ojtPos :  this.ojtPos   });
+            update(dbListing,       { ojtComp:  this.ojtComp  });
+            update(dbListing,       { ojtDesc:  this.ojtDesc  });
+            update(dbListing,       { ojtDur:   this.ojtDur   });
+            update(dbListing,       { ojtPosReq:this.ojtPosReq});
+            update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
+          }
+          else{
+            const dbListing = ref(db,`joblisting/${this.curCompName}/${snapshot.val()}`);
+            update(dbListingMother, { ctr:      snapshot.val()+1      });
+            update(dbListing,       { ojtPos :  this.ojtPos   });
+            update(dbListing,       { ojtComp:  this.ojtComp  });
+            update(dbListing,       { ojtDesc:  this.ojtDesc  });
+            update(dbListing,       { ojtDur:   this.ojtDur   });
+            update(dbListing,       { ojtPosReq:this.ojtPosReq});
+            update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
+  
+          }
+          
+        });
+  
+  
+        onValue(child(dbRef, `joblisting/${this.curCompName}/ctr`),(snapshot) => {
+  
+        });
+  
+  
+        const popup = document.getElementById("popup");
+        popup.classList.remove("visible");
+      },
+      signout(){
+        this.$router.push('/');
+      },
+      changeTab(tab) {
+        this.activeTab = tab;
+      },
+      toggleNavigation() {
+        const navigation = document.querySelector('.navigation');
+        const main = document.querySelector('.main');
+  
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+      },
+  
+      togglePopup() {
+        const popup = document.getElementById("popup");
+        popup.classList.toggle("visible");
+      },
+      cancelPopup() {
+        const popup = document.getElementById("popup");
+        popup.classList.remove("visible");
+      }
+  
+    
+  }
+  }
+  
+  </script>
   
   <style>
   /* =========== Google Fonts ============ */
@@ -685,9 +826,9 @@
 .cardBox .card1:hover {
   background: var(--blue);
 }
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBx {  
+.cardBox .card1:hover .numbers,
+.cardBox .card1:hover .cardName,
+.cardBox .card1:hover .iconBx {  
   color: var(--white);
 }
   /* ================== JOB RECO ============== */
@@ -1159,147 +1300,6 @@ input, button, select {
   
   </style>
   
-<script>
-import { IonIcon } from '@ionic/vue';
-import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
-          lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
-          menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
-import { push } from "firebase/database";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import {
-getDatabase,
-ref,
-child,
-get,
-update,
-onValue,
-} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBVZupyBJSi6Xd9UZvK7zG504sL_xx6XNg",
-  authDomain: "course-92e33.firebaseapp.com",
-  databaseURL: "https://course-92e33-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "course-92e33",
-  storageBucket: "course-92e33.appspot.com",
-  messagingSenderId: "154795203166",
-  appId: "1:154795203166:web:1654edf48106594db932cf"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getDatabase();
-
-export default {
-components: { IonIcon },
-
-data() {
-  return {
-      add,
-      cartOutline,
-      chatbubbleOutline,
-      eyeOutline,
-      helpOutline,
-      homeOutline,
-      lockClosedOutline,
-      logOutOutline,
-      peopleOutline,
-      searchOutline,
-      settingsOutline,
-      cashOutline,
-      menuOutline,
-      locationOutline,
-      todayOutline,
-      hourglassOutline,
-      activeTab: 'home',
-      curCompName: '',
-      curCompUsername:'',
-      curCompViews:null,
-    
-
-  }
-},
-created (){
-      const dbRef = ref(db);
-
-      this.curCompName = localStorage.getItem('curComp');
-      this.curCompUsername = localStorage.getItem('curCompUsername');
-
-        onValue(child(dbRef, `users/${this.curCompUsername}/views`),(snapshot) => {
-          this.curCompViews = Number(snapshot.val());  
-          console.log(this.curCompViews+"username");
-        });
-
-},
-methods: {
-    addNewListing(){
-      const dbRef = ref(db);
-      const dbRefAdd = ref(db, `joblisting/${this.curCompName}/ctr`);
-
-      get(dbRefAdd).then((snapshot) => { 
-        const dbListingMother = ref(db,`joblisting/${this.curCompName}`);
-
-        if(snapshot.val()==null){
-          const dbListing = ref(db,`joblisting/${this.curCompName}/1`);
-          update(dbListingMother, { ctr:      2      });
-          update(dbListing,       { ojtPos :  this.ojtPos   });
-          update(dbListing,       { ojtComp:  this.ojtComp  });
-          update(dbListing,       { ojtDesc:  this.ojtDesc  });
-          update(dbListing,       { ojtDur:   this.ojtDur   });
-          update(dbListing,       { ojtPosReq:this.ojtPosReq});
-          update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
-        }
-        else{
-          const dbListing = ref(db,`joblisting/${this.curCompName}/${snapshot.val()}`);
-          update(dbListingMother, { ctr:      snapshot.val()+1      });
-          update(dbListing,       { ojtPos :  this.ojtPos   });
-          update(dbListing,       { ojtComp:  this.ojtComp  });
-          update(dbListing,       { ojtDesc:  this.ojtDesc  });
-          update(dbListing,       { ojtDur:   this.ojtDur   });
-          update(dbListing,       { ojtPosReq:this.ojtPosReq});
-          update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
-
-        }
-        
-      });
-
-
-      onValue(child(dbRef, `joblisting/${this.curCompName}/ctr`),(snapshot) => {
-
-      });
-
-
-      const popup = document.getElementById("popup");
-      popup.classList.remove("visible");
-    },
-    signout(){
-      this.$router.push('/');
-    },
-    changeTab(tab) {
-      this.activeTab = tab;
-    },
-    toggleNavigation() {
-      const navigation = document.querySelector('.navigation');
-      const main = document.querySelector('.main');
-
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
-    },
-
-    togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.classList.toggle("visible");
-    },
-    cancelPopup() {
-      const popup = document.getElementById("popup");
-      popup.classList.remove("visible");
-    }
-
-  
-}
-}
-
-</script>
 <script setup>
   import prof_pic from "~/assets/images/prof_pic.jpg";
   import Google from "~/assets/images/google.png";

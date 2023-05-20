@@ -12,7 +12,7 @@ const router = createRouter({
     { path: "/dashstudent", component: () => import("~/pages/DashboardSt.vue") },
     { path: "/dashcompany", component: () => import("~/pages/DashboardCompany.vue") },
     { path: "/forgotpass", component: () => import("~/pages/ForgotPassword.vue") },
-    { path: "/test", component: () => import("~/pages/SkillsTest.vue") },
+    { path: "/test", component: () => import("~/pages/test.vue") },
     { path: "/joblist", component: () => import("~/pages/JobListing.vue") },
     { path: "/profile", component: () => import("~/pages/Profile.vue") },        
 ],

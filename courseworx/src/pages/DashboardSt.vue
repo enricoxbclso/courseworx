@@ -278,7 +278,7 @@
                               <p><ion-icon :icon="hourglassOutline"></ion-icon>:100 hours</p>
                             </div>
                             <div class="card-salary">
-                              <p><b>Contact Info:</b><span>/ year</span></p>
+                              <p><b>OJT Position Requirements:</b><span>School ID</span></p>
                           </div>
                       </div>
                       <div class="card-right">
