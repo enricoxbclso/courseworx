@@ -323,30 +323,34 @@
           <div class = "popform">
           <div class="intbox">
             <label>OJT Position Title</label>
-            <input v-model="ojtPos" type="text" placeholder="Enter Position Title" required />
+            <input v-model="ojtPos" type="text" placeholder="Enter Position Title" :class="{ 'error': showError && !ojtPos }" @input="checkInput" />
+            <span v-if="showError && !ojtPos" class="error-message">This field is required.</span>
           </div>
     
           <div class="intbox">
             <label>Company Name</label>
-            <input v-model="ojtComp" type="text" placeholder="Enter Company Name" required />
+            <input v-model="ojtComp" type="text" placeholder="Enter Company Name" :class="{ 'error': showError && !ojtComp }" @input="checkInput" />
+            <span v-if="showError && !ojtComp" class="error-message">This field is required.</span>
           </div>
           <div class="columnpop">
             <div class="intbox">
               <label>OJT Description</label>
-              <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description" required />
+              <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description"  :class="{ 'error': showError && !ojtDesc }" @input="checkInput"  />
+              <span v-if="showError && !ojtDesc" class="error-message">This field is required.</span>
             </div>
             <div class="intbox">
               <label>OJT Duration</label>
-              <input type="number" placeholder="Enter OJT Duration" required v-model="ojtDur" />
+              <input type="number" placeholder="Enter OJT Duration"  v-model="ojtDur" :class="{ 'error': showError && !ojtDur }" @input="checkInput" />
+              <span v-if="showError && !ojtDur" class="error-message">This field is required.</span>
             </div>
           </div>
           <div class="columnpop">
               <div class="intbox">
                   <label>OJT Position Requirements</label>
-                  <textarea name="jobreq" rows="4" v-model="ojtPosReq" placeholder="Enter Position Requirements" required></textarea>
+                  <textarea name="jobreq" rows="4" v-model="ojtPosReq" placeholder="Enter Position Requirements" :class="{ 'error': showError && !ojtPosReq }" @input="checkInput"></textarea>
+                  <span v-if="showError && !ojtPosReq" class="error-message">This field is required.</span>
+                </div>
               </div>
-              </div>
-
               <div class="reqlist">
               <ul>
                   <li v-for="requirement in parsedRequirements">{{ requirement }}</li>
@@ -354,7 +358,8 @@
               </div>
               <div class="intbox address">
             <label>Job Location</label>
-            <input v-model="ojtJobLoc" type="text" placeholder="Enter address" required />
+            <input v-model="ojtJobLoc" type="text" placeholder="Enter address" required :class="{ 'error': showError && !ojtPosReq }" @input="checkInput"/>
+            <span v-if="showError && !ojtJobLoc" class="error-message">This field is required.</span>
           </div>
           <button @click="addNewListing">Submit</button>
       </div>
@@ -382,14 +387,14 @@
   
   
   const firebaseConfig = {
-    apiKey: "AIzaSyBVZupyBJSi6Xd9UZvK7zG504sL_xx6XNg",
-    authDomain: "course-92e33.firebaseapp.com",
-    databaseURL: "https://course-92e33-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "course-92e33",
-    storageBucket: "course-92e33.appspot.com",  
-    messagingSenderId: "154795203166",
-    appId: "1:154795203166:web:1654edf48106594db932cf"
-  };
+  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+  authDomain: "courseworx-454d2.firebaseapp.com",
+  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "courseworx-454d2",
+  storageBucket: "courseworx-454d2.appspot.com",
+  messagingSenderId: "561114332314",
+  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+};
   
   const app = initializeApp(firebaseConfig);
   const db = getDatabase();
@@ -398,137 +403,154 @@
     components: { IonIcon },
 
     data() {
-      return {
-        add,
-        cartOutline,
-        chatbubbleOutline,
-        eyeOutline,
-        helpOutline,
-        homeOutline,
-        lockClosedOutline,
-        logOutOutline,
-        peopleOutline,
-        searchOutline,
-        settingsOutline,
-        cashOutline,
-        menuOutline,
-        locationOutline,
-        todayOutline,
-        hourglassOutline,
-        closeCircleOutline,
-        notificationsOutline,
-        analyticsOutline,
-        activeTab: 'home',
-        curCompName: '',
-        curCompUsername: '',
-        curCompViews: null,
-        jobListings: [],
-        cardCount: 0,
-        ojtPos: '',
-        ojtComp: '',
-        ojtDesc: '',
-        ojtDur: '',
-        ojtPosReq: '',
-        ojtJobLoc: ''
-      };
-    },
+    return {
+      add,
+      cartOutline,
+      chatbubbleOutline,
+      eyeOutline,
+      helpOutline,
+      homeOutline,
+      lockClosedOutline,
+      logOutOutline,
+      peopleOutline,
+      searchOutline,
+      settingsOutline,
+      cashOutline,
+      menuOutline,
+      locationOutline,
+      todayOutline,
+      hourglassOutline,
+      closeCircleOutline,
+      notificationsOutline,
+      analyticsOutline,
+      activeTab: 'home',
+      curCompName: '',
+      curCompUsername: '',
+      curCompViews: null,
+      jobListings: [],
+      cardCount: 0,
+      ojtPos: '',
+      ojtComp: '',
+      ojtDesc: '',
+      ojtDur: '',
+      ojtPosReq: '',
+      ojtJobLoc: '',
+      showError: false,
+      isListenerSet: false
+    };
+  },
+  created() {
+    const dbRef = ref(db);
+    this.curCompName = localStorage.getItem('curComp');
+    this.curCompUsername = localStorage.getItem('curCompUsername');
 
-    created() {
-      const dbRef = ref(db);
+    onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
+      this.curCompViews = Number(snapshot.val());
+      console.log(this.curCompViews + "username");
+    });
 
-      this.curCompName = localStorage.getItem('curComp');
-      this.curCompUsername = localStorage.getItem('curCompUsername');
-
-      onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
-        this.curCompViews = Number(snapshot.val());
-        console.log(this.curCompViews + "username");
+    // Retrieve job listings from Firebase
+    if (!this.isListenerSet) {
+      const listingsRef = ref(db, `joblisting/${this.curCompName}`);
+      onValue(listingsRef, (snapshot) => {
+        const listings = snapshot.val();
+        if (listings) {
+          this.jobListings = []; // Clear the array before adding the listings
+          this.jobListings = Object.values(listings);
+          this.cardCount = this.jobListings.length;
+        }
       });
-    },
 
-    methods: {
-      addNewListing() {
-        const dbRef = ref(db);
-        const dbRefAdd = ref(db, `joblisting/${this.curCompName}/ctr`);
-
-        get(dbRefAdd).then((snapshot) => {
-          const dbListingMother = ref(db, `joblisting/${this.curCompName}`);
-
-          if (snapshot.val() == null) {
-            const dbListing = ref(db, `joblisting/${this.curCompName}/1`);
-            update(dbListingMother, { ctr: 2 });
-            update(dbListing, { ojtPos: this.ojtPos });
-            update(dbListing, { ojtComp: this.ojtComp });
-            update(dbListing, { ojtDesc: this.ojtDesc });
-            update(dbListing, { ojtDur: this.ojtDur });
-            update(dbListing, { ojtPosReq: this.ojtPosReq });
-            update(dbListing, { ojtJobLoc: this.ojtJobLoc });
-          } else {
-            const dbListing = ref(db, `joblisting/${this.curCompName}/${snapshot.val()}`);
-            update(dbListingMother, { ctr: snapshot.val() + 1 });
-            update(dbListing, { ojtPos: this.ojtPos });
-            update(dbListing, { ojtComp: this.ojtComp });
-            update(dbListing, { ojtDesc: this.ojtDesc });
-            update(dbListing, { ojtDur: this.ojtDur });
-            update(dbListing, { ojtPosReq: this.ojtPosReq });
-            update(dbListing, { ojtJobLoc: this.ojtJobLoc });
-          }
-          this.cardCount++;
-
-          const newListing = {
-            ojtPos: this.ojtPos,
-            ojtComp: this.ojtComp,
-            ojtDesc: this.ojtDesc,
-            ojtDur: this.ojtDur,
-            ojtPosReq: this.ojtPosReq,
-            ojtJobLoc: this.ojtJobLoc
-          };
-
-          this.jobListings.push(newListing);
-
-          // Clear the form inputs
-          this.ojtPos = '';
-          this.ojtComp = '';
-          this.ojtDesc = '';
-          this.ojtDur = '';
-          this.ojtPosReq = '';
-          this.ojtJobLoc = '';
-        });
-
-        onValue(child(dbRef, `joblisting/${this.curCompName}/ctr`), (snapshot) => {
-          // Do something with the snapshot value
-        });
-
-        const popup = document.getElementById("popup");
-        popup.classList.remove("visible");
-      },
-
-      signout() {
-        this.$router.push('/');
-      },
-
-      changeTab(tab) {
-        this.activeTab = tab;
-      },
-
-      toggleNavigation() {
-        const navigation = document.querySelector('.navigation');
-        const main = document.querySelector('.main');
-
-        navigation.classList.toggle('active');
-        main.classList.toggle('active');
-      },
-
-      togglePopup() {
-        const popup = document.getElementById("popup");
-        popup.classList.toggle("visible");
-      },
-
-      cancelPopup() {
-        const popup = document.getElementById("popup");
-        popup.classList.remove("visible");
-      }
+      this.isListenerSet = true; // Set the flag to true to indicate that the listener is now set up
     }
-  };
+  },
+  methods: {
+    checkInput() {
+      this.showError = false;
+    },
+    submitForm() {
+      if (!this.validateForm()) {
+        this.showError = true;
+      } else {
+        this.addNewListing();
+        this.showError = false;
+      }
+    },
+    validateForm() {
+      return (
+        this.ojtPos &&
+        this.ojtComp &&
+        this.ojtDesc &&
+        this.ojtDur &&
+        this.ojtPosReq &&
+        this.ojtJobLoc
+      );
+    },
+    addNewListing() {
+  if (!this.validateForm()) {
+    this.showError = true;
+    return;
+  }
+
+  const dbRef = ref(db, `joblisting/${this.curCompName}`);
+  const newListingRef = push(dbRef);
+
+  update(newListingRef, {
+    ojtPos: this.ojtPos,
+    ojtComp: this.ojtComp,
+    ojtDesc: this.ojtDesc,
+    ojtDur: this.ojtDur,
+    ojtPosReq: this.ojtPosReq,
+    ojtJobLoc: this.ojtJobLoc
+  }).then(() => {
+    this.cardCount++;
+
+    const newListing = {
+      ojtPos: this.ojtPos,
+      ojtComp: this.ojtComp,
+      ojtDesc: this.ojtDesc,
+      ojtDur: this.ojtDur,
+      ojtPosReq: this.ojtPosReq,
+      ojtJobLoc: this.ojtJobLoc
+    };
+
+    this.jobListings.push(newListing);
+
+    // Clear the form inputs
+    this.ojtPos = '';
+    this.ojtComp = '';
+    this.ojtDesc = '';
+    this.ojtDur = '';
+    this.ojtPosReq = '';
+    this.ojtJobLoc = '';
+
+    const popup = document.getElementById("popup");
+    popup.classList.remove("visible");
+  });
+},
+    signout() {
+      this.$router.push('/');
+    },
+    changeTab(tab) {
+      this.activeTab = tab;
+    },
+    toggleNavigation() {
+      const navigation = document.querySelector('.navigation');
+      const main = document.querySelector('.main');
+
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+    },
+    togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.toggle("visible");
+    },
+    cancelPopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("visible");
+    }
+  }
+};
 </script>
 
   
@@ -1269,6 +1291,24 @@ input, button, select {
     .popform :where(.gender-option, .gender) {
       row-gap: 15px;
   }
+  }
+
+  .error {
+  border: 1px solid red;
+}
+
+.error-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  display: inline-block;
+}
+.error-message {
+    font-size: 12px; 
+    color: red; 
   }
   </style>
   
