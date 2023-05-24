@@ -44,18 +44,18 @@
             <li>
               <a href="#">
                 <span class="icon">
-                  <ion-icon :icon="helpOutline"></ion-icon>
+                  <ion-icon :icon="analyticsOutline"></ion-icon>
                 </span>
-                <span class="title">Track OJTs</span>
+                <span class="title">Manage Applicants </span>
               </a>
             </li>
 
             <li>
               <a href="#">
                 <span class="icon">
-                  <ion-icon :icon="helpOutline"></ion-icon>
+                  <ion-icon :icon="notificationsOutline"></ion-icon>
                 </span>
-                <span class="title">Help</span>
+                <span class="title">Notifications</span>
               </a>
             </li>
 
@@ -277,31 +277,35 @@
                         </div>
                     </div>
 
-                    <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="Google">
-                      </div>
-                      <div class="card-center">
-                        <h3>Google</h3>
-                          <p class="card-detail"><b>Position:</b> IT/CS OJT Intern</p>
-                          <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                   
+                    <!--DYNAMICALLY ADDED WHEN A BUTTON IS CLICKED-->
+                    <div>
+                        <div class="card" v-for="listing in jobListings" :key="listing.id">
+                          <div class="card-left blue-bg">
+                            <img :src="google" alt="Company Logo">
+                          </div>
+                          <div class="card-center">
+                            <h3>{{ listing.ojtComp }}</h3>
+                            <p class="card-detail"><b><ul>Position:</ul></b> {{ listing.ojtPos }}</p>
+                            <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ listing.ojtJobLoc }}</p>
                             <div class="card-sub">
-                              <p>Date Applied: 2 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>:100 hours</p>
+                              <p>Time Posted: 2 hours ago</p>
+                              <p><ion-icon :icon="peopleOutline"></ion-icon></p>
+                              <p><ion-icon :icon="hourglassOutline"></ion-icon>:{{ listing.ojtDur }}</p>
                             </div>
                             <div class="card-salary">
-                              <p><b>OJT Position Requirements:</b><span>School ID</span></p>
+                              <p><b>OJT Position Requirements:</b><span>{{ listing.ojtPosReq }}</span></p>
+                            </div>
                           </div>
+                          <div class="card-right">
+                            <div class="card-tag">
+                              <h5>Job Description</h5>
+                              <p>{{ listing.ojtDesc }}</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <p>We are seeking IT/CS OJT Interns to join our team at XYZ Tech Solutions. As an OJT Intern, you will have the opportunity to gain practical experience and apply your knowledge in a professional IT environment. You will work closely with our experienced IT professionals on various projects, contributing to the development, implementation, and maintenance of IT systems and solutions. 
-                              This is an excellent opportunity to enhance your skills, expand your knowledge, and kick-start your career in the IT industry.</p>
-                          </div>
-                      </div><!--card-right-->
-                  </div><!--card-->         
+
                   </div><!--wrapper-->
                   
                   
@@ -364,7 +368,7 @@
   import { IonIcon } from '@ionic/vue';
   import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
             lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
-            menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
+            menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline } from 'ionicons/icons';
   import { push } from "firebase/database";
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
   import {
@@ -382,20 +386,19 @@
     authDomain: "course-92e33.firebaseapp.com",
     databaseURL: "https://course-92e33-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "course-92e33",
-    storageBucket: "course-92e33.appspot.com",
+    storageBucket: "course-92e33.appspot.com",  
     messagingSenderId: "154795203166",
     appId: "1:154795203166:web:1654edf48106594db932cf"
   };
   
   const app = initializeApp(firebaseConfig);
-  
   const db = getDatabase();
-  
+
   export default {
-  components: { IonIcon },
-  
-  data() {
-    return {
+    components: { IonIcon },
+
+    data() {
+      return {
         add,
         cartOutline,
         chatbubbleOutline,
@@ -412,95 +415,122 @@
         locationOutline,
         todayOutline,
         hourglassOutline,
+        closeCircleOutline,
+        notificationsOutline,
+        analyticsOutline,
         activeTab: 'home',
         curCompName: '',
-        curCompUsername:'',
-        curCompViews:null,
-      
-  
-    }
-  },
-  created (){
-        const dbRef = ref(db);
-  
-        this.curCompName = localStorage.getItem('curComp');
-        this.curCompUsername = localStorage.getItem('curCompUsername');
-  
-          onValue(child(dbRef, `users/${this.curCompUsername}/views`),(snapshot) => {
-            this.curCompViews = Number(snapshot.val());  
-            console.log(this.curCompViews+"username");
-          });
-  
-  },
-  methods: {
-      addNewListing(){
+        curCompUsername: '',
+        curCompViews: null,
+        jobListings: [],
+        cardCount: 0,
+        ojtPos: '',
+        ojtComp: '',
+        ojtDesc: '',
+        ojtDur: '',
+        ojtPosReq: '',
+        ojtJobLoc: ''
+      };
+    },
+
+    created() {
+      const dbRef = ref(db);
+
+      this.curCompName = localStorage.getItem('curComp');
+      this.curCompUsername = localStorage.getItem('curCompUsername');
+
+      onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
+        this.curCompViews = Number(snapshot.val());
+        console.log(this.curCompViews + "username");
+      });
+    },
+
+    methods: {
+      addNewListing() {
         const dbRef = ref(db);
         const dbRefAdd = ref(db, `joblisting/${this.curCompName}/ctr`);
-  
-        get(dbRefAdd).then((snapshot) => { 
-          const dbListingMother = ref(db,`joblisting/${this.curCompName}`);
-  
-          if(snapshot.val()==null){
-            const dbListing = ref(db,`joblisting/${this.curCompName}/1`);
-            update(dbListingMother, { ctr:      2      });
-            update(dbListing,       { ojtPos :  this.ojtPos   });
-            update(dbListing,       { ojtComp:  this.ojtComp  });
-            update(dbListing,       { ojtDesc:  this.ojtDesc  });
-            update(dbListing,       { ojtDur:   this.ojtDur   });
-            update(dbListing,       { ojtPosReq:this.ojtPosReq});
-            update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
+
+        get(dbRefAdd).then((snapshot) => {
+          const dbListingMother = ref(db, `joblisting/${this.curCompName}`);
+
+          if (snapshot.val() == null) {
+            const dbListing = ref(db, `joblisting/${this.curCompName}/1`);
+            update(dbListingMother, { ctr: 2 });
+            update(dbListing, { ojtPos: this.ojtPos });
+            update(dbListing, { ojtComp: this.ojtComp });
+            update(dbListing, { ojtDesc: this.ojtDesc });
+            update(dbListing, { ojtDur: this.ojtDur });
+            update(dbListing, { ojtPosReq: this.ojtPosReq });
+            update(dbListing, { ojtJobLoc: this.ojtJobLoc });
+          } else {
+            const dbListing = ref(db, `joblisting/${this.curCompName}/${snapshot.val()}`);
+            update(dbListingMother, { ctr: snapshot.val() + 1 });
+            update(dbListing, { ojtPos: this.ojtPos });
+            update(dbListing, { ojtComp: this.ojtComp });
+            update(dbListing, { ojtDesc: this.ojtDesc });
+            update(dbListing, { ojtDur: this.ojtDur });
+            update(dbListing, { ojtPosReq: this.ojtPosReq });
+            update(dbListing, { ojtJobLoc: this.ojtJobLoc });
           }
-          else{
-            const dbListing = ref(db,`joblisting/${this.curCompName}/${snapshot.val()}`);
-            update(dbListingMother, { ctr:      snapshot.val()+1      });
-            update(dbListing,       { ojtPos :  this.ojtPos   });
-            update(dbListing,       { ojtComp:  this.ojtComp  });
-            update(dbListing,       { ojtDesc:  this.ojtDesc  });
-            update(dbListing,       { ojtDur:   this.ojtDur   });
-            update(dbListing,       { ojtPosReq:this.ojtPosReq});
-            update(dbListing,       { ojtJobLoc:this.ojtJobLoc});
-  
-          }
-          
+          this.cardCount++;
+
+          const newListing = {
+            ojtPos: this.ojtPos,
+            ojtComp: this.ojtComp,
+            ojtDesc: this.ojtDesc,
+            ojtDur: this.ojtDur,
+            ojtPosReq: this.ojtPosReq,
+            ojtJobLoc: this.ojtJobLoc
+          };
+
+          this.jobListings.push(newListing);
+
+          // Clear the form inputs
+          this.ojtPos = '';
+          this.ojtComp = '';
+          this.ojtDesc = '';
+          this.ojtDur = '';
+          this.ojtPosReq = '';
+          this.ojtJobLoc = '';
         });
-  
-  
-        onValue(child(dbRef, `joblisting/${this.curCompName}/ctr`),(snapshot) => {
-  
+
+        onValue(child(dbRef, `joblisting/${this.curCompName}/ctr`), (snapshot) => {
+          // Do something with the snapshot value
         });
-  
-  
+
         const popup = document.getElementById("popup");
         popup.classList.remove("visible");
       },
-      signout(){
+
+      signout() {
         this.$router.push('/');
       },
+
       changeTab(tab) {
         this.activeTab = tab;
       },
+
       toggleNavigation() {
         const navigation = document.querySelector('.navigation');
         const main = document.querySelector('.main');
-  
+
         navigation.classList.toggle('active');
         main.classList.toggle('active');
       },
-  
+
       togglePopup() {
         const popup = document.getElementById("popup");
         popup.classList.toggle("visible");
       },
+
       cancelPopup() {
         const popup = document.getElementById("popup");
         popup.classList.remove("visible");
       }
-  
-    
-  }
-  }
-  
-  </script>
+    }
+  };
+</script>
+
   
   <style>
   /* =========== Google Fonts ============ */
@@ -519,7 +549,7 @@
     --gray: #f5f5f5;
     --black1: #222;
     --black2: #999;
-  }
+  } 
   .maintitle{
     font-size: rem;
     position: relative;
