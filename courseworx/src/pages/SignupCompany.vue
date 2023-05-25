@@ -147,13 +147,13 @@ onValue,
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBVZupyBJSi6Xd9UZvK7zG504sL_xx6XNg",
-  authDomain: "course-92e33.firebaseapp.com",
-  databaseURL: "https://course-92e33-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "course-92e33",
-  storageBucket: "course-92e33.appspot.com",
-  messagingSenderId: "154795203166",
-  appId: "1:154795203166:web:1654edf48106594db932cf"
+  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+  authDomain: "courseworx-454d2.firebaseapp.com",
+  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "courseworx-454d2",
+  storageBucket: "courseworx-454d2.appspot.com",
+  messagingSenderId: "561114332314",
+  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
 };
 
 const app = initializeApp(firebaseConfig);

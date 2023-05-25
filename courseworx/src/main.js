@@ -27,5 +27,4 @@ import { getDatabase, ref,child ,get , update  } from "https://www.gstatic.com/f
 
 
 app.use(router);
-
 app.mount('#app')

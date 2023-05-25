@@ -1,557 +1,558 @@
-<template>
-  <div>
-    <title>Welcome to Courseworx</title>
-      <div class="container">
-        <!-- =============== Navigation ================ -->
-        <div class="navigation">
-          <ul>
-            <li>
-              <a href="#">
-                <span class="icon">
-                  <ion-icon name="item.icon"></ion-icon>
-                </span>
-                <h1 class="maintitle">COURSEWORX</h1>
-              </a>
-            </li>
+  <template>
+    <div>
+      <title>Welcome to Courseworx</title>
+        <div class="container">
+          <!-- =============== Navigation ================ -->
+          <div class="navigation">
+            <ul>
+              <li>
+                <a href="#">
+                  <span class="icon">
+                    <ion-icon name="item.icon"></ion-icon>
+                  </span>
+                  <h1 class="maintitle">COURSEWORX</h1>
+                </a>
+              </li>
 
-            <li>
-              <a href="#" @click="activeTab = 'home'">
-                <span class="icon">
-                  <ion-icon :icon="homeOutline"></ion-icon>
-                </span>
-                <span class="title">Home</span>
-              </a>
-            </li>
+              <li>
+                <a href="#" @click="activeTab = 'home'">
+                  <span class="icon">
+                    <ion-icon :icon="homeOutline"></ion-icon>
+                  </span>
+                  <span class="title">Home</span>
+                </a>
+              </li>
 
-            <li>
-              <a href="#" @click="activeTab = 'application'">
-                <span class="icon">
-                  <ion-icon :icon="peopleOutline"></ion-icon>
-                </span>
-                <span class="title">Your Listings</span>
-              </a>
-            </li>
+              <li>
+                <a href="#" @click="activeTab = 'application'">
+                  <span class="icon">
+                    <ion-icon :icon="peopleOutline"></ion-icon>
+                  </span>
+                  <span class="title">Your Listings</span>
+                </a>
+              </li>
 
-            <li>
-              <a href="#">
-                <span class="icon">
-                  <ion-icon :icon="chatbubbleOutline"></ion-icon>
-                </span>
-                <span class="title">Messages</span>
-              </a>
-            </li>
+              <li>
+                <a href="#">
+                  <span class="icon">
+                    <ion-icon :icon="chatbubbleOutline"></ion-icon>
+                  </span>
+                  <span class="title">Messages</span>
+                </a>
+              </li>
 
-            <li>
-              <a href="#">
-                <span class="icon">
-                  <ion-icon :icon="analyticsOutline"></ion-icon>
-                </span>
-                <span class="title">Manage Applicants </span>
-              </a>
-            </li>
+              <li>
+                <a href="#">
+                  <span class="icon">
+                    <ion-icon :icon="analyticsOutline"></ion-icon>
+                  </span>
+                  <span class="title">Manage Applicants </span>
+                </a>
+              </li>
 
-            <li>
-              <a href="#">
-                <span class="icon">
-                  <ion-icon :icon="notificationsOutline"></ion-icon>
-                </span>
-                <span class="title">Notifications</span>
-              </a>
-            </li>
+              <li>
+                <a href="#">
+                  <span class="icon">
+                    <ion-icon :icon="notificationsOutline"></ion-icon>
+                  </span>
+                  <span class="title">Notifications</span>
+                </a>
+              </li>
 
-            <li>
-              <a @click="signout">
-                <span class="icon">
-                  <ion-icon :icon="logOutOutline"></ion-icon>
-                </span>
-                <span class="title">Sign Out</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- ========================= Top Navigation & search ==================== -->
-      <div class="main">
-        <div class="topbar">
-          <div class="toggle" @click="toggleNavigation">
-            <ion-icon :icon="menuOutline"></ion-icon>
-          </div>
-
-          <div class="search">
-            <input type="text" placeholder="Search here">
-            <button class='btn-search'><ion-icon :icon="searchOutline"></ion-icon></button>
-          </div>
-
-          <div class="user">
-            <img :src="prof_pic" alt="">
+              <li>
+                <a @click="signout">
+                  <span class="icon">
+                    <ion-icon :icon="logOutOutline"></ion-icon>
+                  </span>
+                  <span class="title">Sign Out</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-       
-        <!-- ======================= HOME CONTENT ================== -->
-        <div v-if="activeTab === 'home'">
-
-          <div class="welcome-text">
-           Hello,<span>{{ curCompName}}!</span>
-        </div>
-
-        <div class="recommendation-text">
-           Top Employers
-        </div>
-          <div class="cardBox">
-                <div class="card1">
-                    <div>
-                        <div class="numbers">{{ curCompViews }}</div>
-                        <div class="cardName">Views</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card1">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Sales</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card1">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card1">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earning</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ion-icon>
-                    </div>
-                </div>
+        <!-- ========================= Top Navigation & search ==================== -->
+        <div class="main">
+          <div class="topbar">
+            <div class="toggle" @click="toggleNavigation">
+              <ion-icon :icon="menuOutline"></ion-icon>
             </div>
-              <!-- ================ JOB RECOMMENDATIONS ================= -->
-              <div class="wrapper">
-                  <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="Google">
-                      </div>
-                      <div class="card-center">
-                        <h3>Google</h3>
-                          <p class="card-detail">Software Development Intern</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                            <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                            </div>
-                      </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
-                          </div>
-                      </div><!--card-right-->
-                  </div><!--card-->
-                  </div><!--wrapper-->
-  
-                  <div class="wrapper">
-                  <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="Tiktok">
-                      </div>
-                      <div class="card-center">
-                        <h3>Tiktok</h3>
-                          <p class="card-detail">UI/UX Designer</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                            <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline"></ion-icon>4 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                            </div>
-                      </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
-                          </div>
-                      </div><!--card-right-->
-                  </div><!--card-->
-                  </div><!--wrapper-->
-  
-                  <div class="wrapper">
-                  <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="Twitter">
-                      </div>
-                      <div class="card-center">
-                        <h3>Twitter</h3>
-                          <p class="card-detail">UI/UX Designer</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                            <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline"></ion-icon>1 day ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                            </div>
-                      </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
-                          </div>
-                      </div><!--card-right-->
-                  </div><!--card-->
-                  </div><!--wrapper-->
-  
-                  <div class="wrapper">
-                  <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="Discord">
-                      </div>
-                      <div class="card-center">
-                        <h3>Discord</h3>
-                          <p class="card-detail">UI/UX Designer</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                            <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                            </div>
-                      </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
-                          </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
-                          </div>
-                      </div><!--card-right-->
-                  </div><!--card-->
-                  </div><!--wrapper-->  
-            </div> 
-            <div>
-      <!-- ======================= YOUR APPLICATION ================== -->  
-      <div class="content" v-if="activeTab === 'application'">  
-      <div class="wrapper">
 
-                     <div class="record-header">
-                        <div class="add">
-                            <span>Entries</span>
-                            <select name="" id="">
-                                <option value="">ID</option>
-                            </select>
-                            <button @click="togglePopup">Add a listing</button>
+            <div class="search">
+              <input type="text" placeholder="Search here">
+              <button class='btn-search'><ion-icon :icon="searchOutline"></ion-icon></button>
+            </div>
+
+            <div class="user">
+              <img :src="prof_pic" alt="">
+            </div>
+          </div>
+
+        
+          <!-- ======================= HOME CONTENT ================== -->
+          <div v-if="activeTab === 'home'">
+
+            <div class="welcome-text">
+            Hello,<span>{{ curCompName}}!</span>
+          </div>
+
+          <div class="recommendation-text">
+            Top Employers
+          </div>
+            <div class="cardBox">
+                  <div class="card1">
+                      <div>
+                          <div class="numbers">{{ curCompViews }}</div>
+                          <div class="cardName">Views</div>
+                      </div>
+
+                      <div class="iconBx">
+                          <ion-icon name="eye-outline"></ion-icon>
+                      </div>
+                  </div>
+
+                  <div class="card1">
+                      <div>
+                          <div class="numbers">80</div>
+                          <div class="cardName">Sales</div>
+                      </div>
+
+                      <div class="iconBx">
+                          <ion-icon name="cart-outline"></ion-icon>
+                      </div>
+                  </div>
+
+                  <div class="card1">
+                      <div>
+                          <div class="numbers">284</div>
+                          <div class="cardName">Comments</div>
+                      </div>
+
+                      <div class="iconBx">
+                          <ion-icon name="chatbubbles-outline"></ion-icon>
+                      </div>
+                  </div>
+
+                  <div class="card1">
+                      <div>
+                          <div class="numbers">$7,842</div>
+                          <div class="cardName">Earning</div>
+                      </div>
+
+                      <div class="iconBx">
+                          <ion-icon name="cash-outline"></ion-icon>
+                      </div>
+                  </div>
+              </div>
+                <!-- ================ JOB RECOMMENDATIONS ================= -->
+                <div class="wrapper">
+                    <div class="card">
+                        <div class="card-left blue-bg">
+                            <img :src="Google">
                         </div>
-
-                        <div class="browse">
-                           <input type="search" placeholder="Search" class="record-search">
-                            <select name="" id="">
-                                <option value="">Applied Date</option>
-                                <option value="">Company Name</option>
-                                <option value="">Status</option>
-                            </select>
+                        <div class="card-center">
+                          <h3>Google</h3>
+                            <p class="card-detail">Software Development Intern</p>
+                            <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
+                                <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                              </div>
                         </div>
-                    </div>
-
-                   
-                    <!--DYNAMICALLY ADDED WHEN A BUTTON IS CLICKED-->
-                    <div>
-                        <div class="card" v-for="listing in jobListings" :key="listing.id">
-                          <div class="card-left blue-bg">
-                            <img :src="google" alt="Company Logo">
-                          </div>
-                          <div class="card-center">
-                            <h3>{{ listing.ojtComp }}</h3>
-                            <p class="card-detail"><b><ul>Position:</ul></b> {{ listing.ojtPos }}</p>
-                            <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ listing.ojtJobLoc }}</p>
-                            <div class="card-sub">
-                              <p>Time Posted: 2 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon></p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>:{{ listing.ojtDur }}</p>
-                            </div>
-                            <div class="card-salary">
-                              <p><b>OJT Position Requirements:</b><span>{{ listing.ojtPosReq }}</span></p>
-                            </div>
-                          </div>
-                          <div class="card-right">
+                        <div class="card-right">
                             <div class="card-tag">
                               <h5>Job Description</h5>
-                              <p>{{ listing.ojtDesc }}</p>
+                              <a href="#"><u>UI/UX Designer</u></a>
+                            </div>
+                            <div class="card-salary">
+                                <p><b>$350k</b><span>/ year</span></p>
+                            </div>
+                        </div><!--card-right-->
+                    </div><!--card-->
+                    </div><!--wrapper-->
+    
+                    <div class="wrapper">
+                    <div class="card">
+                        <div class="card-left blue-bg">
+                            <img :src="Tiktok">
+                        </div>
+                        <div class="card-center">
+                          <h3>Tiktok</h3>
+                            <p class="card-detail">UI/UX Designer</p>
+                            <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="todayOutline"></ion-icon>4 hours ago</p>
+                                <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                              </div>
+                        </div>
+                        <div class="card-right">
+                            <div class="card-tag">
+                              <h5>Job Description</h5>
+                              <a href="#"><u>UI/UX Designer</u></a>
+                            </div>
+                            <div class="card-salary">
+                                <p><b>$350k</b><span>/ year</span></p>
+                            </div>
+                        </div><!--card-right-->
+                    </div><!--card-->
+                    </div><!--wrapper-->
+    
+                    <div class="wrapper">
+                    <div class="card">
+                        <div class="card-left blue-bg">
+                            <img :src="Twitter">
+                        </div>
+                        <div class="card-center">
+                          <h3>Twitter</h3>
+                            <p class="card-detail">UI/UX Designer</p>
+                            <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="todayOutline"></ion-icon>1 day ago</p>
+                                <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                              </div>
+                        </div>
+                        <div class="card-right">
+                            <div class="card-tag">
+                              <h5>Job Description</h5>
+                              <a href="#"><u>UI/UX Designer</u></a>
+                            </div>
+                            <div class="card-salary">
+                                <p><b>$350k</b><span>/ year</span></p>
+                            </div>
+                        </div><!--card-right-->
+                    </div><!--card-->
+                    </div><!--wrapper-->
+    
+                    <div class="wrapper">
+                    <div class="card">
+                        <div class="card-left blue-bg">
+                            <img :src="Discord">
+                        </div>
+                        <div class="card-center">
+                          <h3>Discord</h3>
+                            <p class="card-detail">UI/UX Designer</p>
+                            <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
+                                <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                              </div>
+                        </div>
+                        <div class="card-right">
+                            <div class="card-tag">
+                              <h5>Job Description</h5>
+                              <a href="#"><u>UI/UX Designer</u></a>
+                            </div>
+                            <div class="card-salary">
+                                <p><b>$350k</b><span>/ year</span></p>
+                            </div>
+                        </div><!--card-right-->
+                    </div><!--card-->
+                    </div><!--wrapper-->  
+              </div> 
+              <div>
+        <!-- ======================= YOUR APPLICATION ================== -->  
+        <div class="content" v-if="activeTab === 'application'">  
+        <div class="wrapper">
+
+                      <div class="record-header">
+                          <div class="add">
+                              <span>Entries</span>
+                              <select name="" id="">
+                                  <option value="">ID</option>
+                              </select>
+                              <button @click="togglePopup">Add a listing</button>
+                          </div>
+
+                          <div class="browse">
+                            <input type="search" placeholder="Search" class="record-search">
+                              <select name="" id="">
+                                  <option value="">Applied Date</option>
+                                  <option value="">Company Name</option>
+                                  <option value="">Status</option>
+                              </select>
+                          </div>
+                      </div>
+
+                    
+                      <!--DYNAMICALLY ADDED WHEN A BUTTON IS CLICKED-->
+                      <div>
+                          <div class="card" v-for="listing in jobListings" :key="listing.id">
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>
+                            <div class="card-center">
+                              <h3>{{ listing.ojtComp }}</h3>
+                              <p class="card-detail"><b><ul>Position:</ul></b> {{ listing.ojtPos }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ listing.ojtJobLoc }}</p>
+                              <div class="card-sub">
+                                <p>Time Posted: 2 hours ago</p>
+                                <p><ion-icon :icon="peopleOutline"></ion-icon></p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>:{{ listing.ojtDur }}</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span>{{ listing.ojtPosReq }}</span></p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ listing.ojtDesc }}</p>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                  </div><!--wrapper-->
-                  
-                  
+                    </div><!--wrapper-->
+                    
+                    
 
-                      
+                        
+              </div>
             </div>
-          </div>
-          </div>
-      </div>
+            </div>
+        </div>
 
-      <div class="popup" id="popup">
-      <div class="contpop">
-        <header>Add a new listing</header>
-        <div class="close-btn" @click="cancelPopup">X</div>
-          <div class = "popform">
-          <div class="intbox">
-            <label>OJT Position Title</label>
-            <input v-model="ojtPos" type="text" placeholder="Enter Position Title" :class="{ 'error': showError && !ojtPos }" @input="checkInput" />
-            <span v-if="showError && !ojtPos" class="error-message">This field is required.</span>
-          </div>
-    
-          <div class="intbox">
-            <label>Company Name</label>
-            <input v-model="ojtComp" type="text" placeholder="Enter Company Name" :class="{ 'error': showError && !ojtComp }" @input="checkInput" />
-            <span v-if="showError && !ojtComp" class="error-message">This field is required.</span>
-          </div>
-          <div class="columnpop">
+        <div class="popup" id="popup">
+        <div class="contpop">
+          <header>Add a new listing</header>
+          <div class="close-btn" @click="cancelPopup">X</div>
+            <div class = "popform">
             <div class="intbox">
-              <label>OJT Description</label>
-              <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description"  :class="{ 'error': showError && !ojtDesc }" @input="checkInput"  />
-              <span v-if="showError && !ojtDesc" class="error-message">This field is required.</span>
+              <label>OJT Position Title</label>
+              <input v-model="ojtPos" type="text" placeholder="Enter Position Title" :class="{ 'error': showError && !ojtPos }" @input="checkInput" />
+              <span v-if="showError && !ojtPos" class="error-message">This field is required.</span>
             </div>
+      
             <div class="intbox">
-              <label>OJT Duration</label>
-              <input type="number" placeholder="Enter OJT Duration"  v-model="ojtDur" :class="{ 'error': showError && !ojtDur }" @input="checkInput" />
-              <span v-if="showError && !ojtDur" class="error-message">This field is required.</span>
+              <label>Company Name</label>
+              <input v-model="ojtComp" type="text" placeholder="Enter Company Name" :class="{ 'error': showError && !ojtComp }" @input="checkInput" />
+              <span v-if="showError && !ojtComp" class="error-message">This field is required.</span>
             </div>
-          </div>
-          <div class="columnpop">
+            <div class="columnpop">
               <div class="intbox">
-                  <label>OJT Position Requirements</label>
-                  <textarea name="jobreq" rows="4" v-model="ojtPosReq" placeholder="Enter Position Requirements" :class="{ 'error': showError && !ojtPosReq }" @input="checkInput"></textarea>
-                  <span v-if="showError && !ojtPosReq" class="error-message">This field is required.</span>
+                <label>OJT Description</label>
+                <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description"  :class="{ 'error': showError && !ojtDesc }" @input="checkInput"  />
+                <span v-if="showError && !ojtDesc" class="error-message">This field is required.</span>
+              </div>
+              <div class="intbox">
+                <label>OJT Duration</label>
+                <input type="number" placeholder="Enter OJT Duration"  v-model="ojtDur" :class="{ 'error': showError && !ojtDur }" @input="checkInput" />
+                <span v-if="showError && !ojtDur" class="error-message">This field is required.</span>
+              </div>
+            </div>
+            <div class="columnpop">
+                <div class="intbox">
+                    <label>OJT Position Requirements</label>
+                    <textarea name="jobreq" rows="4" v-model="ojtPosReq" placeholder="Enter Position Requirements" :class="{ 'error': showError && !ojtPosReq }" @input="checkInput"></textarea>
+                    <span v-if="showError && !ojtPosReq" class="error-message">This field is required.</span>
+                  </div>
                 </div>
-              </div>
-              <div class="reqlist">
-              <ul>
-                  <li v-for="requirement in parsedRequirements">{{ requirement }}</li>
-              </ul>
-              </div>
-              <div class="intbox address">
-            <label>Job Location</label>
-            <input v-model="ojtJobLoc" type="text" placeholder="Enter address" required :class="{ 'error': showError && !ojtPosReq }" @input="checkInput"/>
-            <span v-if="showError && !ojtJobLoc" class="error-message">This field is required.</span>
-          </div>
-          <button @click="addNewListing">Submit</button>
+                <div class="reqlist">
+                <ul>
+                    <li v-for="requirement in parsedRequirements">{{ requirement }}</li>
+                </ul>
+                </div>
+                <div class="intbox address">
+              <label>Job Location</label>
+              <input v-model="ojtJobLoc" type="text" placeholder="Enter address" required :class="{ 'error': showError && !ojtPosReq }" @input="checkInput"/>
+              <span v-if="showError && !ojtJobLoc" class="error-message">This field is required.</span>
+            </div>
+            <button @click="addNewListing">Submit</button>
+        </div>
+        </div>
       </div>
-      </div>
-    </div>
+        </template> 
 
 
-  
-      </template> 
-  <script>
-  import { IonIcon } from '@ionic/vue';
-  import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
-            lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
-            menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline } from 'ionicons/icons';
-  import { push } from "firebase/database";
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-  import {
-  getDatabase,
-  ref,
-  child,
-  get,
-  update,
-  onValue,
-  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-  
-  
-  const firebaseConfig = {
-  apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
-  authDomain: "courseworx-454d2.firebaseapp.com",
-  databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "courseworx-454d2",
-  storageBucket: "courseworx-454d2.appspot.com",
-  messagingSenderId: "561114332314",
-  appId: "1:561114332314:web:0b4cabbaffea89b0113323"
-};
-  
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase();
 
-  export default {
-    components: { IonIcon },
+    <script>
+    import { IonIcon } from '@ionic/vue';
+    import { mapActions } from 'vuex';
+    import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
+              lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
+              menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline } from 'ionicons/icons';
+    import { push } from "firebase/database";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import {
+    getDatabase,
+    ref,
+    child,
+    get,
+    update,
+    onValue,
+    } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+    
+    
+    const firebaseConfig = {
+    apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+    authDomain: "courseworx-454d2.firebaseapp.com",
+    databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "courseworx-454d2",
+    storageBucket: "courseworx-454d2.appspot.com",
+    messagingSenderId: "561114332314",
+    appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+  };
+    
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
 
-    data() {
-    return {
-      add,
-      cartOutline,
-      chatbubbleOutline,
-      eyeOutline,
-      helpOutline,
-      homeOutline,
-      lockClosedOutline,
-      logOutOutline,
-      peopleOutline,
-      searchOutline,
-      settingsOutline,
-      cashOutline,
-      menuOutline,
-      locationOutline,
-      todayOutline,
-      hourglassOutline,
-      closeCircleOutline,
-      notificationsOutline,
-      analyticsOutline,
-      activeTab: 'home',
-      curCompName: '',
-      curCompUsername: '',
-      curCompViews: null,
-      jobListings: [],
-      cardCount: 0,
-      ojtPos: '',
-      ojtComp: '',
-      ojtDesc: '',
-      ojtDur: '',
-      ojtPosReq: '',
-      ojtJobLoc: '',
-      showError: false,
-      isListenerSet: false
-    };
-  },
-  created() {
-    const dbRef = ref(db);
-    this.curCompName = localStorage.getItem('curComp');
-    this.curCompUsername = localStorage.getItem('curCompUsername');
+    export default {
+      components: { IonIcon },
 
-    onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
-      this.curCompViews = Number(snapshot.val());
-      console.log(this.curCompViews + "username");
-    });
+      data() {
+      return {
+        add,
+        cartOutline,
+        chatbubbleOutline,
+        eyeOutline,
+        helpOutline,
+        homeOutline,
+        lockClosedOutline,
+        logOutOutline,
+        peopleOutline,
+        searchOutline,
+        settingsOutline,
+        cashOutline,
+        menuOutline,
+        locationOutline,
+        todayOutline,
+        hourglassOutline,
+        closeCircleOutline,
+        notificationsOutline,
+        analyticsOutline,
+        activeTab: 'home',
+        curCompName: '',
+        curCompUsername: '',
+        curCompViews: null,
+        jobListings: [],
+        cardCount: 0,
+        ojtPos: '',
+        ojtComp: '',
+        ojtDesc: '',
+        ojtDur: '',
+        ojtPosReq: '',
+        ojtJobLoc: '',
+        showError: false,
+        isListenerSet: false
+      };
+    },
+    created() {
+      const dbRef = ref(db);
+      this.curCompName = localStorage.getItem('curComp');
+      this.curCompUsername = localStorage.getItem('curCompUsername');
 
-    // Retrieve job listings from Firebase
-    if (!this.isListenerSet) {
-      const listingsRef = ref(db, `joblisting/${this.curCompName}`);
-      onValue(listingsRef, (snapshot) => {
-        const listings = snapshot.val();
-        if (listings) {
-          this.jobListings = []; // Clear the array before adding the listings
-          this.jobListings = Object.values(listings);
-          this.cardCount = this.jobListings.length;
-        }
+      onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
+        this.curCompViews = Number(snapshot.val());
+        console.log(this.curCompViews + "username");
       });
 
-      this.isListenerSet = true; // Set the flag to true to indicate that the listener is now set up
-    }
-  },
-  methods: {
-    checkInput() {
-      this.showError = false;
-    },
-    submitForm() {
-      if (!this.validateForm()) {
-        this.showError = true;
-      } else {
-        this.addNewListing();
-        this.showError = false;
+      // Retrieve job listings from Firebase
+      if (!this.isListenerSet) {
+        const listingsRef = ref(db, `joblisting/${this.curCompName}`);
+        onValue(listingsRef, (snapshot) => {
+          const listings = snapshot.val();
+          if (listings) {
+            this.jobListings = []; // Clear the array before adding the listings
+            this.jobListings = Object.values(listings);
+            this.cardCount = this.jobListings.length;
+          }
+        });
+
+        this.isListenerSet = true; // Set the flag to true to indicate that the listener is now set up
       }
     },
-    validateForm() {
-      return (
-        this.ojtPos &&
-        this.ojtComp &&
-        this.ojtDesc &&
-        this.ojtDur &&
-        this.ojtPosReq &&
-        this.ojtJobLoc
-      );
-    },
-    addNewListing() {
-  if (!this.validateForm()) {
-    this.showError = true;
-    return;
-  }
+    methods: {
+      checkInput() {
+        this.showError = false;
+      },
+      submitForm() {
+        if (!this.validateForm()) {
+          this.showError = true;
+        } else {
+          this.addNewListing();
+          this.showError = false;
+        }
+      },
+      validateForm() {
+        return (
+          this.ojtPos &&
+          this.ojtComp &&
+          this.ojtDesc &&
+          this.ojtDur &&
+          this.ojtPosReq &&
+          this.ojtJobLoc
+        );
+      },
+      addNewListing() {
+    if (!this.validateForm()) {
+      this.showError = true;
+      return;
+    }
 
-  const dbRef = ref(db, `joblisting/${this.curCompName}`);
-  const newListingRef = push(dbRef);
+    const dbRef = ref(db, `joblisting/${this.curCompName}`);
+    const newListingRef = push(dbRef);
 
-  update(newListingRef, {
-    ojtPos: this.ojtPos,
-    ojtComp: this.ojtComp,
-    ojtDesc: this.ojtDesc,
-    ojtDur: this.ojtDur,
-    ojtPosReq: this.ojtPosReq,
-    ojtJobLoc: this.ojtJobLoc
-  }).then(() => {
-    this.cardCount++;
-
-    const newListing = {
+    update(newListingRef, {
       ojtPos: this.ojtPos,
       ojtComp: this.ojtComp,
       ojtDesc: this.ojtDesc,
       ojtDur: this.ojtDur,
       ojtPosReq: this.ojtPosReq,
       ojtJobLoc: this.ojtJobLoc
-    };
+    }).then(() => {
+      this.cardCount++;
 
-    this.jobListings.push(newListing);
+      const newListing = {
+        ojtPos: this.ojtPos,
+        ojtComp: this.ojtComp,
+        ojtDesc: this.ojtDesc,
+        ojtDur: this.ojtDur,
+        ojtPosReq: this.ojtPosReq,
+        ojtJobLoc: this.ojtJobLoc
+      };
 
-    // Clear the form inputs
-    this.ojtPos = '';
-    this.ojtComp = '';
-    this.ojtDesc = '';
-    this.ojtDur = '';
-    this.ojtPosReq = '';
-    this.ojtJobLoc = '';
+      this.jobListings.push(newListing);
 
-    const popup = document.getElementById("popup");
-    popup.classList.remove("visible");
-  });
-},
-    signout() {
-      this.$router.push('/');
-    },
-    changeTab(tab) {
-      this.activeTab = tab;
-    },
-    toggleNavigation() {
-      const navigation = document.querySelector('.navigation');
-      const main = document.querySelector('.main');
+      // Clear the form inputs
+      this.ojtPos = '';
+      this.ojtComp = '';
+      this.ojtDesc = '';
+      this.ojtDur = '';
+      this.ojtPosReq = '';
+      this.ojtJobLoc = '';
 
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
-    },
-    togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.classList.toggle("visible");
-    },
-    cancelPopup() {
       const popup = document.getElementById("popup");
       popup.classList.remove("visible");
+    });
+  },
+      signout() {
+        this.$router.push('/');
+      },
+      changeTab(tab) {
+        this.activeTab = tab;
+      },
+      toggleNavigation() {
+        const navigation = document.querySelector('.navigation');
+        const main = document.querySelector('.main');
+
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+      },
+      togglePopup() {
+        const popup = document.getElementById("popup");
+        popup.classList.toggle("visible");
+      },
+      cancelPopup() {
+        const popup = document.getElementById("popup");
+        popup.classList.remove("visible");
+      }
     }
-  }
-};
-</script>
+  };
+  </script>
 
   
   <style>

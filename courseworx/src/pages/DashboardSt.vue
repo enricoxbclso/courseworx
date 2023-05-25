@@ -135,34 +135,33 @@
                     </div>
                 </div>
             </div>
-              <!-- ================ JOB RECOMMENDATIONS ================= -->
-              <div class="wrapper">
-                  <div class="card">
-                      <div class="card-left blue-bg">
-                          <img :src="google">
-                      </div>
-                      <div class="card-center">
-                        <h3>Google</h3>
-                          <p class="card-detail">Software Development Intern</p>
-                          <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                            <div class="card-sub">
-                              <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
-                              <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                              <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
+                      <!--DYNAMICALLY ADDE-->
+                      <div class = 'wrapper'>
+                          <div class="card" v-for="listing in jobListings" :key="listing.id">
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>  
+                            <div class="card-center">
+                              <h3>{{ listing.ojtComp }}</h3>
+                              <p class="card-detail"><b><ul>Position:</ul></b> {{ listing.ojtPos }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ listing.ojtJobLoc }}</p>
+                              <div class="card-sub">
+                                <p>Time Posted: 2 hours ago</p>
+                                <p><ion-icon :icon="peopleOutline"></ion-icon></p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>:{{ listing.ojtDur }}</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span>{{ listing.ojtPosReq }}</span></p>
+                              </div>
                             </div>
-                      </div>
-                      <div class="card-right">
-                          <div class="card-tag">
-                            <h5>Job Description</h5>
-                            <a href="#"><u>UI/UX Designer</u></a>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ listing.ojtDesc }}</p>
+                              </div>
+                            </div>
                           </div>
-                          <div class="card-salary">
-                              <p><b>$350k</b><span>/ year</span></p>
-                          </div>
-                          <button @click="togglePopup">Add a listing</button>
-                      </div><!--card-right-->
-                  </div><!--card-->
-                  </div><!--wrapper-->
+                        </div>
   
                 
             </div> 
@@ -344,7 +343,49 @@
       </div>
   
       </template> 
+    <script>
+  import { IonIcon } from '@ionic/vue';
+  import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
+
+export default {
+  components: { IonIcon },
+  methods: {
+    changeTab(tab) {
+      this.activeTab = tab;
+    },
+    toggleNavigation() {
+      const navigation = document.querySelector('.navigation');
+      const main = document.querySelector('.main');
+
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+    }
+  },
+  data() {
+    return {
+      add,
+      cartOutline,
+      chatbubbleOutline,
+      eyeOutline,
+      helpOutline,
+      homeOutline,
+      lockClosedOutline,
+      logOutOutline,
+      peopleOutline,
+      searchOutline,
+      settingsOutline,
+      cashOutline,
+      menuOutline,
+      locationOutline,
+      todayOutline,
+      hourglassOutline,
+      activeTab: 'home'
+    };
+  }
+};
+
   
+  </script>
   <style>
   /* =========== Google Fonts ============ */
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
@@ -1373,113 +1414,7 @@ input, button, select {
 
   
   </style>
-  <script>
-  import { IonIcon } from '@ionic/vue';
-  import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
 
-export default {
-  components: { IonIcon },
-  methods: {
-    changeTab(tab) {
-      this.activeTab = tab;
-    },
-    toggleNavigation() {
-      const navigation = document.querySelector('.navigation');
-      const main = document.querySelector('.main');
-
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
-    }
-  },
-  data() {
-    return {
-      add,
-      cartOutline,
-      chatbubbleOutline,
-      eyeOutline,
-      helpOutline,
-      homeOutline,
-      lockClosedOutline,
-      logOutOutline,
-      peopleOutline,
-      searchOutline,
-      settingsOutline,
-      cashOutline,
-      menuOutline,
-      locationOutline,
-      todayOutline,
-      hourglassOutline,
-      activeTab: 'home'
-    };
-  }
-};
-
-
-  
-  // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-  // import {
-  // getDatabase,
-  // ref,
-  // child,
-  // get,
-  // update,
-  // onValue,
-  // } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-  
-  
-  // const firebaseConfig = {
-  //   apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
-  //   authDomain: "courseworx-454d2.firebaseapp.com",
-  //   databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
-  //   projectId: "courseworx-454d2",
-  //   storageBucket: "courseworx-454d2.appspot.com",
-  //   messagingSenderId: "561114332314",
-  //   appId: "1:561114332314:web:0b4cabbaffea89b0113323"
-  // }
-  
-  // const app = initializeApp(firebaseConfig);
-  
-  // const db = getDatabase();
-  
-  // export default {
-  // data() {
-  //   return {
-     
-  //   }
-  // },
-  // created (){
-  // let loggedin = localStorage.getItem('loggedin');
-  // console.log(loggedin)
-  // if(loggedin == 'false'){
-  // 	this.$router.push('/');
-  // 	console.log("this is true")
-  
-  // }
-  // let loggedas = localStorage.getItem('loggedas');
-  //   if(loggedas !='company'){
-  //     this.$router.push('/');
-  //   }
-  
-  
-  
-  
-  
-  
-  // },
-  // methods: {
-  //   logOut(){
-  //     localStorage.setItem('loggedin', false);
-  //     this.$router.push('/');
-      
-  
-  //   }
-  
-  
-    
-  // }
-  // }
-  
-  </script>
 <script setup>
   import prof_pic from "~/assets/images/prof_pic.jpg";
   import google from "~/assets/images/google.png";
