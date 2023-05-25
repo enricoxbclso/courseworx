@@ -20,8 +20,8 @@
         <div class="title">Login</div>
         <div class="input-boxes">
           <div class="input-box">
-            <i class="fas fa-envelope"></i>
-            <input type="text" placeholder="Enter Username" v-model="username">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Enter ID No." v-model="username">
           </div>
           <div class="input-box">
             <i class="fas fa-lock"></i>
@@ -31,7 +31,7 @@
             <br>{{errMsg }}
           </div>
           <div class="button input-box">
-            <input type="submit" value="Submit" @click="logIn">
+            <input type="submit" value="Login" @click="logIn">
           </div>
           <div class="text sign-up-text">Don't have an account? <label for="popup" @click="togglePopup">Signup now</label></div>
         </div>
@@ -55,7 +55,7 @@
     </label>
   </div>
   <div class="form-element">
-    <button type="submit" class="submit-btn" @click="redirectPage">Submit</button>
+    <button type="submit" class="submit-btn" @click="redirectPage">Next</button>
     <button type="button" class="cancel-btn" @click="cancelPopup">Cancel</button>
   </div>
 </div>
@@ -104,14 +104,14 @@ created (){
   let loggedas = localStorage.getItem('loggedas');
   let loggedin = localStorage.getItem('loggedin');
 
-  // if(loggedin == 'true'){
-  //   if(loggedas=='student'){
-  //   this.$router.push('/dashstudent');
-  // }
-  //   if(loggedas=='company'){
-  //     this.$router.push('/dashcompany');
-  //   }
-  // }
+  if(loggedin == 'true'){
+    if(loggedas=='student'){
+    this.$router.push('/dashstudent');
+  }
+    if(loggedas=='company'){
+      this.$router.push('/dashcompany');
+    }
+  }
   
 
 
