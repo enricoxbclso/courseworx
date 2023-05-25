@@ -278,9 +278,8 @@
                       </div>
 
                     
-                      <!--DYNAMICALLY ADDED WHEN A BUTTON IS CLICKED-->
-                      <div>
-                          <div class="card" v-for="listing in jobListings" :key="listing.id">
+                        <!--DYNAMICALLY ADDED WHEN A BUTTON IS CLICKED-->
+                          <div class="card" v-for="listing in getJobListings" :key="listing.id">
                             <div class="card-left blue-bg">
                               <img :src="google" alt="Company Logo">
                             </div>
@@ -304,7 +303,6 @@
                               </div>
                             </div>
                           </div>
-                        </div>
 
                     </div><!--wrapper-->
                     
@@ -361,7 +359,7 @@
               <input v-model="ojtJobLoc" type="text" placeholder="Enter address" required :class="{ 'error': showError && !ojtPosReq }" @input="checkInput"/>
               <span v-if="showError && !ojtJobLoc" class="error-message">This field is required.</span>
             </div>
-            <button @click="addNewListing">Submit</button>
+            <button @click="submitForm">Submit</button>
         </div>
         </div>
       </div>
@@ -371,12 +369,10 @@
 
     <script>
     import { IonIcon } from '@ionic/vue';
-    import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
-              lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
-              menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline } from 'ionicons/icons';
+    import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline } from 'ionicons/icons';
     import { push } from "firebase/database";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-    import { getDatabase, ref, child,get,update,onValue,} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+    import { getDatabase, ref, child, get, update, onValue, } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
     import { mapActions, mapGetters } from "vuex";
     
     
@@ -390,164 +386,163 @@
     appId: "1:561114332314:web:0b4cabbaffea89b0113323"
   };
     
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase();
+  const app = initializeApp(firebaseConfig);
+const db = getDatabase();
 
-    export default {
-      components: { IonIcon },
+export default {
+  components: { IonIcon },
 
-      data() {
-      return {
-        add,
-        cartOutline,
-        chatbubbleOutline,
-        eyeOutline,
-        helpOutline,
-        homeOutline,
-        lockClosedOutline,
-        logOutOutline,
-        peopleOutline,
-        searchOutline,
-        settingsOutline,
-        cashOutline,
-        menuOutline,
-        locationOutline,
-        todayOutline,
-        hourglassOutline,
-        closeCircleOutline,
-        notificationsOutline,
-        analyticsOutline,
-        activeTab: 'home',
-        curCompName: '',
-        curCompUsername: '',
-        curCompViews: null,
-        jobListings: [],
-        cardCount: 0,
-        ojtPos: '',
-        ojtComp: '',
-        ojtDesc: '',
-        ojtDur: '',
-        ojtPosReq: '',
-        ojtJobLoc: '',
-        showError: false,
-        isListenerSet: false
-      };
-    },
-    computed: {
-      ...mapGetters(["getJobListings"])
-    },
-    created() {
-      const dbRef = ref(db);
-      this.curCompName = localStorage.getItem('curComp');
-      this.curCompUsername = localStorage.getItem('curCompUsername');
+  data() {
+    return {
+      add,
+      cartOutline,
+      chatbubbleOutline,
+      eyeOutline,
+      helpOutline,
+      homeOutline,
+      lockClosedOutline,
+      logOutOutline,
+      peopleOutline,
+      searchOutline,
+      settingsOutline,
+      cashOutline,
+      menuOutline,
+      locationOutline,
+      todayOutline,
+      hourglassOutline,
+      closeCircleOutline,
+      notificationsOutline,
+      analyticsOutline,
+      activeTab: 'home',
+      curCompName: '',
+      curCompUsername: '',
+      curCompViews: null,
+      cardCount: 0,
+      ojtPos: '',
+      ojtComp: '',
+      ojtDesc: '',
+      ojtDur: '',
+      ojtPosReq: '',
+      ojtJobLoc: '',
+      showError: false,
+      isListenerSet: false,
+    };
+  },
+  computed: {
+    ...mapGetters(["getJobListings"])
+  },
+  created() {
+    const dbRef = ref(db);
+    this.curCompName = localStorage.getItem('curComp');
+    this.curCompUsername = localStorage.getItem('curCompUsername');
 
-      onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
-        this.curCompViews = Number(snapshot.val());
-        console.log(this.curCompViews + "username");
+    onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
+      this.curCompViews = Number(snapshot.val());
+      console.log(this.curCompViews + "username");
+    });
+
+    // Retrieve job listings from Firebase
+    if (!this.isListenerSet) {
+      const listingsRef = ref(db, `joblisting/${this.curCompName}`);
+      onValue(listingsRef, (snapshot) => {
+        const listings = snapshot.val();
+        if (listings) {
+          this.updateJobListings(Object.values(listings));
+          this.cardCount = this.getJobListings.length;
+        }
       });
+      this.isListenerSet = true; // Set the flag to true to indicate that the listener is now set up
+    }
+  },
+  methods: {
+    ...mapActions(["updateJobListings"]), // Import action from Vuex
 
-      // Retrieve job listings from Firebase
-      if (!this.isListenerSet) {
-        const listingsRef = ref(db, `joblisting/${this.curCompName}`);
-        onValue(listingsRef, (snapshot) => {
-          const listings = snapshot.val();
-          if (listings) {
-            this.updateJobListings(Object.values(listings)); 
-            this.cardCount = this.getJobListings.length; 
-          }
-        });
-        this.isListenerSet = true; // Set the flag to true to indicate that the listener is now set up
+    checkInput() {
+      this.showError = false;
+    },
+    submitForm() {
+      if (!this.validateForm()) {
+        this.showError = true;
+      } else {
+        this.addNewListing();
+        this.showError = false;
       }
     },
-    methods: {
-      ...mapActions(["updateJobListings"]), // Import action from Vuex
+    validateForm() {
+      return (
+        this.ojtPos &&
+        this.ojtComp &&
+        this.ojtDesc &&
+        this.ojtDur &&
+        this.ojtPosReq &&
+        this.ojtJobLoc
+      );
+    },
+    addNewListing() {
+      if (!this.validateForm()) {
+        this.showError = true;
+        return;
+      }
 
-      checkInput() {
-        this.showError = false;
-      },
-      submitForm() {
-        if (!this.validateForm()) {
-          this.showError = true;
-        } else {
-          this.addNewListing();
-          this.showError = false;
-        }
-      },
-      validateForm() {
-        return (
-          this.ojtPos &&
-          this.ojtComp &&
-          this.ojtDesc &&
-          this.ojtDur &&
-          this.ojtPosReq &&
-          this.ojtJobLoc
-        );
-      },
-      addNewListing() {
-        if (!this.validateForm()) {
-          this.showError = true;
-          return;
-        }
+      const dbRef = ref(db, `joblisting/${this.curCompName}`);
+      const newListingRef = push(dbRef);
 
-        const dbRef = ref(db, `joblisting/${this.curCompName}`);
-        const newListingRef = push(dbRef);
+      update(newListingRef, {
+        ojtPos: this.ojtPos,
+        ojtComp: this.ojtComp,
+        ojtDesc: this.ojtDesc,
+        ojtDur: this.ojtDur,
+        ojtPosReq: this.ojtPosReq,
+        ojtJobLoc: this.ojtJobLoc
+      }).then(() => {
+        this.cardCount++;
 
-        update(newListingRef, {
+        const newListing = {
           ojtPos: this.ojtPos,
           ojtComp: this.ojtComp,
           ojtDesc: this.ojtDesc,
           ojtDur: this.ojtDur,
           ojtPosReq: this.ojtPosReq,
           ojtJobLoc: this.ojtJobLoc
-        }).then(() => {
-          this.cardCount++;
+        };
 
-          const newListing = {
-            ojtPos: this.ojtPos,
-            ojtComp: this.ojtComp,
-            ojtDesc: this.ojtDesc,
-            ojtDur: this.ojtDur,
-            ojtPosReq: this.ojtPosReq,
-            ojtJobLoc: this.ojtJobLoc
-          };
+        this.updateJobListings([...this.getJobListings, newListing]); // Dispatch action to update jobListings using Vuex
 
-          this.updateJobListings([...this.getJobListings, newListing]); // Dispatch action to update jobListings using Vuex
+        // Clear the form inputs
+        this.ojtPos = '';
+        this.ojtComp = '';
+        this.ojtDesc = '';
+        this.ojtDur = '';
+        this.ojtPosReq = '';
+        this.ojtJobLoc = '';
 
-          // Clear the form inputs
-          this.ojtPos = '';
-          this.ojtComp = '';
-          this.ojtDesc = '';
-          this.ojtDur = '';
-          this.ojtPosReq = '';
-          this.ojtJobLoc = '';
-
-          const popup = document.getElementById("popup");
-          popup.classList.remove("visible");
-        });
-      },
-      signout() {
-        this.$router.push('/');
-      },
-      changeTab(tab) {
-        this.activeTab = tab;
-      },
-      toggleNavigation() {
-        const navigation = document.querySelector('.navigation');
-        const main = document.querySelector('.main');
-
-        navigation.classList.toggle('active');
-        main.classList.toggle('active');
-      },
-      togglePopup() {
-        const popup = document.getElementById("popup");
-        popup.classList.toggle("visible");
-      },
-      cancelPopup() {
         const popup = document.getElementById("popup");
         popup.classList.remove("visible");
-      }
+      });
+    },
+    signout() {
+      this.$router.push('/');
+    },
+    changeTab(tab) {
+      this.activeTab = tab;
+    },
+    toggleNavigation() {
+      const navigation = document.querySelector('.navigation');
+      const main = document.querySelector('.main');
+
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+    },
+    togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.toggle("visible");
+    },
+    cancelPopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("visible");
     }
-  };
+  }
+};
   </script>
 
   

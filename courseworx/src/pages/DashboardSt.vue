@@ -135,9 +135,13 @@
                     </div>
                 </div>
             </div>
+
+            <div class="recommendation-text">
+              Top Employers
+            </div>  
                       <!--DYNAMICALLY ADDED-->
                       <div class = 'wrapper'>
-                          <div class="card" v-for="listing in jobListings" :key="listing.id">
+                          <div class="card" v-for="listing in getJobListings" :key="listing.id">
                             <div class="card-left blue-bg">
                               <img :src="google" alt="Company Logo">
                             </div>  
@@ -267,13 +271,14 @@
         todayOutline,
         hourglassOutline,
         activeTab: 'home',
-        jobListings: []
       };
     },
 
     created() {
       // Retrieve job listings from Vuex
-      this.jobListings = this.getJobListings;
+      console.log('Student Dashboard created');
+      this.$store.dispatch('updateJobListings');
+      console.log('getJobListings:', this.getJobListings);
     }
   };
 </script>

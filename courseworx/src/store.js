@@ -5,13 +5,13 @@ const store = createStore({
     jobListings: []
   },
   mutations: {
-    updateJobListings(state, listings) {
+    SET_JOB_LISTINGS(state, listings) {
       state.jobListings = listings;
     }
   },
   actions: {
     updateJobListings({ commit }, listings) {
-      commit("updateJobListings", listings);
+      commit("SET_JOB_LISTINGS", listings);
     }
   },
   getters: {
