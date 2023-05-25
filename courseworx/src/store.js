@@ -1,20 +1,24 @@
-import { createStore } from 'vuex';
+import { createStore } from "vuex";
 
-export default createStore({
+const store = createStore({
   state: {
-    jobListings: [],
+    jobListings: []
   },
   mutations: {
-    addJobListing(state, listing) {
-      state.jobListings.push(listing);
-    },
+    updateJobListings(state, listings) {
+      state.jobListings = listings;
+    }
   },
   actions: {
-    addJobListing({ commit }, listing) {
-      commit('addJobListing', listing);
-    },
+    updateJobListings({ commit }, listings) {
+      commit("updateJobListings", listings);
+    }
   },
   getters: {
-    getJobListings: (state) => state.jobListings,
-  },
+    getJobListings(state) {
+      return state.jobListings;
+    }
+  }
 });
+
+export default store;

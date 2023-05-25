@@ -371,20 +371,13 @@
 
     <script>
     import { IonIcon } from '@ionic/vue';
-    import { mapActions } from 'vuex';
     import {  add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, 
               lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, 
               menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline } from 'ionicons/icons';
     import { push } from "firebase/database";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-    import {
-    getDatabase,
-    ref,
-    child,
-    get,
-    update,
-    onValue,
-    } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+    import { getDatabase, ref, child,get,update,onValue,} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+    import { mapActions, mapGetters } from "vuex";
     
     
     const firebaseConfig = {
@@ -440,6 +433,9 @@
         isListenerSet: false
       };
     },
+    computed: {
+      ...mapGetters(["getJobListings"])
+    },
     created() {
       const dbRef = ref(db);
       this.curCompName = localStorage.getItem('curComp');
@@ -456,16 +452,16 @@
         onValue(listingsRef, (snapshot) => {
           const listings = snapshot.val();
           if (listings) {
-            this.jobListings = []; // Clear the array before adding the listings
-            this.jobListings = Object.values(listings);
-            this.cardCount = this.jobListings.length;
+            this.updateJobListings(Object.values(listings)); 
+            this.cardCount = this.getJobListings.length; 
           }
         });
-
         this.isListenerSet = true; // Set the flag to true to indicate that the listener is now set up
       }
     },
     methods: {
+      ...mapActions(["updateJobListings"]), // Import action from Vuex
+
       checkInput() {
         this.showError = false;
       },
@@ -488,47 +484,47 @@
         );
       },
       addNewListing() {
-    if (!this.validateForm()) {
-      this.showError = true;
-      return;
-    }
+        if (!this.validateForm()) {
+          this.showError = true;
+          return;
+        }
 
-    const dbRef = ref(db, `joblisting/${this.curCompName}`);
-    const newListingRef = push(dbRef);
+        const dbRef = ref(db, `joblisting/${this.curCompName}`);
+        const newListingRef = push(dbRef);
 
-    update(newListingRef, {
-      ojtPos: this.ojtPos,
-      ojtComp: this.ojtComp,
-      ojtDesc: this.ojtDesc,
-      ojtDur: this.ojtDur,
-      ojtPosReq: this.ojtPosReq,
-      ojtJobLoc: this.ojtJobLoc
-    }).then(() => {
-      this.cardCount++;
+        update(newListingRef, {
+          ojtPos: this.ojtPos,
+          ojtComp: this.ojtComp,
+          ojtDesc: this.ojtDesc,
+          ojtDur: this.ojtDur,
+          ojtPosReq: this.ojtPosReq,
+          ojtJobLoc: this.ojtJobLoc
+        }).then(() => {
+          this.cardCount++;
 
-      const newListing = {
-        ojtPos: this.ojtPos,
-        ojtComp: this.ojtComp,
-        ojtDesc: this.ojtDesc,
-        ojtDur: this.ojtDur,
-        ojtPosReq: this.ojtPosReq,
-        ojtJobLoc: this.ojtJobLoc
-      };
+          const newListing = {
+            ojtPos: this.ojtPos,
+            ojtComp: this.ojtComp,
+            ojtDesc: this.ojtDesc,
+            ojtDur: this.ojtDur,
+            ojtPosReq: this.ojtPosReq,
+            ojtJobLoc: this.ojtJobLoc
+          };
 
-      this.jobListings.push(newListing);
+          this.updateJobListings([...this.getJobListings, newListing]); // Dispatch action to update jobListings using Vuex
 
-      // Clear the form inputs
-      this.ojtPos = '';
-      this.ojtComp = '';
-      this.ojtDesc = '';
-      this.ojtDur = '';
-      this.ojtPosReq = '';
-      this.ojtJobLoc = '';
+          // Clear the form inputs
+          this.ojtPos = '';
+          this.ojtComp = '';
+          this.ojtDesc = '';
+          this.ojtDur = '';
+          this.ojtPosReq = '';
+          this.ojtJobLoc = '';
 
-      const popup = document.getElementById("popup");
-      popup.classList.remove("visible");
-    });
-  },
+          const popup = document.getElementById("popup");
+          popup.classList.remove("visible");
+        });
+      },
       signout() {
         this.$router.push('/');
       },
@@ -908,6 +904,7 @@
     border-radius: 20px;
     border: 10px;
     cursor: pointer;
+    margin-bottom: 20px;
   }
   
   .card-left{

@@ -32,7 +32,11 @@
               </div>
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
-                <input type="text" placeholder="Username" required v-model="username" id="username">
+                <input type="text" placeholder="E-mail" required v-model="email" id="email">
+              </div>
+              <div class="input-box">
+                <i class="fas fa-id-card"></i>
+                <input type="text" placeholder="ID Number" required v-model="username" id="username">
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
@@ -103,11 +107,8 @@ methods: {
                 console.log("this is working")
                 this.$router.push("/login");
     
+    } 
   }
- 
- 
-  
-}
 }
 
 </script>
@@ -123,16 +124,6 @@ import backimg from "~/assets/images/backImg.png";
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
-}
-body{
-min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  background-color: #293556; /* change background color */
-  background-size: cover;
-  background-position: center center;
 }
 .background {
   background-image: url('~/assets/images/backbg.jpg');

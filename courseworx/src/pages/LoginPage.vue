@@ -104,17 +104,6 @@ created (){
   let loggedas = localStorage.getItem('loggedas');
   let loggedin = localStorage.getItem('loggedin');
 
-  // if(loggedin == 'true'){
-  //   if(loggedas=='student'){
-  //   this.$router.push('/dashstudent');
-  // }
-  //   if(loggedas=='company'){
-  //     this.$router.push('/dashcompany');
-  //   }
-  // }
-  
-
-
 },
 methods: {
 
@@ -122,10 +111,6 @@ methods: {
     const dbRef = ref(db);
     const dbRefCompNameSetter= ref(db, `users/${this.username}/comp_name` );
 
-
-
-    
-    
     onValue(
       child(dbRef, `users/${this.username}`),
       (snapshot) => {

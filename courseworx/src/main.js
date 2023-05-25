@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import router from './router'
+import store from "./store.js";
 
 
 
@@ -25,6 +26,6 @@ const app = createApp(App)
 import { getDatabase, ref,child ,get , update  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
-
+app.use(store);
 app.use(router);
 app.mount('#app')
