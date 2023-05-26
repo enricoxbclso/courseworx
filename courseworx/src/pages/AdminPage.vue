@@ -96,10 +96,10 @@
              <div class="table-wrapper">   
               <main class="table">
                   <section class="table__header">
-                            <h1>Registered Students</h1>
+                            <h1>Registered Users</h1>
                     <div class="table__buttons">
                       <button class="action__button" @click="togglePopup">Add</button>
-                      <button class="action__button">Delete</button>
+                      <button class="action__button" @click="deleteData()">Delete</button>
                       <button class="action__button">Edit</button>
                     </div>
                         </section>
@@ -110,58 +110,105 @@
                                         <th> Id <span class="icon-arrow">&UpArrow;</span></th>
                                         <th> First Name <span class="icon-arrow">&UpArrow;</span></th>
                                         <th> Last Name <span class="icon-arrow">&UpArrow;</span></th>
-                                        <th> Bday<span class="icon-arrow">&UpArrow;</span></th>
+                                        <th> UserType<span class="icon-arrow">&UpArrow;</span></th>
                                         <th> E-Mail <span class="icon-arrow">&UpArrow;</span></th>
                                         <th> ID Num <span class="icon-arrow">&UpArrow;</span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td> 1 </td>
-                                        <td> Enrico</td>
-                                        <td> Bacalso</td>
-                                        <td> 17 Dec, 2002 </td>
-                                        <td> enricoxbclso@gmail.com</td>
-                                        <td> <strong> 20237871 </strong></td>
+                                        <td> <button @click="indexer()">1 </button></td>
+                                        <td> {{ fnameT}}</td>
+                                        <td> {{ lnameT }}</td>
+                                        <td> Student </td>
+                                        <td> {{ emailT }}</td>
+                                        <td> <strong> {{ usernameT }} </strong></td>
+                                    </tr>   
+                                    <tr>
+                                        <td> <button @click="indexer2()">2 </button></td>
+                                        <td> {{ fnameT2}}</td>
+                                        <td> {{ lnameT2 }}</td>
+                                        <td> Student </td>
+                                        <td> {{ emailT2 }}</td>
+                                        <td> <strong> {{ usernameT2 }} </strong></td>
                                     </tr>                  
+                                    <tr>
+                                        <td> <button @click="indexer3()">3 </button></td>
+                                        <td> {{ fnameT3}}</td>
+                                        <td> {{ lnameT3 }}</td>
+                                        <td> Student </td>
+                                        <td> {{ emailT3 }}</td>
+                                        <td> <strong> {{ usernameT3 }} </strong></td>
+                                    </tr>                  
+                                    <tr>
+                                        <td> <button @click="indexer4()">4 </button></td>
+                                        <td> {{ fnameT4}}</td>
+                                        <td> {{ lnameT4 }}</td>
+                                        <td> Student </td>
+                                        <td> {{ emailT4 }}</td>
+                                        <td> <strong> {{ usernameT4 }} </strong></td>
+                                    </tr>                  
+                                    <tr>
+                                        <td> <button @click="indexer5()">5 </button></td>
+                                        <td> {{ fnameT5}}</td>
+                                        <td> {{ lnameT5 }}</td>
+                                        <td> Student </td>
+                                        <td> {{ emailT5 }}</td>
+                                        <td> <strong> {{ usernameT5 }} </strong></td>
+                                    </tr>       
+                                    <tr>
+                                        <td> <button>-</button></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td> <strong>-</strong></td>
+                                    </tr>     
+                                    <tr>
+                                        <td> <button>-</button></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td> <strong>-</strong></td>
+                                    </tr>  
+                                    <tr>
+                                        <td> <button>-</button></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td> <strong>-</strong></td>
+                                    </tr>  
+                                    <tr>
+                                        <td> <button>-</button></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td> <strong>-</strong></td>
+                                    </tr>  
+                                    <tr>
+                                        <td> <button>-</button></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td> <strong>-</strong></td>
+                                    </tr>  
+                                    <tr>
+                                        <td> <button>-</button></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td> <strong>-</strong></td>
+                                    </tr>                         
                                 </tbody>
                             </table>
                         </section>
                     </main> 
-                    <main class="table">
-                  <section class="table__header">
-                            <h1>Registered Employers</h1>
-                    <div class="table__buttons">
-                      <button class="action__button" @click="togglePopup">Add</button>
-                      <button class="action__button">Delete</button>
-                      <button class="action__button">Edit</button>
-                    </div>
-                        </section>
-                        <section class="table__body">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th> Id <span class="icon-arrow">&UpArrow;</span></th>
-                                        <th> Company Name <span class="icon-arrow">&UpArrow;</span></th>
-                                        <th> Last Name <span class="icon-arrow">&UpArrow;</span></th>
-                                        <th> Bday<span class="icon-arrow">&UpArrow;</span></th>
-                                        <th> E-Mail <span class="icon-arrow">&UpArrow;</span></th>
-                                        <th> ID Num <span class="icon-arrow">&UpArrow;</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td> 1 </td>
-                                        <td> Enrico</td>
-                                        <td> Bacalso</td>
-                                        <td> 17 Dec, 2002 </td>
-                                        <td> enricoxbclso@gmail.com</td>
-                                        <td> <strong> 20237871 </strong></td>
-                                    </tr>                  
-                                </tbody>
-                            </table>
-                        </section>
-                    </main>                 
+                       
                   </div>        
                </div> 
            <div>
@@ -214,7 +261,7 @@
                       </div>
                       <div class="button-container">
                       <div class="button input-box">
-                        <input type="submit" value="Submit" @click="savaStudentData">
+                        <input type="submit" value="Submit" @click="addUser()">
                       </div>
                       <div class="button input-box">
                         <input type="submit" value="Cancel" @click="cancelPopup">
@@ -232,10 +279,203 @@
       <script>
     import { IonIcon } from '@ionic/vue';
     import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
-  
+    import { push } from "firebase/database";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import {
+    getDatabase,
+    ref,
+    child,
+    get,
+    update,
+    onValue,
+    remove
+    } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+      authDomain: "courseworx-454d2.firebaseapp.com",
+      databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "courseworx-454d2",
+      storageBucket: "courseworx-454d2.appspot.com",
+      messagingSenderId: "561114332314",
+      appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase();
     export default {
     components: { IonIcon },
+    data() {
+      return {
+        add,
+        cartOutline,
+        chatbubbleOutline,
+        eyeOutline,
+        helpOutline,
+        homeOutline,
+        lockClosedOutline,
+        logOutOutline,
+        peopleOutline,
+        searchOutline,
+        settingsOutline,
+        cashOutline,
+        menuOutline,
+        locationOutline,
+        todayOutline,
+        hourglassOutline,
+        activeTab: 'home',
+        fnameT:'',
+        lname:'',
+        emailT:'',
+        usernameT:'',
+        fnameT2:'',
+        lname2:'',
+        emailT2:'',
+        usernameT2:'',
+        fnameT3:'',
+        lname3:'',
+        emailT3:'',
+        usernameT3:'',
+        fnameT4:'',
+        lname4:'',
+        emailT4:'',
+        usernameT4:'',
+        fnameT5:'',
+        lname5:'',
+        emailT5:'',
+        usernameT5:'',
+        
+      };
+    },
+    created(){
+      const dbRef = ref(db);
+
+
+  onValue(child(dbRef, `users/1/fname`),(snapshot) => {this.fnameT=snapshot.val();});
+  onValue(child(dbRef, `users/1/lname`),(snapshot) => {this.lnameT=snapshot.val();});
+  onValue(child(dbRef, `users/1/email`),(snapshot) => {this.emailT=snapshot.val();});
+  onValue(child(dbRef, `users/1/username`),(snapshot) => {this.usernameT=snapshot.val()});
+  
+  onValue(child(dbRef, `users/2/fname`),(snapshot) => {this.fnameT2=snapshot.val();});
+  onValue(child(dbRef, `users/2/lname`),(snapshot) => {this.lnameT2=snapshot.val();});
+  onValue(child(dbRef, `users/2/email`),(snapshot) => {this.emailT2=snapshot.val();});
+  onValue(child(dbRef, `users/2/username`),(snapshot) => {this.usernameT2=snapshot.val()});
+
+  onValue(child(dbRef, `users/3/fname`),(snapshot) => {this.fnameT3=snapshot.val();});
+  onValue(child(dbRef, `users/3/lname`),(snapshot) => {this.lnameT3=snapshot.val();});
+  onValue(child(dbRef, `users/3/email`),(snapshot) => {this.emailT3=snapshot.val();});
+  onValue(child(dbRef, `users/3/username`),(snapshot) => {this.usernameT3=snapshot.val()});
+
+  onValue(child(dbRef, `users/4/fname`),(snapshot) => {this.fnameT4=snapshot.val();});
+  onValue(child(dbRef, `users/4/lname`),(snapshot) => {this.lnameT4=snapshot.val();});
+  onValue(child(dbRef, `users/4/email`),(snapshot) => {this.emailT4=snapshot.val();});
+  onValue(child(dbRef, `users/4/username`),(snapshot) => {this.usernameT4=snapshot.val()});
+
+  onValue(child(dbRef, `users/5/fname`),(snapshot) => {this.fnameT5=snapshot.val();});
+  onValue(child(dbRef, `users/5/lname`),(snapshot) => {this.lnameT5=snapshot.val();});
+  onValue(child(dbRef, `users/5/email`),(snapshot) => {this.emailT5=snapshot.val();});
+  onValue(child(dbRef, `users/5/username`),(snapshot) => {this.usernameT5=snapshot.val()});
+
+
+    
+
+   
+
+
+    },
     methods: {
+      deleteData(){
+
+        
+
+      const index = localStorage.getItem('indexer');
+
+        const dbRef = ref(db, `users/${index}/username`);
+          let counterVariable;
+          get(dbRef).then((snapshot) => {
+            const deletePath = ref(db, `users/${snapshot.val()}`);
+            remove(deletePath).then(() => {console.log("location removed");});   
+          });
+
+       const deletePath = ref(db, `users/${index}`);
+       remove(deletePath).then(() => {console.log("location removed");});
+
+
+
+
+      },
+        addUser(){
+          const userIdB = `users/${this.username}`;
+          const dbRefcustomersB = ref(db, userIdB);
+          
+            this.usertype = 'student'
+                      update(dbRefcustomersB, { fname: this.fname });
+                      update(dbRefcustomersB, { lname: this.lname });
+                      update(dbRefcustomersB, { password: this.password });
+                      update(dbRefcustomersB, { bday: this.bday });
+                      update(dbRefcustomersB, { usertype: this.usertype });
+
+
+                      console.log("this is working")
+
+                  const dbRefCTR = ref(db, `users/ctr`);
+                    get(dbRefCTR).then((snapshot) => {
+                    console.log("ctr is" + snapshot.val())
+                    const dbRefCtr = ref(db, `users`);
+                    this.ctrNN = snapshot.val();
+
+                    if(snapshot.val()==null){
+                      this.ctr = 1;
+                      const dbRefList = ref(db, `users/${this.ctr}`);
+
+                      const dbRefCompanyData = ref(db, `users/${this.ctr}`);
+                      update(dbRefCompanyData, { username: this.username });
+                      update(dbRefCompanyData, { email: this.email });
+                      update(dbRefCompanyData, { fname: this.fname });
+                      update(dbRefCompanyData, { lname: this.lname });
+                      update(dbRefCompanyData, { password: this.password });
+                      update(dbRefCompanyData, { bday: this.bday });
+                      update(dbRefCompanyData, { usertype: this.usertype });
+                            update(dbRefCtr, { ctr: 1 });    
+
+                        }
+                        else{
+                          console.log("ctr val is "+snapshot.val())
+                          update(dbRefCtr, { ctr: snapshot.val()+1 });    
+                            const dbRefList = ref(db, `users/${snapshot.val()+1}`);
+                            update(dbRefList, { username: this.username });
+                            update(dbRefList, { fname: this.fname });
+                            update(dbRefList, { lname: this.lname });
+                            update(dbRefList, { email: this.email });
+                            update(dbRefList, { password: this.password });
+                            update(dbRefList, { username: this.username });
+                            update(dbRefList, { bday: this.bday });
+                            update(dbRefList, { usertype: this.usertype });
+        
+                        }
+
+                      });// end
+                      
+          
+            },
+      indexer(){
+          localStorage.setItem('indexer',1)
+      },
+      indexer2(){
+          localStorage.setItem('indexer',2)
+      },
+      indexer3(){
+          localStorage.setItem('indexer',3)
+      },
+      indexer4(){
+          localStorage.setItem('indexer',4)
+      },
+      indexer5(){
+          localStorage.setItem('indexer',5)
+      },
+      
       changeTab(tab) {
         this.activeTab = tab;
       },
@@ -258,27 +498,7 @@
         // Add your save student data logic here
       }
     },
-    data() {
-      return {
-        add,
-        cartOutline,
-        chatbubbleOutline,
-        eyeOutline,
-        helpOutline,
-        homeOutline,
-        lockClosedOutline,
-        logOutOutline,
-        peopleOutline,
-        searchOutline,
-        settingsOutline,
-        cashOutline,
-        menuOutline,
-        locationOutline,
-        todayOutline,
-        hourglassOutline,
-        activeTab: 'home'
-      };
-    },
+
   };
   
     

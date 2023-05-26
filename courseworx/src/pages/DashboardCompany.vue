@@ -190,8 +190,8 @@
                       </div>
 
                     
-                        <!--DYNAMICALLY ADDED AFTER JOB LISTING FORM IS COMPLETED-->
-                          <div class="card" v-for="listing in getJobListings" :key="listing.id">  
+                        <!--Wrapper1-->
+                          <div class="card" v-if="isTrueYow">  
                             <div class="button-container">
                                  <button class="card-button" @click="toggleEditForm">Edit Listing</button>
                                 <ion-icon :icon="trashBinOutline" class="delete" @click="togglePopDel"></ion-icon>
@@ -200,25 +200,147 @@
                               <img :src="google" alt="Company Logo">
                             </div>
                             <div class="card-center">
-                              <h3>{{ listing.ojtComp }}</h3>
-                              <p class="card-detail"><b><ul>Position:</ul></b> {{ listing.ojtPos }}</p>
-                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ listing.ojtJobLoc }}</p>
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT }}</p>
                               <div class="card-sub">
-                                <p>Time Posted: 2 hours ago</p>
-                                <p><ion-icon :icon="peopleOutline"></ion-icon></p>
-                                <p><ion-icon :icon="hourglassOutline"></ion-icon>:{{ listing.ojtDur }}</p>
+                
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT }}hour/s</p>
                               </div>
                               <div class="card-salary">
-                                <p><b>OJT Position Requirements:</b><span>{{ listing.ojtPosReq }}</span></p>
+                                <p><b>OJT Position Requirements:</b><span></span>{{ ojtPosReqT }}</p>
                               </div>
                             </div>
                             <div class="card-right">
                               <div class="card-tag">
                                 <h5>Job Description</h5>
-                                <p>{{ listing.ojtDesc }}</p>
+                                <p>{{ ojtDescT }}</p>
                               </div>
                             </div>
                           </div>
+                                                  <!--Wrapper1-->
+                                                                          <!--2-->
+                          <div class="card" v-if="isTrueYow2">  
+                            <div class="button-container">
+                                 <button class="card-button" @click="toggleEditForm2">Edit Listing</button>
+                                <ion-icon :icon="trashBinOutline" class="delete" @click="togglePopDel2"></ion-icon>
+                              </div>                          
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT2 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT2 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT2 }}</p>
+                              <div class="card-sub">
+                
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT2 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span></span>{{ ojtPosReqT2 }}</p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT2 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                                                  <!--2-->
+                                                                          <!--3-->
+                          <div class="card" v-if="isTrueYow3">  
+                            <div class="button-container">
+                                 <button class="card-button" @click="toggleEditForm3">Edit Listing</button>
+                                <ion-icon :icon="trashBinOutline" class="delete" @click="togglePopDel3"></ion-icon>
+                              </div>                          
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT3 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT3 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT3 }}</p>
+                              <div class="card-sub">
+                
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT3 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span></span>{{ ojtPosReqT3 }}</p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT3 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                                                  <!--3-->
+                                                                          <!--4-->
+                              <div class="card" v-if="isTrueYow4">  
+                            <div class="button-container">
+                                 <button class="card-button" @click="toggleEditForm4">Edit Listing</button>
+                                <ion-icon :icon="trashBinOutline" class="delete" @click="togglePopDel4"></ion-icon>
+                              </div>                          
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT4 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT4 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT4 }}</p>
+                              <div class="card-sub">
+                
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT4 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span></span>{{ ojtPosReqT4 }}</p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT4 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                                                  <!--4-->
+                                                                          <!--5-->
+                                   <div class="card" v-if="isTrueYow5">  
+                            <div class="button-container">
+                                 <button class="card-button" @click="toggleEditForm5">Edit Listing</button>
+                                <ion-icon :icon="trashBinOutline" class="delete" @click="togglePopDel5"></ion-icon>
+                              </div>                          
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT5 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT5 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT5 }}</p>
+                              <div class="card-sub">
+                
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT5 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span></span>{{ ojtPosReqT5 }}</p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT5 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                                                  <!--5-->
+
 
                           <!--------------------------------------FOR EDITING--------------------------------------------->
                           <div class="editform" id="editform">
@@ -259,7 +381,7 @@
                                       <label>Job Location</label>
                                       <input v-model="ojtJobLoc" type="text" placeholder="Enter address" />
                                     </div>
-                                    <button type="submit">Save</button>
+                                    <button @click="editListing">Save</button>
                                   </div>
                                 </div>
                             </div>
@@ -330,21 +452,10 @@
       <div class="popdel" id="popdel">
           <div class="form">
             <div class="poptitle">Are you sure you want to delete this listing?</div>
-            <div class="radio-group">
-              <label for="employer" class="radio">
-                <input type="radio" name="employer" id="employer" class="radio__input">
-                <div class="radio__radio"></div>
-                Yes
-              </label>
-              <label for="student" class="radio">
-                <input type="radio" name="employer" id="student" class="radio__input">
-                <div class="radio__radio"></div>
-                No
-              </label>
-            </div>
+
             <div class="form-element">
-              <button type="submit" class="submit-btn" @click="redirectPage">Next</button>
-              <button type="button" class="cancel-btn" @click="cancelPopDel">Cancel</button>
+              <button type="submit" class="submit-btn" @click="deleteListing();cancelPopDel()">Yes</button>
+              <button type="button" class="cancel-btn" @click="cancelPopDel">No</button>
             </div>
           </div>
     </div>
@@ -359,7 +470,7 @@ import { IonIcon } from '@ionic/vue';
 import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline, trashBinOutline } from 'ionicons/icons';
 import { push } from "firebase/database";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, child, get, update, onValue, } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, child, get, update, onValue, remove } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { mapActions, mapGetters } from "vuex"
 
 const firebaseConfig = {
@@ -413,12 +524,49 @@ data() {
     ojtJobLoc: '',
     showError: false,
     isListenerSet: false,
+    isTrueYow : false,
+    isTrueYow2 : false,
+    isTrueYow3 : false,
+    isTrueYow4 : false,
+    isTrueYow5 : false,
+      ojtCompT:'',
+      ojtDescT:'',
+      ojtDurT:'',
+      ojtJobLocT:'',
+      ojtPosT:'',
+      ojtPosReqT:'',
+      ojtCompT2:'',
+      ojtDescT2:'',
+      ojtDurT2:'',
+      ojtJobLocT2:'',
+      ojtPosT2:'',
+      ojtPosReqT2:'',
+      ojtCompT3:'',
+      ojtDescT3:'',
+      ojtDurT3:'',
+      ojtJobLocT3:'',
+      ojtPosT3:'',
+      ojtPosReqT3:'',
+      ojtCompT4:'',
+      ojtDescT4:'',
+      ojtDurT4:'',
+      ojtJobLocT4:'',
+      ojtPosT4:'',
+      ojtPosReqT4:'',
+      ojtCompT5:'',
+      ojtDescT5:'',
+      ojtDurT5:'',
+      ojtJobLocT5:'',
+      ojtPosT5:'',
+      ojtPosReqT5:''  
+
   };
 },
 computed: {
   ...mapGetters(["getJobListings"])
 },
 created() {
+  
   const curComp = localStorage.getItem('curComp');
   const curCompUsername = localStorage.getItem('curCompUsername');
 
@@ -450,13 +598,142 @@ created() {
   }
 },
 mounted() {
-  const storedJobListings = localStorage.getItem('jobListings');
-  if (storedJobListings) {
-    this.updateJobListings(JSON.parse(storedJobListings));
-    this.cardCount = this.getJobListings.length;
-  }
+  const dbRef = ref(db);
+  onValue(child(dbRef, `allJobList/1`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/1/ojtComp`),(snapshot) => { this.ojtCompT = snapshot.val(); if(snapshot.val()!=null){this.isTrueYow = true} });
+          onValue(child(dbRef, `allJobList/1/ojtDesc`),(snapshot) => {this.ojtDescT = snapshot.val() });
+          onValue(child(dbRef, `allJobList/1/ojtDur`),(snapshot) => { this.ojtDurT = snapshot.val() });
+          onValue(child(dbRef, `allJobList/1/ojtJobLoc`),(snapshot) => { this.ojtJobLocT = snapshot.val()});
+          onValue(child(dbRef, `allJobList/1/ojtPos`),(snapshot) => { this.ojtPosT = snapshot.val()});
+          onValue(child(dbRef, `allJobList/1/ojtPosReq`),(snapshot) => { this.ojtPosReqT = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/2`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/2/ojtComp`),(snapshot) => { this.ojtCompT2 = snapshot.val(); if(snapshot.val()!=null){this.isTrueYow2 = true}});
+          onValue(child(dbRef, `allJobList/2/ojtDesc`),(snapshot) => {this.ojtDescT2 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/2/ojtDur`),(snapshot) => { this.ojtDurT2 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/2/ojtJobLoc`),(snapshot) => { this.ojtJobLocT2 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/2/ojtPos`),(snapshot) => { this.ojtPosT2 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/2/ojtPosReq`),(snapshot) => { this.ojtPosReqT2 = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/3`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/3/ojtComp`),(snapshot) => { this.ojtCompT3 = snapshot.val(); if(snapshot.val()!=null){this.isTrueYow3 = true}});
+          onValue(child(dbRef, `allJobList/3/ojtDesc`),(snapshot) => {this.ojtDescT3 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/3/ojtDur`),(snapshot) => { this.ojtDurT3 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/3/ojtJobLoc`),(snapshot) => { this.ojtJobLocT3 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/3/ojtPos`),(snapshot) => { this.ojtPosT3 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/3/ojtPosReq`),(snapshot) => { this.ojtPosReqT3 = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/4`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/4/ojtComp`),(snapshot) => { this.ojtCompT4 = snapshot.val(); if(snapshot.val()!=null){this.isTrueYow4 = true}});
+          onValue(child(dbRef, `allJobList/4/ojtDesc`),(snapshot) => {this.ojtDescT4 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/4/ojtDur`),(snapshot) => { this.ojtDurT4 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/4/ojtJobLoc`),(snapshot) => { this.ojtJobLocT4 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/4/ojtPos`),(snapshot) => { this.ojtPosT4 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/4/ojtPosReq`),(snapshot) => { this.ojtPosReqT4 = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/5`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/5/ojtComp`),(snapshot) => { this.ojtCompT5 = snapshot.val();if(snapshot.val()!=null){this.isTrueYow5 = true} });
+          onValue(child(dbRef, `allJobList/5/ojtDesc`),(snapshot) => {this.ojtDescT5 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/5/ojtDur`),(snapshot) => { this.ojtDurT5 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/5/ojtJobLoc`),(snapshot) => { this.ojtJobLocT5 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/5/ojtPos`),(snapshot) => { this.ojtPosT5 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/5/ojtPosReq`),(snapshot) => { this.ojtPosReqT5 = snapshot.val()});
+
+      });
+
+      // const deletePathA = ref(db, `admin/${this.uName}`);
+      // remove(deletePathA).then(() => {console.log("location removed");});
+
+
 },
 methods: {
+  deleteListing(){
+    this.index = localStorage.getItem('indexD');
+
+       const deletePath = ref(db, `allJobList/${this.index}`);
+       remove(deletePath).then(() => {console.log("location removed");});
+
+  },
+  editListing(){
+    this.index = localStorage.getItem('index');
+
+    const dbRefList = ref(db, `allJobList/${this.index}`);
+                update(dbRefList, {  
+                                ojtPos: this.ojtPos,
+                                ojtComp: this.ojtComp,
+                                ojtDesc: this.ojtDesc,
+                                ojtDur: this.ojtDur,
+                                ojtPosReq: this.ojtPosReq,
+                                ojtJobLoc: this.ojtJobLoc     
+                                    
+                            });  
+
+                                this.ojtPos = '';
+                                this.ojtComp = '';
+                                this.ojtDesc = '';
+                                this.ojtDur = '';
+                                this.ojtPosReq = '';
+                                this.ojtJobLoc = '';   
+
+
+
+  },
+  addNewListing() {
+    if (!this.validateForm()) {
+      this.showError = true;
+      return;
+    }
+
+
+    const dbRef = ref(db);
+
+    const dbRefCTR = ref(db, `allJobList/ctr`);
+            get(dbRefCTR).then((snapshot) => {
+              console.log("ctr is" + snapshot.val())
+              const dbRefCtr = ref(db, `allJobList`);
+              this.ctrNN = snapshot.val();
+
+              if(snapshot.val()==null){
+                this.ctr = 1;
+                const dbRefList = ref(db, `allJobList/${this.ctr}`);
+                update(dbRefList, {  
+                                ojtPos: this.ojtPos,
+                                ojtComp: this.ojtComp,
+                                ojtDesc: this.ojtDesc,
+                                ojtDur: this.ojtDur,
+                                ojtPosReq: this.ojtPosReq,
+                                ojtJobLoc: this.ojtJobLoc     
+                                    
+                            });    
+                      update(dbRefCtr, { ctr: 1 });    
+
+                  }
+                  else{
+                    console.log("ctr val is "+snapshot.val())
+                    update(dbRefCtr, { ctr: snapshot.val()+1 });    
+                    const dbRefList = ref(db, `allJobList/${snapshot.val()+1}`);
+                    update(dbRefList, {  
+                                ojtPos: this.ojtPos,
+                                ojtComp: this.ojtComp,
+                                ojtDesc: this.ojtDesc,
+                                ojtDur: this.ojtDur,
+                                ojtPosReq: this.ojtPosReq,
+                                ojtJobLoc: this.ojtJobLoc                                         
+                                });    
+                  }
+
+                });// end
+
+  },
   checkInput() {
     this.showError = false;
   },
@@ -478,48 +755,7 @@ methods: {
       this.ojtJobLoc
     );
   },
-  addNewListing() {
-    if (!this.validateForm()) {
-      this.showError = true;
-      return;
-    }
-
-    const dbRef = ref(db, `joblisting/${this.curCompName}`);
-    const newListingRef = push(dbRef);
-
-    update(newListingRef, {
-      ojtPos: this.ojtPos,
-      ojtComp: this.ojtComp,
-      ojtDesc: this.ojtDesc,
-      ojtDur: this.ojtDur,
-      ojtPosReq: this.ojtPosReq,
-      ojtJobLoc: this.ojtJobLoc
-    }).then(() => {
-      this.cardCount++;
-
-      const newListing = {
-        ojtPos: this.ojtPos,
-        ojtComp: this.ojtComp,
-        ojtDesc: this.ojtDesc,
-        ojtDur: this.ojtDur,
-        ojtPosReq: this.ojtPosReq,
-        ojtJobLoc: this.ojtJobLoc
-      };
-
-      this.ojtPos = '';
-      this.ojtComp = '';
-      this.ojtDesc = '';
-      this.ojtDur = '';
-      this.ojtPosReq = '';
-      this.ojtJobLoc = '';
-
-      this.updateJobListings([...this.getJobListings, newListing]);
-      localStorage.setItem('jobListings', JSON.stringify(this.getJobListings));
-
-      const popup = document.getElementById("popup");
-      popup.classList.remove("visible");
-    });
-  },
+  
 
   ...mapActions(["updateJobListings"]),
   signout() {
@@ -547,14 +783,62 @@ methods: {
     popup.classList.remove("visible");
   },
   togglePopDel() {
+    localStorage.setItem('index',null);
+    localStorage.setItem('indexD',1);
     const popup = document.getElementById("popdel");
     popup.classList.toggle("visible");
   },
+  togglePopDel2() {
+    localStorage.setItem('index',null);
+    localStorage.setItem('indexD',2);
+    const popup = document.getElementById("popdel");
+    popup.classList.toggle("visible");
+  },
+  togglePopDel3() {
+    localStorage.setItem('index',null);
+    localStorage.setItem('indexD',3);
+    const popup = document.getElementById("popdel");
+    popup.classList.toggle("visible");
+  },
+  togglePopDel4() {
+    localStorage.setItem('index',null);
+    localStorage.setItem('indexD',4);
+    const popup = document.getElementById("popdel");
+    popup.classList.toggle("visible");
+  },
+  togglePopDel5() {
+    localStorage.setItem('index',null);
+    localStorage.setItem('indexD',5);
+    const popup = document.getElementById("popdel");
+    popup.classList.toggle("visible");
+  },
+
   cancelPopDel() {
     const popup = document.getElementById("popdel");
     popup.classList.remove("visible");
   },
   toggleEditForm() {
+    localStorage.setItem('index',1);
+    const popup = document.getElementById("editform");
+    popup.classList.toggle("visible");
+  },
+  toggleEditForm2() {
+    localStorage.setItem('index',2);
+    const popup = document.getElementById("editform");
+    popup.classList.toggle("visible");
+  },
+  toggleEditForm3() {
+    localStorage.setItem('index',3);
+    const popup = document.getElementById("editform");
+    popup.classList.toggle("visible");
+  },
+  toggleEditForm4() {
+    localStorage.setItem('index',4);
+    const popup = document.getElementById("editform");
+    popup.classList.toggle("visible");
+  },
+  toggleEditForm5() {
+    localStorage.setItem('index',5);
     const popup = document.getElementById("editform");
     popup.classList.toggle("visible");
   },

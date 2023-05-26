@@ -106,6 +106,45 @@ methods: {
 
                 console.log("this is working")
                 this.$router.push("/login");
+
+            const dbRefCTR = ref(db, `users/ctr`);
+              get(dbRefCTR).then((snapshot) => {
+              console.log("ctr is" + snapshot.val())
+              const dbRefCtr = ref(db, `users`);
+              this.ctrNN = snapshot.val();
+
+              if(snapshot.val()==null){
+                this.ctr = 1;
+                const dbRefList = ref(db, `users/${this.ctr}`);
+
+                const dbRefCompanyData = ref(db, `users/${this.ctr}`);
+                update(dbRefCompanyData, { username: this.username });
+                update(dbRefCompanyData, { email: this.email });
+                update(dbRefCompanyData, { fname: this.fname });
+                update(dbRefCompanyData, { lname: this.lname });
+                update(dbRefCompanyData, { password: this.password });
+                update(dbRefCompanyData, { bday: this.bday });
+                update(dbRefCompanyData, { usertype: this.usertype });
+                      update(dbRefCtr, { ctr: 1 });    
+
+                  }
+                  else{
+                    console.log("ctr val is "+snapshot.val())
+                    update(dbRefCtr, { ctr: snapshot.val()+1 });    
+                      const dbRefList = ref(db, `users/${snapshot.val()+1}`);
+                      update(dbRefList, { username: this.username });
+                      update(dbRefList, { fname: this.fname });
+                      update(dbRefList, { lname: this.lname });
+                      update(dbRefList, { email: this.email });
+                      update(dbRefList, { password: this.password });
+                      update(dbRefList, { username: this.username });
+                      update(dbRefList, { bday: this.bday });
+                      update(dbRefList, { usertype: this.usertype });
+  
+                  }
+
+                });// end
+                
     
     } 
   }

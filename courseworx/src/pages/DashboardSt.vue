@@ -139,33 +139,148 @@
             <div class="recommendation-text">                                                                                                                                                                         
               Job Recommendations for you!
             </div>  
-                      <!--DYNAMICALLY ADDED-->
+                      <!--wrapper-->
                       <div class = 'wrapper'>
-                          <div class="card" v-for="listing in getJobListings" :key="listing.id">
+                          <div class="card">
                             <div class="card-left blue-bg">
                               <img :src="google" alt="Company Logo">
                             </div>  
                             <div class="card-center">
-                              <h3>{{ listing.ojtComp }}</h3>
-                              <p class="card-detail"><b><ul>Position:</ul></b> {{ listing.ojtPos }}</p>
-                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ listing.ojtJobLoc }}</p>
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT }}</p>
                               <div class="card-sub">
-                                <p>Time Posted: 2 hours ago</p>
                                 <p><ion-icon :icon="peopleOutline"></ion-icon></p>
-                                <p><ion-icon :icon="hourglassOutline"></ion-icon>:{{ listing.ojtDur }}</p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT }}hour/s</p>
                               </div>
                               <div class="card-salary">
-                                <p><b>OJT Position Requirements:</b><span>{{ listing.ojtPosReq }}</span></p>
+                                <p><b>OJT Position Requirements:</b><span>{{ ojtPosReqT }}</span></p>
                               </div>
                             </div>
                             <div class="card-right">
                               <div class="card-tag">
                                 <h5>Job Description</h5>
-                                <p>{{ listing.ojtDesc }}</p>
+                                <p>{{ ojtDescT }}</p>
                               </div>
                             </div>
                           </div>
                         </div>
+                 <!--wrapper-->
+                    <!--2wrapper-->
+                    <div class = 'wrapper'>
+                          <div class="card">
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>  
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT2 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT2 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT2 }}</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="peopleOutline"></ion-icon></p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT2 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span>{{ ojtPosReqT2 }}</span></p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT2 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                 <!--wrapper-->
+                    <!--3wrapper-->
+                    <div class = 'wrapper'>
+                          <div class="card">
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>  
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT3 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT3 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT3 }}</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="peopleOutline"></ion-icon></p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT3 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span>{{ ojtPosReqT3 }}</span></p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT3 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                 <!--wrapper-->
+                    <!--4wrapper-->
+                    <div class = 'wrapper'>
+                          <div class="card">
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>  
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT4 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT4 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT4 }}</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="peopleOutline"></ion-icon></p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT4 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span>{{ ojtPosReqT4 }}</span></p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT4 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                 <!--wrapper-->
+                    <!--5wrapper-->
+                    <div class = 'wrapper'>
+                          <div class="card">
+                            <div class="card-left blue-bg">
+                              <img :src="google" alt="Company Logo">
+                            </div>  
+                            <div class="card-center">
+                              <h3></h3>
+                              <p class="card-detail"><b><ul>Company Name:</ul></b>{{ ojtCompT5 }}</p>
+                              <p class="card-detail"><b><ul>Position:</ul></b>{{ ojtPosT5 }}</p>
+                              <p class="card-loc-app"><ion-icon :icon="locationOutline"></ion-icon>{{ ojtJobLocT5 }}</p>
+                              <div class="card-sub">
+                                <p><ion-icon :icon="peopleOutline"></ion-icon></p>
+                                <p><ion-icon :icon="hourglassOutline"></ion-icon>{{ ojtDurT5 }}hour/s</p>
+                              </div>
+                              <div class="card-salary">
+                                <p><b>OJT Position Requirements:</b><span>{{ ojtPosReqT5 }}</span></p>
+                              </div>
+                            </div>
+                            <div class="card-right">
+                              <div class="card-tag">
+                                <h5>Job Description</h5>
+                                <p>{{ ojtDescT5 }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                 <!--wrapper-->
+                 
+
   
                 
             </div> 
@@ -231,6 +346,23 @@ import { IonIcon } from '@ionic/vue';
 import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
 import { mapGetters } from "vuex";
 
+import { push } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, child, get, update, onValue, } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+authDomain: "courseworx-454d2.firebaseapp.com",
+databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId: "courseworx-454d2",
+storageBucket: "courseworx-454d2.appspot.com",
+messagingSenderId: "561114332314",
+appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase();
+
 export default {
   components: { IonIcon },
 
@@ -280,8 +412,95 @@ export default {
       todayOutline,
       hourglassOutline,
       activeTab: 'home',
+      ojtCompT:'',
+      ojtDescT:'',
+      ojtDurT:'',
+      ojtJobLocT:'',
+      ojtPosT:'',
+      ojtPosReqT:'',
+      ojtCompT2:'',
+      ojtDescT2:'',
+      ojtDurT2:'',
+      ojtJobLocT2:'',
+      ojtPosT2:'',
+      ojtPosReqT2:'',
+      ojtCompT3:'',
+      ojtDescT3:'',
+      ojtDurT3:'',
+      ojtJobLocT3:'',
+      ojtPosT3:'',
+      ojtPosReqT3:'',
+      ojtCompT4:'',
+      ojtDescT4:'',
+      ojtDurT4:'',
+      ojtJobLocT4:'',
+      ojtPosT4:'',
+      ojtPosReqT4:'',
+      ojtCompT5:'',
+      ojtDescT5:'',
+      ojtDurT5:'',
+      ojtJobLocT5:'',
+      ojtPosT5:'',
+      ojtPosReqT5:''
+
     };
   },
+  created(){
+    const dbRef = ref(db);
+
+      onValue(child(dbRef, `allJobList/1`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/1/ojtComp`),(snapshot) => { this.ojtCompT = snapshot.val() });
+          onValue(child(dbRef, `allJobList/1/ojtDesc`),(snapshot) => {this.ojtDescT = snapshot.val() });
+          onValue(child(dbRef, `allJobList/1/ojtDur`),(snapshot) => { this.ojtDurT = snapshot.val() });
+          onValue(child(dbRef, `allJobList/1/ojtJobLoc`),(snapshot) => { this.ojtJobLocT = snapshot.val()});
+          onValue(child(dbRef, `allJobList/1/ojtPos`),(snapshot) => { this.ojtPosT = snapshot.val()});
+          onValue(child(dbRef, `allJobList/1/ojtPosReq`),(snapshot) => { this.ojtPosReqT = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/2`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/2/ojtComp`),(snapshot) => { this.ojtCompT2 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/2/ojtDesc`),(snapshot) => {this.ojtDescT2 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/2/ojtDur`),(snapshot) => { this.ojtDurT2 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/2/ojtJobLoc`),(snapshot) => { this.ojtJobLocT2 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/2/ojtPos`),(snapshot) => { this.ojtPosT2 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/2/ojtPosReq`),(snapshot) => { this.ojtPosReqT2 = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/3`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/3/ojtComp`),(snapshot) => { this.ojtCompT3 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/3/ojtDesc`),(snapshot) => {this.ojtDescT3 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/3/ojtDur`),(snapshot) => { this.ojtDurT3 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/3/ojtJobLoc`),(snapshot) => { this.ojtJobLocT3 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/3/ojtPos`),(snapshot) => { this.ojtPosT3 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/3/ojtPosReq`),(snapshot) => { this.ojtPosReqT3 = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/4`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/4/ojtComp`),(snapshot) => { this.ojtCompT4 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/4/ojtDesc`),(snapshot) => {this.ojtDescT4 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/4/ojtDur`),(snapshot) => { this.ojtDurT4 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/4/ojtJobLoc`),(snapshot) => { this.ojtJobLocT4 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/4/ojtPos`),(snapshot) => { this.ojtPosT4 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/4/ojtPosReq`),(snapshot) => { this.ojtPosReqT4 = snapshot.val()});
+
+      });
+      onValue(child(dbRef, `allJobList/5`),
+      (snapshot) => {
+          onValue(child(dbRef, `allJobList/5/ojtComp`),(snapshot) => { this.ojtCompT5 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/5/ojtDesc`),(snapshot) => {this.ojtDescT5 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/5/ojtDur`),(snapshot) => { this.ojtDurT5 = snapshot.val() });
+          onValue(child(dbRef, `allJobList/5/ojtJobLoc`),(snapshot) => { this.ojtJobLocT5 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/5/ojtPos`),(snapshot) => { this.ojtPosT5 = snapshot.val()});
+          onValue(child(dbRef, `allJobList/5/ojtPosReq`),(snapshot) => { this.ojtPosReqT5 = snapshot.val()});
+
+      });
+
+
+  }
 };
 </script>
 

@@ -101,8 +101,8 @@ data() {
 },
 created (){
 
-  let loggedas = localStorage.getItem('loggedas');
-  let loggedin = localStorage.getItem('loggedin');
+  // let loggedas = localStorage.getItem('loggedas');
+  // let loggedin = localStorage.getItem('loggedin');
 
   // if(loggedin == 'true'){
   //   if(loggedas=='student'){
@@ -154,6 +154,9 @@ methods: {
                           localStorage.setItem('curComp',snapshot.val());
                         });
 
+                      }
+                      else{
+                        this.$router.push('/admin');
                       }
                       },
                     (error) => {
