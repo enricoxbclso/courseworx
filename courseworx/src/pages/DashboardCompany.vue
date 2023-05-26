@@ -152,7 +152,7 @@
                         </div>
                         <div class="card-center">
                           <h3>Tiktok</h3>
-                            <p class="card-detail">UI Designer OJT position available, seeking candidates with expertise in multimedia apps like Figma or Photoshop to create visually appealing interfaces for web and mobile applications.</p>
+                            <p class="card-detail">UI/UX Designer OJT Position</p>
                               <div class="card-highlight">
                                   <span>UI/UX Design</span>
                               </div>
@@ -191,7 +191,11 @@
 
                     
                         <!--DYNAMICALLY ADDED AFTER JOB LISTING FORM IS COMPLETED-->
-                          <div class="card" v-for="listing in getJobListings" :key="listing.id">
+                          <div class="card" v-for="listing in getJobListings" :key="listing.id">  
+                            <div class="button-container">
+                                 <button class="card-button" @click="toggleEditForm">Edit Listing</button>
+                                <ion-icon :icon="trashBinOutline" class="delete" @click="togglePopDel"></ion-icon>
+                              </div>                          
                             <div class="card-left blue-bg">
                               <img :src="google" alt="Company Logo">
                             </div>
@@ -215,6 +219,51 @@
                               </div>
                             </div>
                           </div>
+
+                          <!--------------------------------------FOR EDITING--------------------------------------------->
+                          <div class="editform" id="editform">
+                                <div class="contpop">
+                                  <header>Edit Listing</header>
+                                  <div class="close-btn" @click="cancelEditForm">X</div>
+                                  <div class="popform">
+                                    <div class="intbox">
+                                      <label>OJT Position Title</label>
+                                      <input v-model="ojtPos" type="text" placeholder="Enter Position Title" />
+                                    </div>
+                                    <div class="intbox">
+                                      <label>Company Name</label>
+                                      <input v-model="ojtComp" type="text" placeholder="Enter Company Name" />
+                                    </div>
+                                    <div class="columnpop">
+                                      <div class="intbox">
+                                        <label>OJT Description</label>
+                                        <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description"></textarea>
+                                      </div>
+                                      <div class="intbox">
+                                        <label>OJT Duration</label>
+                                        <input type="number" placeholder="Enter OJT Duration" v-model="ojtDur" />
+                                      </div>
+                                    </div>
+                                    <div class="columnpop">
+                                      <div class="intbox">
+                                        <label>OJT Position Requirements</label>
+                                        <textarea name="jobreq" rows="4" v-model="ojtPosReq" placeholder="Enter Position Requirements"></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="reqlist">
+                                      <ul>
+                                        <li v-for="requirement in parsedRequirements">{{ requirement }}</li>
+                                      </ul>
+                                    </div>
+                                    <div class="intbox address">
+                                      <label>Job Location</label>
+                                      <input v-model="ojtJobLoc" type="text" placeholder="Enter address" />
+                                    </div>
+                                    <button type="submit">Save</button>
+                                  </div>
+                                </div>
+                            </div>
+
 
                     </div><!--wrapper-->
                     
@@ -245,7 +294,7 @@
             <div class="columnpop">
               <div class="intbox">
                 <label>OJT Description</label>
-                <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description"  :class="{ 'error': showError && !ojtDesc }" @input="checkInput"  />
+                <textarea name="jobdescript" rows="4" cols="" v-model="ojtDesc" placeholder="Enter Job Description"  :class="{ 'error': showError && !ojtDesc }" @input="checkInput"></textarea>
                 <span v-if="showError && !ojtDesc" class="error-message">This field is required.</span>
               </div>
               <div class="intbox">
@@ -275,83 +324,110 @@
         </div>
         </div>
       </div>
-        </template> 
+
+
+      <!-----------------POP DELETE--------------------->
+      <div class="popdel" id="popdel">
+          <div class="form">
+            <div class="poptitle">Are you sure you want to delete this listing?</div>
+            <div class="radio-group">
+              <label for="employer" class="radio">
+                <input type="radio" name="employer" id="employer" class="radio__input">
+                <div class="radio__radio"></div>
+                Yes
+              </label>
+              <label for="student" class="radio">
+                <input type="radio" name="employer" id="student" class="radio__input">
+                <div class="radio__radio"></div>
+                No
+              </label>
+            </div>
+            <div class="form-element">
+              <button type="submit" class="submit-btn" @click="redirectPage">Next</button>
+              <button type="button" class="cancel-btn" @click="cancelPopDel">Cancel</button>
+            </div>
+          </div>
+    </div>
 
 
 
-    <script>
-    import { IonIcon } from '@ionic/vue';
-    import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline } from 'ionicons/icons';
-    import { push } from "firebase/database";
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-    import { getDatabase, ref, child, get, update, onValue, } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-    import { mapActions, mapGetters } from "vuex";
-    
-    
-    const firebaseConfig = {
-    apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
-    authDomain: "courseworx-454d2.firebaseapp.com",
-    databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "courseworx-454d2",
-    storageBucket: "courseworx-454d2.appspot.com",
-    messagingSenderId: "561114332314",
-    appId: "1:561114332314:web:0b4cabbaffea89b0113323"
-  };
-    
+</template> 
+
+
+<script>
+import { IonIcon } from '@ionic/vue';
+import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline, notificationsOutline, analyticsOutline, trashBinOutline } from 'ionicons/icons';
+import { push } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, child, get, update, onValue, } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { mapActions, mapGetters } from "vuex"
+
+const firebaseConfig = {
+apiKey: "AIzaSyBau35ju8XAdFN5em6h7HjPAhpf3pL5wSE",
+authDomain: "courseworx-454d2.firebaseapp.com",
+databaseURL: "https://courseworx-454d2-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId: "courseworx-454d2",
+storageBucket: "courseworx-454d2.appspot.com",
+messagingSenderId: "561114332314",
+appId: "1:561114332314:web:0b4cabbaffea89b0113323"
+};
+
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 
 export default {
-  components: { IonIcon },
+components: { IonIcon },
 
-  data() {
-    return {
-      add,
-      cartOutline,
-      chatbubbleOutline,
-      eyeOutline,
-      helpOutline,
-      homeOutline,
-      lockClosedOutline,
-      logOutOutline,
-      peopleOutline,
-      searchOutline,
-      settingsOutline,
-      cashOutline,
-      menuOutline,
-      locationOutline,
-      todayOutline,
-      hourglassOutline,
-      closeCircleOutline,
-      notificationsOutline,
-      analyticsOutline,
-      activeTab: 'home',
-      curCompName: '',
-      curCompUsername: '',
-      curCompViews: null,
-      cardCount: 0,
-      ojtPos: '',
-      ojtComp: '',
-      ojtDesc: '',
-      ojtDur: '',
-      ojtPosReq: '',
-      ojtJobLoc: '',
-      showError: false,
-      isListenerSet: false,
-    };
-  },
-  computed: {
-    ...mapGetters(["getJobListings"])
-  },
-  created() {
-    console.log(this.getJobListings);
-    const dbRef = ref(db);
-    this.curCompName = localStorage.getItem('curComp');
-    this.curCompUsername = localStorage.getItem('curCompUsername');
+data() {
+  return {
+    add,
+    cartOutline,
+    chatbubbleOutline,
+    eyeOutline,
+    helpOutline,
+    homeOutline,
+    lockClosedOutline,
+    logOutOutline,
+    peopleOutline,
+    searchOutline,
+    settingsOutline,
+    cashOutline,
+    menuOutline,
+    locationOutline,
+    todayOutline,
+    hourglassOutline,
+    closeCircleOutline,
+    trashBinOutline,
+    notificationsOutline,
+    analyticsOutline,
+    activeTab: 'home',
+    curCompName: '',
+    curCompUsername: '',
+    curCompViews: null,
+    cardCount: 0,
+    ojtPos: '',
+    ojtComp: '',
+    ojtDesc: '',
+    ojtDur: '',
+    ojtPosReq: '',
+    ojtJobLoc: '',
+    showError: false,
+    isListenerSet: false,
+  };
+},
+computed: {
+  ...mapGetters(["getJobListings"])
+},
+created() {
+  const curComp = localStorage.getItem('curComp');
+  const curCompUsername = localStorage.getItem('curCompUsername');
 
-    onValue(child(dbRef, `users/${this.curCompUsername}/views`), (snapshot) => {
+  if (curComp && curCompUsername) {
+    this.curCompName = curComp;
+    this.curCompUsername = curCompUsername;
+
+    onValue(child(ref(db), `users/${this.curCompUsername}/views`), (snapshot) => {
       this.curCompViews = Number(snapshot.val());
-      console.log(this.curCompViews + "username");
     });
 
     // Retrieve job listings from Firebase
@@ -362,101 +438,133 @@ export default {
         if (listings) {
           this.updateJobListings(Object.values(listings));
           this.cardCount = this.getJobListings.length;
+          localStorage.setItem('jobListings', JSON.stringify(this.getJobListings));
+        } else {
+          this.updateJobListings([]);
+          this.cardCount = 0;
+          localStorage.removeItem('jobListings');
         }
       });
-      this.isListenerSet = true; // Set the flag to true to indicate that the listener is now set up
+      this.isListenerSet = true;
+    }
+  }
+},
+mounted() {
+  const storedJobListings = localStorage.getItem('jobListings');
+  if (storedJobListings) {
+    this.updateJobListings(JSON.parse(storedJobListings));
+    this.cardCount = this.getJobListings.length;
+  }
+},
+methods: {
+  checkInput() {
+    this.showError = false;
+  },
+  submitForm() {
+    if (!this.validateForm()) {
+      this.showError = true;
+    } else {
+      this.addNewListing();
+      this.showError = false;
     }
   },
-  methods: {
-    checkInput() {
-      this.showError = false;
-    },
-    submitForm() {
-      if (!this.validateForm()) {
-        this.showError = true;
-      } else {
-        this.addNewListing();
-        this.showError = false;
-      }
-    },
-    validateForm() {
-      return (
-        this.ojtPos &&
-        this.ojtComp &&
-        this.ojtDesc &&
-        this.ojtDur &&
-        this.ojtPosReq &&
-        this.ojtJobLoc
-      );
-    },
-    addNewListing() {
-      if (!this.validateForm()) {
-        this.showError = true;
-        return;
-      }
+  validateForm() {
+    return (
+      this.ojtPos &&
+      this.ojtComp &&
+      this.ojtDesc &&
+      this.ojtDur &&
+      this.ojtPosReq &&
+      this.ojtJobLoc
+    );
+  },
+  addNewListing() {
+    if (!this.validateForm()) {
+      this.showError = true;
+      return;
+    }
 
-      const dbRef = ref(db, `joblisting/${this.curCompName}`);
-      const newListingRef = push(dbRef);
+    const dbRef = ref(db, `joblisting/${this.curCompName}`);
+    const newListingRef = push(dbRef);
 
-      update(newListingRef, {
+    update(newListingRef, {
+      ojtPos: this.ojtPos,
+      ojtComp: this.ojtComp,
+      ojtDesc: this.ojtDesc,
+      ojtDur: this.ojtDur,
+      ojtPosReq: this.ojtPosReq,
+      ojtJobLoc: this.ojtJobLoc
+    }).then(() => {
+      this.cardCount++;
+
+      const newListing = {
         ojtPos: this.ojtPos,
         ojtComp: this.ojtComp,
         ojtDesc: this.ojtDesc,
         ojtDur: this.ojtDur,
         ojtPosReq: this.ojtPosReq,
         ojtJobLoc: this.ojtJobLoc
-      }).then(() => {
-        this.cardCount++;
+      };
 
-        const newListing = {
-          ojtPos: this.ojtPos,
-          ojtComp: this.ojtComp,
-          ojtDesc: this.ojtDesc,
-          ojtDur: this.ojtDur,
-          ojtPosReq: this.ojtPosReq,
-          ojtJobLoc: this.ojtJobLoc
-        };
+      this.ojtPos = '';
+      this.ojtComp = '';
+      this.ojtDesc = '';
+      this.ojtDur = '';
+      this.ojtPosReq = '';
+      this.ojtJobLoc = '';
 
-        // Clear the form inputs
-        this.ojtPos = '';
-        this.ojtComp = '';
-        this.ojtDesc = '';
-        this.ojtDur = '';
-        this.ojtPosReq = '';
-        this.ojtJobLoc = '';
+      this.updateJobListings([...this.getJobListings, newListing]);
+      localStorage.setItem('jobListings', JSON.stringify(this.getJobListings));
 
-        this.updateJobListings([...this.getJobListings, newListing]); // Dispatch action to update jobListings using Vuex
-
-        const popup = document.getElementById("popup");
-        popup.classList.remove("visible");
-      });
-    },
-
-    ...mapActions(["updateJobListings"]), // Import action from Vuex
-    signout() {
-      this.$router.push('/');
-    },
-    changeTab(tab) {
-      this.activeTab = tab;
-    },
-    toggleNavigation() {
-      const navigation = document.querySelector('.navigation');
-      const main = document.querySelector('.main');
-
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
-    },
-    togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.classList.toggle("visible");
-    },
-    cancelPopup() {
       const popup = document.getElementById("popup");
       popup.classList.remove("visible");
-    }
-  }
+    });
+  },
+
+  ...mapActions(["updateJobListings"]),
+  signout() {
+    localStorage.removeItem('curComp');
+    localStorage.removeItem('curCompUsername');
+    localStorage.removeItem('jobListings');
+    this.$router.push('/');
+  },
+  changeTab(tab) {
+    this.activeTab = tab;
+  },
+  toggleNavigation() {
+    const navigation = document.querySelector('.navigation');
+    const main = document.querySelector('.main');
+
+    navigation.classList.toggle('active');
+    main.classList.toggle('active');
+  },
+  togglePopup() {
+    const popup = document.getElementById("popup");
+    popup.classList.toggle("visible");
+  },
+  cancelPopup() {
+    const popup = document.getElementById("popup");
+    popup.classList.remove("visible");
+  },
+  togglePopDel() {
+    const popup = document.getElementById("popdel");
+    popup.classList.toggle("visible");
+  },
+  cancelPopDel() {
+    const popup = document.getElementById("popdel");
+    popup.classList.remove("visible");
+  },
+  toggleEditForm() {
+    const popup = document.getElementById("editform");
+    popup.classList.toggle("visible");
+  },
+  cancelEditForm() {
+    const popup = document.getElementById("editform");
+    popup.classList.remove("visible");
+  },
+}
 };
-  </script>
+</script>
 
   
   <style>
@@ -802,7 +910,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-star t;
     padding: 3%;
     margin: 0 1%;
     background-color: white;
@@ -813,16 +921,42 @@ export default {
     border: 10px;
     cursor: pointer;
     margin-bottom: 20px;
+    position: relative;
   }
-  
-  .card-left{
-    width: 10%;
-    min-width: 50px;
-    display: flex;
-    justify-content: center;
-    border: 20%;
-  }
-  
+
+  .card-button {
+  background-color: #293556;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.delete {
+  color: red;
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+.button-container {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-left {
+  width: 10%;
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  border: 20%;
+}
+
   .card-left img{
     width: 100%;
     height: auto;
@@ -1067,6 +1201,26 @@ input, button, select {
   transition: opacity 0.3s ease-in-out;
 }
 
+.editform{
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0%;
+  transform: translate(-50%, -50%);
+  padding: 20px 30px;
+  background-color: #293556;
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+}
+.editform.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .popup.visible {
   opacity: 1;
   pointer-events: auto;
@@ -1208,6 +1362,112 @@ input, button, select {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     color: #293556;
   }
+
+    /*===================POPUP DELETE=======================*/
+
+    .radio-group {
+      display: flex;
+      cursor: pointer;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .radio {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+      .radio__input {
+      display: none;
+      }
+
+      .radio__radio {
+      width: 1.25em;
+      height: 1.25em;
+      border: 2px solid #293556;
+      border-radius: 50%;
+      margin-right: 10px;
+      box-sizing: border-box;
+      padding: 2px;
+      }
+
+      .radio__radio::after{
+      content: '';
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #293556;
+      border-radius: 50%;
+
+      transform: scale(0);
+      }
+
+      .radio__input:checked +.radio__radio::after{
+      transform: scale(1);
+      }
+
+      .popdel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      opacity: 0%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      padding: 20px 30px;
+      background: #fff;
+      box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+      }
+
+      .popdel.visible {
+      opacity: 1;
+      pointer-events: auto;
+      }
+
+      .form-element {
+      display: flex;
+      justify-content: space-between;
+      }
+
+      .submit-btn {
+      width: 45%;
+      height: 40px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background-color: #293556;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      }
+
+      .cancel-btn {
+      width: 45%;
+      height: 40px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background-color: #ccc;
+      color: #293556;
+      border-radius: 10px;
+      cursor: pointer;
+      }
+
+
+      .popdel .form .poptitle{
+      position: relative;
+      font-size: 18px;
+      font-weight: 500;
+      color: #333;
+
+      }
+
+
   /*Responsive*/
   @media screen and (max-width: 500px) {
     .popform .columnpop {

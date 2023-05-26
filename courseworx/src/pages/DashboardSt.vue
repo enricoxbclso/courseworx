@@ -136,12 +136,12 @@
                 </div>
             </div>
 
-            <div class="recommendation-text">
+            <div class="recommendation-text">                                                                                                                                                                         
               Job Recommendations for you!
             </div>  
                       <!--DYNAMICALLY ADDED-->
                       <div class = 'wrapper'>
-                          <div class="card" v-for="(listing, index) in jobListings" :key="index">
+                          <div class="card" v-for="listing in getJobListings" :key="listing.id">
                             <div class="card-left blue-bg">
                               <img :src="google" alt="Company Logo">
                             </div>  
@@ -223,8 +223,9 @@
             </div>
           </div>
       </div>
-  
       </template> 
+
+
 <script>
 import { IonIcon } from '@ionic/vue';
 import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
@@ -233,14 +234,18 @@ import { mapGetters } from "vuex";
 export default {
   components: { IonIcon },
 
-  computed: {
-    ...mapGetters(["getJobListings"])
+  props: {
+    jobListings: {
+      type: Array,
+      default: () => []
+    }
   },
 
-  created() {
-    // Access job listings directly from the store
-    const jobListings = this.getJobListings;
-    // Do whatever you want with the job listings here
+  computed: {
+    ...mapGetters(["getJobListings"]),
+    getJobListings() {
+    return this.jobListings;
+  }
   },
 
   methods: {
@@ -279,7 +284,6 @@ export default {
   },
 };
 </script>
-
 
 
 
