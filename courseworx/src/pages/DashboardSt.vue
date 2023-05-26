@@ -137,11 +137,11 @@
             </div>
 
             <div class="recommendation-text">
-              Top Employers
+              Job Recommendations for you!
             </div>  
                       <!--DYNAMICALLY ADDED-->
                       <div class = 'wrapper'>
-                          <div class="card" v-for="listing in getJobListings" :key="listing.id">
+                          <div class="card" v-for="(listing, index) in jobListings" :key="index">
                             <div class="card-left blue-bg">
                               <img :src="google" alt="Company Logo">
                             </div>  
@@ -225,63 +225,63 @@
       </div>
   
       </template> 
-
 <script>
-  import { IonIcon } from '@ionic/vue';
-  import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
-  import { mapGetters } from 'vuex';
+import { IonIcon } from '@ionic/vue';
+import { add, cartOutline, chatbubbleOutline, eyeOutline, helpOutline, homeOutline, lockClosedOutline, logOutOutline, peopleOutline, searchOutline, settingsOutline, cashOutline, menuOutline, locationOutline, todayOutline, hourglassOutline, closeCircleOutline } from 'ionicons/icons';
+import { mapGetters } from "vuex";
 
-  export default {
-    components: { IonIcon },
-    
-    computed: {
-      ...mapGetters(['getJobListings']),
-      // Other computed properties
+export default {
+  components: { IonIcon },
+
+  computed: {
+    ...mapGetters(["getJobListings"])
+  },
+
+  created() {
+    // Access job listings directly from the store
+    const jobListings = this.getJobListings;
+    // Do whatever you want with the job listings here
+  },
+
+  methods: {
+    changeTab(tab) {
+      this.activeTab = tab;
     },
+    toggleNavigation() {
+      const navigation = document.querySelector('.navigation');
+      const main = document.querySelector('.main');
 
-    methods: {
-      changeTab(tab) {
-        this.activeTab = tab;
-      },
-      toggleNavigation() {
-        const navigation = document.querySelector('.navigation');
-        const main = document.querySelector('.main');
-
-        navigation.classList.toggle('active');
-        main.classList.toggle('active');
-      }
-    },
-
-    data() {
-      return {
-        add,
-        cartOutline,
-        chatbubbleOutline,
-        eyeOutline,
-        helpOutline,
-        homeOutline,
-        lockClosedOutline,
-        logOutOutline,
-        peopleOutline,
-        searchOutline,
-        settingsOutline,
-        cashOutline,
-        menuOutline,
-        locationOutline,
-        todayOutline,
-        hourglassOutline,
-        activeTab: 'home',
-      };
-    },
-
-    created() {
-      // Retrieve job listings from Vuex
-      console.log('Student Dashboard created');
-      this.$store.dispatch('updateJobListings');
-      console.log('getJobListings:', this.getJobListings);
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
     }
-  };
+  },
+
+  data() {
+    return {
+      add,
+      cartOutline,
+      chatbubbleOutline,
+      eyeOutline,
+      helpOutline,
+      homeOutline,
+      lockClosedOutline,
+      logOutOutline,
+      peopleOutline,
+      searchOutline,
+      settingsOutline,
+      cashOutline,
+      menuOutline,
+      locationOutline,
+      todayOutline,
+      hourglassOutline,
+      activeTab: 'home',
+    };
+  },
+};
 </script>
+
+
+
 
 
   <style>
@@ -1316,8 +1316,4 @@ input, button, select {
 <script setup>
   import prof_pic from "~/assets/images/prof_pic.jpg";
   import google from "~/assets/images/google.png";
-  import tiktok from "~/assets/images/tiktok.svg"
-  import twitter from "~/assets/images/twitter.png"
-  import discord from "~/assets/images/discord.svg"
-  import logo from "~/assets/images/backImg.jpg";
   </script>

@@ -6,6 +6,7 @@ const store = createStore({
   },
   mutations: {
     SET_JOB_LISTINGS(state, listings) {
+      console.log(listings);
       state.jobListings = listings;
     }
   },

@@ -14,7 +14,8 @@ const router = createRouter({
     { path: "/forgotpass", component: () => import("~/pages/ForgotPassword.vue") },
     { path: "/test", component: () => import("~/pages/test.vue") },
     { path: "/joblist", component: () => import("~/pages/JobListing.vue") },
-    { path: "/profile", component: () => import("~/pages/Profile.vue") },    
+    { path: "/profile", component: () => import("~/pages/Profile.vue") },
+    { path: "/companyprofile", component: () => import("~/pages/CompanyProfile.vue") },     
     { path: "/admin", component: () => import("~/pages/AdminPage.vue") },     
 ],
     

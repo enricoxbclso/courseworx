@@ -145,33 +145,6 @@
                   </div>
               </div>
                 <!-- ================ JOB RECOMMENDATIONS ================= -->
-                <div class="wrapper">
-                    <div class="card">
-                        <div class="card-left blue-bg">
-                            <img :src="Google">
-                        </div>
-                        <div class="card-center">
-                          <h3>Google</h3>
-                            <p class="card-detail">Software Development Intern</p>
-                            <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                              <div class="card-sub">
-                                <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
-                                <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                                <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                              </div>
-                        </div>
-                        <div class="card-right">
-                            <div class="card-tag">
-                              <h5>Job Description</h5>
-                              <a href="#"><u>UI/UX Designer</u></a>
-                            </div>
-                            <div class="card-salary">
-                                <p><b>$350k</b><span>/ year</span></p>
-                            </div>
-                        </div><!--card-right-->
-                    </div><!--card-->
-                    </div><!--wrapper-->
-    
                     <div class="wrapper">
                     <div class="card">
                         <div class="card-left blue-bg">
@@ -179,7 +152,10 @@
                         </div>
                         <div class="card-center">
                           <h3>Tiktok</h3>
-                            <p class="card-detail">UI/UX Designer</p>
+                            <p class="card-detail">UI Designer OJT position available, seeking candidates with expertise in multimedia apps like Figma or Photoshop to create visually appealing interfaces for web and mobile applications.</p>
+                              <div class="card-highlight">
+                                  <span>UI/UX Design</span>
+                              </div>
                             <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
                               <div class="card-sub">
                                 <p><ion-icon :icon="todayOutline"></ion-icon>4 hours ago</p>
@@ -187,78 +163,14 @@
                                 <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
                               </div>
                         </div>
-                        <div class="card-right">
-                            <div class="card-tag">
-                              <h5>Job Description</h5>
-                              <a href="#"><u>UI/UX Designer</u></a>
-                            </div>
-                            <div class="card-salary">
-                                <p><b>$350k</b><span>/ year</span></p>
-                            </div>
-                        </div><!--card-right-->
                     </div><!--card-->
                     </div><!--wrapper-->
-    
-                    <div class="wrapper">
-                    <div class="card">
-                        <div class="card-left blue-bg">
-                            <img :src="Twitter">
-                        </div>
-                        <div class="card-center">
-                          <h3>Twitter</h3>
-                            <p class="card-detail">UI/UX Designer</p>
-                            <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                              <div class="card-sub">
-                                <p><ion-icon :icon="todayOutline"></ion-icon>1 day ago</p>
-                                <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                                <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                              </div>
-                        </div>
-                        <div class="card-right">
-                            <div class="card-tag">
-                              <h5>Job Description</h5>
-                              <a href="#"><u>UI/UX Designer</u></a>
-                            </div>
-                            <div class="card-salary">
-                                <p><b>$350k</b><span>/ year</span></p>
-                            </div>
-                        </div><!--card-right-->
-                    </div><!--card-->
-                    </div><!--wrapper-->
-    
-                    <div class="wrapper">
-                    <div class="card">
-                        <div class="card-left blue-bg">
-                            <img :src="Discord">
-                        </div>
-                        <div class="card-center">
-                          <h3>Discord</h3>
-                            <p class="card-detail">UI/UX Designer</p>
-                            <p class="card-loc"><ion-icon :icon="locationOutline"></ion-icon>Colon Street, Cebu City</p>
-                              <div class="card-sub">
-                                <p><ion-icon :icon="todayOutline"></ion-icon>2 hours ago</p>
-                                <p><ion-icon :icon="peopleOutline"></ion-icon>OJT Position</p>
-                                <p><ion-icon :icon="hourglassOutline"></ion-icon>100 hours</p>
-                              </div>
-                        </div>
-                        <div class="card-right">
-                            <div class="card-tag">
-                              <h5>Job Description</h5>
-                              <a href="#"><u>UI/UX Designer</u></a>
-                            </div>
-                            <div class="card-salary">
-                                <p><b>$350k</b><span>/ year</span></p>
-                            </div>
-                        </div><!--card-right-->
-                    </div><!--card-->
-                    </div><!--wrapper-->  
               </div> 
               <div>
         <!-- ======================= YOUR APPLICATION ================== -->  
         <div class="content" v-if="activeTab === 'application'">  
         <div class="wrapper">
-
-                      <div class="record-header">
+              <div class="record-header">
                           <div class="add">
                               <span>Entries</span>
                               <select name="" id="">
@@ -278,7 +190,7 @@
                       </div>
 
                     
-                        <!--DYNAMICALLY ADDED WHEN A BUTTON IS CLICKED-->
+                        <!--DYNAMICALLY ADDED AFTER JOB LISTING FORM IS COMPLETED-->
                           <div class="card" v-for="listing in getJobListings" :key="listing.id">
                             <div class="card-left blue-bg">
                               <img :src="google" alt="Company Logo">
@@ -386,7 +298,7 @@
     appId: "1:561114332314:web:0b4cabbaffea89b0113323"
   };
     
-  const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 
 export default {
@@ -432,6 +344,7 @@ export default {
     ...mapGetters(["getJobListings"])
   },
   created() {
+    console.log(this.getJobListings);
     const dbRef = ref(db);
     this.curCompName = localStorage.getItem('curComp');
     this.curCompUsername = localStorage.getItem('curCompUsername');
@@ -455,8 +368,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateJobListings"]), // Import action from Vuex
-
     checkInput() {
       this.showError = false;
     },
@@ -506,8 +417,6 @@ export default {
           ojtJobLoc: this.ojtJobLoc
         };
 
-        this.updateJobListings([...this.getJobListings, newListing]); // Dispatch action to update jobListings using Vuex
-
         // Clear the form inputs
         this.ojtPos = '';
         this.ojtComp = '';
@@ -516,10 +425,14 @@ export default {
         this.ojtPosReq = '';
         this.ojtJobLoc = '';
 
+        this.updateJobListings([...this.getJobListings, newListing]); // Dispatch action to update jobListings using Vuex
+
         const popup = document.getElementById("popup");
         popup.classList.remove("visible");
       });
     },
+
+    ...mapActions(["updateJobListings"]), // Import action from Vuex
     signout() {
       this.$router.push('/');
     },
@@ -936,6 +849,7 @@ export default {
     margin-top: 5px;
     margin-bottom: 5px;
   }
+  
   .card-loc{
     font-size: 13px;
     color: darkgrey;
@@ -988,6 +902,24 @@ export default {
     background: #93CAED;
     border-radius: 20px;
   }
+  .card-highlight {
+    background-color: #ccc;
+  border-radius: 10px;
+  padding: 5px 10px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.card-highlight span {
+  color: #fff;
+}
+.card-highlight:hover {
+  background-color: #999;
+}
   /*<--------------------STATUSES------------------------> */
   .status.delivered {
     padding: 2px 4px;
